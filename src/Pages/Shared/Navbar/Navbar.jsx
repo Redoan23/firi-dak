@@ -33,11 +33,11 @@ const Navbar = () => {
     }
 
     return (
-        <div onClick={() => setMobileNav(!mobileNav)}>
+        <div >
             {
                 mobileNav && <MobileNav></MobileNav>
             }
-            <div className={` ${isScrolled ? " " : " "} w-full max-w-full mx-auto pt-8 text-black border-b sticky top-0 bg-opacity-95 transition-all duration-200 bg-white`}>
+            <div className={` ${isScrolled ? " " : " "} w-full max-w-full mx-auto lg:pt-8 px-2 text-black border-b sticky top-0 bg-opacity-95 transition-all duration-200 bg-white`}>
                 <div className=" flex items-center justify-between w-full max-w-screen-xl mx-auto">
                     <div className=" block  lg:hidden">
                         <div onClick={handleMobileNav} className={` ${mobileNav && " hidden"} flex items-center gap-3`}>
@@ -46,7 +46,7 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div>
-                        <NavLink to={'/'}><h3 className={` ${isScrolled ? 'text-xl' : 'text-2xl'} font-black  ease-in-out duration-300`}><span className=" text-orange-600 text-5xl">F</span><span className=" text-gray-300">IRIDAK</span></h3></NavLink>
+                        <NavLink to={'/'}><h3 className={` ${isScrolled ? 'text-xl' : 'text-2xl'} font-black  ease-in-out duration-300`}><span className=" text-orange-600 text-4xl">F</span><span className=" text-gray-300">IRIDAK</span></h3></NavLink>
                     </div>
                     <div className=" w-4/5 lg:block hidden ">
                         <input type="text" name="searchbar" id="searchbar" className=" w-full h-11 bg-transparent border-2 p-2" placeholder="search here..." />
@@ -55,7 +55,7 @@ const Navbar = () => {
                         <CiShoppingCart className=" text-3xl" />
                     </div>
                 </div>
-                <div className={` ${isScrolled ? "mt-2" : "mt-6"} border w-full  ease-in-out duration-300`}>
+                <div className={` ${isScrolled ? "mt-2" : "mt-6"} border w-full  ease-in-out duration-300 lg:block hidden`}>
                     <div className=" flex items-center justify-between  max-w-screen-xl mx-auto">
                         <div className=" flex items-center gap-4">
                             <div className=" bg-red-100 flex items-center justify-between p-3 w-60">
