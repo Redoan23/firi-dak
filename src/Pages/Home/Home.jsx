@@ -1,7 +1,7 @@
 
 const Home = () => {
     return (
-        <div>
+        <div className=" text-black font-black">
             this is home route
         </div>
     );
