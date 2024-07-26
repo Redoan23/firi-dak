@@ -11,6 +11,7 @@ const Navbar = () => {
 
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileNav, setMobileNav] = useState(false);
+    const [openModal, setOpenModal] = useState(false)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -29,18 +30,19 @@ const Navbar = () => {
 
     const handleMobileNav = () => {
         console.log('working')
-        setMobileNav(!mobileNav)
+        setMobileNav(true)
+        setOpenModal(!openModal)
     }
 
     return (
-        <div >
+        <div className="  sticky top-0">
             {
-                mobileNav && <MobileNav></MobileNav>
+                mobileNav && <MobileNav openModal={openModal} ></MobileNav>
             }
-            <div className={` ${isScrolled ? " " : " "} w-full max-w-full mx-auto lg:pt-8 px-2 text-black border-b sticky top-0 bg-opacity-95 transition-all duration-200 bg-white`}>
+            <div className={` ${isScrolled ? " " : " "} w-full max-w-full mx-auto lg:pt-8 px-2 text-black border-b bg-opacity-95 transition-all duration-200 bg-white`}>
                 <div className=" flex items-center justify-between w-full max-w-screen-xl mx-auto">
                     <div className=" block  lg:hidden">
-                        <div onClick={handleMobileNav} className={` ${mobileNav && " hidden"} flex items-center gap-3`}>
+                        <div onClick={handleMobileNav} className={`  flex items-center gap-3`}>
                             <FaBars />
                             <h3 className=" text-lg"> Menu</h3>
                         </div>
