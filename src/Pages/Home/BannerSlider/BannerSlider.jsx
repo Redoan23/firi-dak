@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -23,19 +23,13 @@ const BannerSlider = () => {
                 pagination={{
                     clickable: true,
                 }}
-                navigation={true}
                 modules={[Autoplay, Pagination, Navigation]}
-                className="mySwiper"
+                className="mySwiper mx-auto w-[65%] lg:w-[56%] h-[130px] md:h-[270px] lg:h-[400px]"
             >
-                <SwiperSlide>Slide 1</SwiperSlide>
-                <SwiperSlide>Slide 2</SwiperSlide>
-                <SwiperSlide>Slide 3</SwiperSlide>
-                <SwiperSlide>Slide 4</SwiperSlide>
-                <SwiperSlide>Slide 5</SwiperSlide>
-                <SwiperSlide>Slide 6</SwiperSlide>
-                <SwiperSlide>Slide 7</SwiperSlide>
-                <SwiperSlide>Slide 8</SwiperSlide>
-                <SwiperSlide>Slide 9</SwiperSlide>
+                <SwiperSlide><img src="https://i.ibb.co/cQrF5f5/13235.jpg" alt="" /></SwiperSlide>
+                <SwiperSlide><img src="https://i.ibb.co/QYsC6sh/53989.jpg" alt="" /></SwiperSlide>
+                <SwiperSlide><img src="https://i.ibb.co/GT2zZrC/57691.jpg" alt="" /></SwiperSlide>
+                <SwiperSlide><img src="https://i.ibb.co/wW8sybR/47570.jpg" alt="" /></SwiperSlide>
             </Swiper>
         </div>
     );
