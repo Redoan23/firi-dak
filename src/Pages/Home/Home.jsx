@@ -1,8 +1,11 @@
+import BannerSlider from "./BannerSlider/BannerSlider";
 
 const Home = () => {
     return (
-        <div className=" text-black font-black">
-            this is home route
+        <div className=" mt-16 ">
+            <div>
+                <BannerSlider />
+            </div>
         </div>
     );
 };

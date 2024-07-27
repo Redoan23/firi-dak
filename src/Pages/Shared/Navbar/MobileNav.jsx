@@ -16,6 +16,7 @@ import { LiaShoppingBagSolid } from 'react-icons/lia';
 import { PiAddressBookLight, PiHoodieLight } from 'react-icons/pi';
 import { GiSquareBottle } from 'react-icons/gi';
 import { CiShirt } from 'react-icons/ci';
+import { FaMagnifyingGlass } from 'react-icons/fa6';
 
 const style = {
     position: 'absolute',
@@ -23,7 +24,7 @@ const style = {
     left: '0%',
     transform: 'translate(0%, 0%)',
     duration: '5s',
-    width: '75%',
+    width: '280px',
     height: '100%',
     bgcolor: 'background.paper',
     border: '2px solid ',
@@ -39,14 +40,12 @@ const MobileNav = ({ openModal }) => {
         setValue(newValue);
     };
 
-    console.log(openModal)
-
     // modal part
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    
+
     React.useEffect(() => {
         handleOpen()
     }, [openModal])
@@ -63,8 +62,11 @@ const MobileNav = ({ openModal }) => {
             <Slide direction='right' in={open} mountOnEnter unmountOnExit>
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Text in a modal
-
+                        {/* Text in a modal */}
+                        <div className=' relative '>
+                            <input type="text" name="search" id="search" className=' w-44 rounded-md bg-gray-100 border-none outline-none text-sm p-2' placeholder=' search here... ' />
+                            <FaMagnifyingGlass className=' absolute top-2 right-0 text-orange-600' />
+                        </div>
                         <TabContext value={value}>
                             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                 <TabList onChange={handleChange} aria-label="lab API tabs example" sx={{
@@ -87,7 +89,7 @@ const MobileNav = ({ openModal }) => {
                                     <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} to={'/shop'}> <LiaShoppingBagSolid /> SHOP</NavLink>
                                     <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} to={'/shop'}> <PiAddressBookLight /> MY ACCOUNT</NavLink>
                                     <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} to={'/shop'}> <IoHeartOutline /> WISHLIST</NavLink>
-                                    <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} to={'/shop'}> <IoPersonOutline /> LOGIN / REGISTER</NavLink>
+                                    <NavLink className={' border-b py-2 my-1 flex  items-center gap-2'} to={'/shop'}> <IoPersonOutline /> LOGIN / REGISTER</NavLink>
                                 </div>
                             </TabPanel>
                             <TabPanel value="2">
@@ -99,10 +101,6 @@ const MobileNav = ({ openModal }) => {
                                 </div>
                             </TabPanel>
                         </TabContext>
-
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
                     </Typography>
                 </Box>
             </Slide>
