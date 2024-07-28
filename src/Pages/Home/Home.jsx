@@ -1,14 +1,22 @@
+import Accordian from "./Accordian/Accordian";
 import BanglesCards from "./BanglesCards/BanglesCards";
 import BannerSlider from "./BannerSlider/BannerSlider";
+import BraceletCards from "./BraceletCards/BraceletCards";
 
 const Home = () => {
     return (
-        <div className=" mt-16 ">
+        <div className=" mt-16 mx-auto">
             <div>
                 <BannerSlider />
             </div>
-            <div>
+            <div className=" mx-auto text-center">
                 <BanglesCards />
+            </div>
+            <div className=" mx-auto">
+                <BraceletCards />
+            </div>
+            <div>
+                <Accordian />
             </div>
         </div>
     );
