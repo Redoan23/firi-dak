@@ -2,60 +2,90 @@
     {
         "img": "https://i.ibb.co/cQrF5f5/13235.jpg",
         "name": "Elegant Gold Bangle",
-        "price": 120.00
+        "price": 120.00,
+        "weight": 20,
+        "size": 2.8,
+        "category": "bangles"
     },
     {
         "img": "https://i.ibb.co/QYsC6sh/53989.jpg",
         "name": "Silver Pearl Bangle",
         "price": 90.00,
-        "discount": 15
+        "discount": 15,
+        "weight": 15,
+        "size": 2.4,
+        "category": "bangles"
     },
     {
         "img": "https://i.ibb.co/GT2zZrC/57691.jpg",
         "name": "Classic Diamond Bangle",
         "price": 250.00,
-        "discount": 5
+        "discount": 5,
+        "weight": 25,
+        "size": 2.8,
+        "category": "bangles"
     },
     {
         "img": "https://i.ibb.co/wW8sybR/47570.jpg",
         "name": "Rose Gold Floral Bangle",
         "price": 180.00,
-        "discount": 20
+        "discount": 20,
+        "weight": 18,
+        "size": 2.4,
+        "category": "bangles"
     },
     {
         "img": "https://i.ibb.co/cQrF5f5/13235.jpg",
         "name": "Antique Bronze Bangle",
         "price": 70.00,
-        "discount": 25
+        "discount": 25,
+        "weight": 22,
+        "size": 2.8,
+        "category": "bangles"
     },
     {
         "img": "https://i.ibb.co/QYsC6sh/53989.jpg",
         "name": "Platinum Studded Bangle",
         "price": 300.00,
-        "discount": 8
+        "discount": 8,
+        "weight": 28,
+        "size": 2.4,
+        "category": "bangles"
     },
     {
         "img": "https://i.ibb.co/GT2zZrC/57691.jpg",
         "name": "Emerald Green Bangle",
         "price": 150.00,
-        "discount": 12
+        "discount": 12,
+        "weight": 17,
+        "size": 2.8,
+        "category": "bangles"
     },
     {
         "img": "https://i.ibb.co/wW8sybR/47570.jpg",
         "name": "Ruby Red Bangle",
         "price": 200.00,
-        "discount": 18
+        "discount": 18,
+        "weight": 20,
+        "size": 2.4,
+        "category": "bangles"
     },
     {
         "img": "https://i.ibb.co/cQrF5f5/13235.jpg",
         "name": "Sapphire Blue Bangle",
         "price": 220.00,
-        "discount": 7
+        "discount": 7,
+        "weight": "23g",
+        "size": "2.8",
+        "category": "bangles"
     },
     {
         "img": "https://i.ibb.co/QYsC6sh/53989.jpg",
         "name": "Citrine Yellow Bangle",
         "price": 130.00,
-        "discount": 14
+        "discount": 14,
+        "weight": "19g",
+        "size": "2.4",
+        "category": "bangles"
     }
 ]

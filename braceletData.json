@@ -1,0 +1,65 @@
+[
+    {
+        "name": "Elegant Pearl Bracelet",
+        "price": 260,
+        "discount": 0.10,
+        "img": "https://i.ibb.co/cQrF5f5/13235.jpg",
+        "weight": 20,
+        "size": 2.8,
+        "category": "bracelets"
+    },
+    {
+        "name": "Charming Silver Bracelet",
+        "price": 360,
+        "discount": 0.15,
+        "img": "https://i.ibb.co/QYsC6sh/53989.jpg",
+        "weight": 25,
+        "size": 2.4,
+        "category": "bracelets"
+    },
+    {
+        "name": "Classic Gold Bracelet",
+        "price": 500,
+        "discount": 0.20,
+        "img": "https://i.ibb.co/GT2zZrC/57691.jpg",
+        "weight": 30,
+        "size": 2.8,
+        "category": "bracelets"
+    },
+    {
+        "name": "Stylish Leather Bracelet",
+        "price": 200,
+        "discount": 0.05,
+        "img": "https://i.ibb.co/wW8sybR/47570.jpg",
+        "weight": 15,
+        "size": 2.4,
+        "category": "bracelets"
+    },
+    {
+        "name": "Boho Chic Bracelet",
+        "price": 230,
+        "discount": 0.12,
+        "img": "https://i.ibb.co/cQrF5f5/13235.jpg",
+        "weight": 22,
+        "size": 2.8,
+        "category": "bracelets"
+    },
+    {
+        "name": "Minimalist Bead Bracelet",
+        "price": 160,
+        "discount": 0.08,
+        "img": "https://i.ibb.co/QYsC6sh/53989.jpg",
+        "weight": 18,
+        "size": 2.4,
+        "category": "bracelets"
+    },
+    {
+        "name": "Vintage Charm Bracelet",
+        "price": 300,
+        "discount": 0.18,
+        "img": "https://i.ibb.co/GT2zZrC/57691.jpg",
+        "weight": 25,
+        "size": 2.8,
+        "category": "bracelets"
+    }
+]

@@ -55,7 +55,7 @@ const Navbar = () => {
             {
                 openCart && <Cart cartSwitch={cartSwitch}></Cart>
             }
-            <div className={` ${isScrolled ? "lg:pt-2 " : "lg:pt-8 "} w-full max-w-full mx-auto  px-2 text-black border-b bg-opacity-85 transition-all duration-200 bg-white`}>
+            <div className={` ${isScrolled ? "lg:pt-2 " : "lg:pt-8 "} w-full max-w-full mx-auto  px-2 text-black border-b bg-opacity-90 transition-all duration-200 bg-white`}>
                 <div className={`flex justify-between flex-start items-center duration-300 ease-in-out  w-full max-w-screen-xl mx-auto`}>
                     <div className=" block  lg:hidden">
                         <div onClick={handleMobileNav} className={`  flex items-center gap-3`}>
