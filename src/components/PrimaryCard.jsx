@@ -24,7 +24,6 @@ const PrimaryCard = ({ title, dataArray }) => {
             <div className=" mx-auto text-center flex justify-center">
                 <Swiper
                     freeMode={true}
-                    // loop={true}
                     modules={[FreeMode, Pagination, Navigation]}
                     breakpoints={{
                         375: {
@@ -48,8 +47,8 @@ const PrimaryCard = ({ title, dataArray }) => {
                                 <div className=" w-full mx-auto flex justify-center" >
                                     <div className="card card-compact bg-transparent w-[90%]  md:w-96 text-gray-500 text-center rounded-none" >
                                         <div className=" relative w-full h-44 md:h-80 overflow-hidden" onMouseOver={() => setHoveredIndex(i)} onMouseLeave={() => setHoveredIndex(null)} >
-                                            <Link to={'/itemDetails'}>
-                                                <img className=" w-full h-full hover:scale-[1.05] duration-200 ease-in-out transition-all" src={data.img} alt="Bangle" />
+                                            <Link to={`/itemDetails/${data._id}`}>
+                                                <img className=" w-full h-full object-cover hover:scale-[1.05] duration-200 ease-in-out transition-all" src={data.img} alt="Bangle" />
                                             </Link>
                                             {
                                                 data?.discount && <div className="absolute z-50 top-4 left-2 bg-orange-600 text-white w-12 h-12 rounded-full text-center flex justify-center items-center">
