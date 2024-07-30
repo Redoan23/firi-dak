@@ -72,7 +72,7 @@ const PrimaryCard = ({ title, dataArray }) => {
                                                 :
                                                 <div> <p className=" text-center text-orange-600 text-base">{data.price} TK</p></div>}
                                             <div className="card-actions justify-center">
-                                                <button className="btn rounded-none text-white  bg-orange-600 border-none hover:bg-gray-200 hover:text-orange-600 min-h-[2rem] h-10 ">Add to Cart</button>
+                                                <button className="btn rounded-none text-white  bg-orange-600 border-none hover:bg-gray-200 hover:text-orange-600 min-h-[2rem] ease-in-out duration-500 h-10  ">Add to Cart</button>
                                             </div>
                                         </div>
                                     </div>

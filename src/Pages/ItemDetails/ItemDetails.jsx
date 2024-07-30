@@ -38,7 +38,7 @@ const ItemDetails = () => {
     return (
         <div className=" mt-12">
             <div className="hero bg-white w-[80%] place-items-center mx-auto">
-                <div className="hero-content overflow-hidden py-10 flex-col lg:flex-row">
+                <div className="hero-content overflow-hidden py-14 flex-col lg:flex-row">
                     <img
                         src={itemDetails.img}
                         className=" max-w-[320px] md:max-w-md object-cover rounded-lg shadow-lg" />
@@ -62,7 +62,7 @@ const ItemDetails = () => {
                                 <input onChange={cartValue} defaultValue={value} value={value} min={1} type="number" name="amount" id="amount" className=" bg-white border w-12 text-center" />
                                 <button onClick={increaseValue} className=" px-1 border">+</button>
                             </div>
-                            <button className="btn min-h-[1rem] h-9  bg-orange-600 border-none rounded-none text-white">Add to Cart</button>
+                            <button className="btn min-h-[1rem] h-9  bg-orange-600 border-none rounded-none text-white hover:bg-gray-200 hover:text-orange-600 ease-in-out duration-500">Add to Cart</button>
                         </div>
                     </div>
                 </div>
