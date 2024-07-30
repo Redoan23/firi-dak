@@ -17,6 +17,7 @@ const AdditionalInfoTab = ({ itemInfo }) => {
         <Box sx={{
             width: '80%', typography: 'body1',
             margin: 'auto',
+            minHeight:'200px'
 
         }}>
             <div>

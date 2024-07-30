@@ -3,6 +3,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic";
 import { useQuery } from "react-query";
 import { useState } from "react";
 import AdditionalInfoTab from "./AdditionalInfoTab/AdditionalInfoTab";
+import RelatedProducts from "./RelatedProducts/RelatedProducts";
 
 
 const ItemDetails = () => {
@@ -20,7 +21,10 @@ const ItemDetails = () => {
 
 
     // functionalities for the add to cart button
-    const [value, setValue] = useState(null)
+    const [value, setValue] = useState(1)
+    const cartValue = (e) => {
+        setValue(parseInt(e.target.value))
+    }
     const increaseValue = () => {
         setValue(value + 1)
     }
@@ -37,10 +41,10 @@ const ItemDetails = () => {
                 <div className="hero-content overflow-hidden py-10 flex-col lg:flex-row">
                     <img
                         src={itemDetails.img}
-                        className=" max-w-[320px] md:max-w-md object-cover rounded-lg shadow-2xl" />
+                        className=" max-w-[320px] md:max-w-md object-cover rounded-lg shadow-lg" />
                     <div>
                         <h1 className="text-4xl text-gray-700 font-bold">{itemDetails.name}</h1>
-                        <p className="py-4 underline font-semibold text-xl text-gray-600">
+                        <p className="py-4 underline font-semibold text-xl text-orange-600">
                             {itemDetails.price} TK
                         </p>
                         <div className=" flex gap-3 items-center py-4">
@@ -55,7 +59,7 @@ const ItemDetails = () => {
                         <div className=" flex  gap-3">
                             <div className=" flex gap-1">
                                 <button onClick={decreaseValue} className=" px-1 border text-lg ">-</button>
-                                <input defaultValue={value} min={1} type="number" name="amount" id="amount" className=" bg-white border w-12 text-center" />
+                                <input onChange={cartValue} defaultValue={value} value={value} min={1} type="number" name="amount" id="amount" className=" bg-white border w-12 text-center" />
                                 <button onClick={increaseValue} className=" px-1 border">+</button>
                             </div>
                             <button className="btn min-h-[1rem] h-9  bg-orange-600 border-none rounded-none text-white">Add to Cart</button>
@@ -65,6 +69,15 @@ const ItemDetails = () => {
             </div>
             <div className=" pt-4">
                 <AdditionalInfoTab itemInfo={itemDetails} />
+            </div>
+            <div className=" divider">
+
+            </div>
+            <div className=" pt-4 mx-auto">
+                <div className=" w-[80%] mx-auto">
+                    <h3 className=" text-black text-2xl font-semibold pb-6">You May Also Like</h3>
+                </div>
+                <RelatedProducts />
             </div>
         </div>
     );
