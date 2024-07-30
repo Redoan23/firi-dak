@@ -13,7 +13,7 @@ import { Slide } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { IoHeartOutline, IoPersonOutline } from 'react-icons/io5';
 import { LiaShoppingBagSolid } from 'react-icons/lia';
-import { PiAddressBookLight, PiHoodieLight } from 'react-icons/pi';
+import { PiHoodieLight } from 'react-icons/pi';
 import { GiSquareBottle } from 'react-icons/gi';
 import { CiShirt } from 'react-icons/ci';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
