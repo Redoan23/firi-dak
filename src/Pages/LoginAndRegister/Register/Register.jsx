@@ -18,11 +18,13 @@ const Register = () => {
         const password = data?.password
         createUser(email, password)
             .then(res => console.log(res.user))
+            .catch(err => console.log(err))
 
     }
 
     const handleGoogleRegister = () => {
-       return googleLogin()
+        return googleLogin()
+
     }
 
 
