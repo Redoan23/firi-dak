@@ -64,7 +64,7 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div>
-                        <NavLink to={'/'}><h3 className={` ${isScrolled ? 'text-xl' : 'text-2xl'} font-black  ease-in-out duration-300`}><span className=" text-orange-600 text-4xl">F</span><span className=" text-gray-300">IRIDAK</span></h3></NavLink>
+                        <NavLink to={'/'}><h3 className={` ${isScrolled ? 'text-xl' : 'text-2xl'} font-black  ease-in-out duration-300`}><span className=" text-orange-600 text-4xl">F</span><span className=" text-[#c2c7d1fa]">IRIDAK</span></h3></NavLink>
                     </div>
                     <div className={` ${isScrolled ? " w-10/12 h-13" : ""} w-4/5 h-12 duration-300 ease-in-out lg:block hidden relative`}>
                         <input type="text" name="searchbar" id="searchbar" className=" w-full h-full bg-transparent border-2 p-2 outline-none" placeholder="search here..." />

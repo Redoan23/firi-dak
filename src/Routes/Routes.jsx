@@ -3,6 +3,8 @@ import Main from '../Layouts/Main/Main';
 import Home from '../Pages/Home/Home';
 import Shop from "../Pages/Shop/Shop";
 import ItemDetails from "../Pages/ItemDetails/ItemDetails";
+import Login from "../Pages/LoginAndRegister/Login/Login";
+import Register from "../Pages/LoginAndRegister/Register/Register";
 
 const router = createBrowserRouter([
     {
@@ -19,8 +21,16 @@ const router = createBrowserRouter([
             },
             {
                 path: '/itemDetails/:id',
-                element: <ItemDetails></ItemDetails> ,
+                element: <ItemDetails></ItemDetails>,
             },
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: 'register',
+                element: <Register></Register>
+            }
         ]
     },
 ]);
