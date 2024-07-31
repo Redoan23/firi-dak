@@ -26,6 +26,7 @@ const ItemDetails = () => {
     // functionalities for the add to cart button
     const [quantity, setQuantity] = useState(1)
     const [selectedSize, setSelectedSize] = useState(null)
+    const name = itemDetails?.name
 
     const cartValue = (e) => {
         setQuantity(parseInt(e.target.value))
@@ -45,7 +46,7 @@ const ItemDetails = () => {
 
     // add to cart functions
 
-    const handleAddToCart = (id, quantity, selectedSize) => {
+    const handleAddToCart = (id, name, quantity, selectedSize) => {
         if (!quantity) {
             return toast('Please select quantity')
         }
@@ -53,7 +54,7 @@ const ItemDetails = () => {
             return toast('Please choose size')
         }
         getItemFromLocalStorage('cart-items')
-        setItemToLocalStorage('cart-items', id, quantity, selectedSize)
+        setItemToLocalStorage('cart-items', id, name, quantity, selectedSize)
     }
 
     return (
@@ -84,7 +85,7 @@ const ItemDetails = () => {
                                 <input onChange={cartValue} value={quantity} min={1} type="number" name="amount" id="amount" className=" bg-white border w-12 text-center" />
                                 <button onClick={increaseValue} className=" px-1 border">+</button>
                             </div>
-                            <button onClick={() => handleAddToCart(id, quantity, selectedSize)} className="btn min-h-[1rem] h-9  bg-orange-600 border-none rounded-none text-white hover:bg-gray-200 hover:text-orange-600 ease-in-out duration-500">Add to Cart</button>
+                            <button onClick={() => handleAddToCart(id, name, quantity, selectedSize)} className="btn min-h-[1rem] h-9  bg-orange-600 border-none rounded-none text-white hover:bg-gray-200 hover:text-orange-600 ease-in-out duration-500">Add to Cart</button>
                         </div>
                     </div>
                 </div>
