@@ -100,9 +100,6 @@ const Register = () => {
                                 </label>
                                 <input type="password" placeholder="password" className="input input-bordered bg-gray-200 outline-none text-gray-700" {...register('password')} required />
                                 {errors.password && <span className=" text-red-600">password is required</span>}
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover text-gray-700">Forgot password?</a>
-                                </label>
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn bg-orange-600 text-white rounded-none border-none hover:text-orange-600 hover:bg-gray-200">{loader ? <span className="loading loading-dots loading-sm"></span> : 'Register'}</button>

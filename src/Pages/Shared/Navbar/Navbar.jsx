@@ -89,16 +89,16 @@ const Navbar = () => {
                     <div>
                         <NavLink to={'/'}><h3 className={` ${isScrolled ? 'text-xl' : 'text-2xl'} font-black ease-in-out duration-300`}><span className=" text-orange-600 text-4xl">F</span><span className=" text-[#c2c7d1fa]">IRIDAK</span></h3></NavLink>
                     </div>
-                    <div className={` ${isScrolled ? " w-10/12 h-13" : ""} w-4/5 h-12 duration-300 ease-in-out lg:block hidden relative`}>
+                    <div className={` ${isScrolled ? " w-10/12 h-13" : ""} w-[75%] h-12 duration-300 ease-in-out lg:block hidden relative`}>
                         <input type="text" name="searchbar" id="searchbar" className=" w-full h-full bg-transparent border-2 p-2 outline-none" placeholder="search here..." />
                         <FaMagnifyingGlass className={` ${isScrolled ? " text-xl" : ""} absolute duration-300 ease-in-out right-4 bottom-4`} />
                     </div>
-                    <div className=" flex items-center">
+                    <div className=" flex gap-5 items-center">
                         <div className=" border-none btn bg-transparent text-black btn-sm hover:bg-transparent shadow-none " onClick={handleCart}>
                             <CiShoppingCart className=" text-3xl" />
                         </div>
-                        {user ? <button onClick={handleLogout} className=" btn btn-sm border-none bg-orange-600  text-white hover:text-orange-600 hover:bg-gray-200 rounded-none">Logout</button>
-                            : <Link to={'/login'}><button className=" btn btn-sm border-none bg-orange-600  text-white hover:text-orange-600 hover:bg-gray-200 rounded-none">Login</button></Link>
+                        {user ? <button onClick={handleLogout} className=" hidden lg:block btn btn-sm border-none bg-orange-600  text-white hover:text-orange-600 hover:bg-gray-200 rounded-none">Logout</button>
+                            : <Link to={'/login'}><button className=" hidden lg:block btn btn-sm border-none bg-orange-600  text-white hover:text-orange-600 hover:bg-gray-200 rounded-none">Login</button></Link>
                         }
                     </div>
                 </div>
