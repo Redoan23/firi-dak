@@ -140,7 +140,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            <Toaster position="top-right" />
+            <Toaster position="top-right" closeButton={true} />
         </div>
     );
 };

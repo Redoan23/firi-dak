@@ -8,7 +8,6 @@ import { useState } from "react";
 
 
 const Register = () => {
-
     const [loader, setLoader] = useState(false)
     const { createUser, googleLogin } = useAuth()
     const axiosPublic = useAxiosPublic()
@@ -25,7 +24,7 @@ const Register = () => {
         const name = data?.name
         const email = data?.email
         const password = data?.password
-        const role = 'normalUser'
+
         createUser(email, password)
             .then(res => {
                 const user = res?.user
@@ -34,20 +33,40 @@ const Register = () => {
                 })
                     .then(() => {
                         setLoader(false)
-                        toast(`Hi ${user?.displayName}, you successfully registered`)
+                        toast(`Hi ${user?.displayName}, registration successful`)
                     })
-                const userData = { name, email, role }
+                const userData = { name, email }
                 axiosPublic.post('/emailPassword/users', userData)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                setLoader(false)
+                toast(`${err.message}`)
+            })
 
         reset()
     }
 
     const handleGoogleRegister = () => {
-        return googleLogin()
-            .then(res => console.log(res.user))
-            .catch(error => console.log(error))
+        googleLogin()
+            .then(res => {
+                const user = res?.user
+                const name = user?.displayName
+                const email = user?.email
+                const userData = { name, email }
+                axiosPublic.post('/emailPassword/users', userData)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            toast(`Hi ${name}, registration successful`)
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err)
+                        toast(`${err.response.data.message}, logging in automatically`)
+                    })
+            })
+            .catch(error => {
+                toast(`${error.message}`)
+            })
     }
 
 

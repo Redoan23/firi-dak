@@ -2,14 +2,15 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth/useAuth";
 import { toast } from "sonner";
+import Swal from "sweetalert2";
 
 
 const Login = () => {
-    const { loginUser } = useAuth()
+    const { loginUser, googleLogin, resetUserPassword } = useAuth()
     const {
         register,
         handleSubmit,
-        // formState: { errors },
+        reset
     } = useForm()
     const onSubmit = (data) => {
         console.log(data)
@@ -18,12 +19,43 @@ const Login = () => {
         loginUser(email, password)
             .then(res => {
                 console.log(res)
-                toast(`Logged in as ${res?.user?.displayName? res.user.displayName : res.user.email }`)
+                toast(`Logged in as ${res?.user?.displayName ? res.user.displayName : res.user.email}`)
+            })
+            .catch(err => {
+                toast(`${err.message}`)
+            })
+
+        reset()
+    }
+
+    const handleGoogleSignIn = () => {
+        googleLogin()
+            .then(res => {
+                const name = res?.user?.displayName
+                const email = res?.user?.email
+                toast(`Logged in as ${name ? name : email}`)
+            })
+            .catch(err => {
+                toast(`${err.message}`)
             })
     }
 
+    const handleForgetPassword = async () => {
 
-
+        const { value: email } = await Swal.fire({
+            input: "email",
+            inputLabel: "Your email address",
+            inputPlaceholder: "Enter your email address"
+        });
+        if (email) {
+            resetUserPassword(email)
+                .then(toast(`Please check your email, a mail has been sent to ${email}`))
+                .catch(err => {
+                    console.log(err)
+                })
+            // Swal.fire(`Entered email: ${email}`);
+        }
+    }
 
     return (
         <div className=" flex flex-col items-center justify-center w-full min-h-[80vh]">
@@ -49,7 +81,7 @@ const Login = () => {
                                 </label>
                                 <input type="password" placeholder="password" className="input input-bordered bg-gray-200 outline-none text-gray-700" {...register('password')} required />
                                 <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover text-gray-700">Forgot password?</a>
+                                    <Link onClick={handleForgetPassword} className="label-text-alt link link-hover text-gray-700">Forgot password?</Link>
                                 </label>
                             </div>
                             <div className="form-control mt-6">
@@ -58,7 +90,7 @@ const Login = () => {
                         </form>
                         <div>
                             <div className=" divider">OR</div>
-                            <Link className=" text-center">
+                            <Link onClick={handleGoogleSignIn} className=" text-center">
                                 <p className=" font-semibold">
                                     <span className="text-[#4285F4]">G</span>
                                     <span className="text-[#EA4335]">O</span>
