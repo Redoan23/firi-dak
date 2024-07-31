@@ -17,6 +17,8 @@ import { PiHoodieLight } from 'react-icons/pi';
 import { GiSquareBottle } from 'react-icons/gi';
 import { CiShirt } from 'react-icons/ci';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
+import useAuth from '../../../Hooks/useAuth/useAuth';
+import { BiLogOut } from 'react-icons/bi';
 
 const style = {
     position: 'absolute',
@@ -35,6 +37,7 @@ const style = {
 
 const MobileNav = ({ openModal }) => {
 
+    const { user, logOut } = useAuth()
     const [value, setValue] = React.useState('1');
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -50,6 +53,9 @@ const MobileNav = ({ openModal }) => {
         handleOpen()
     }, [openModal])
 
+    const handleLogout = () => {
+        return logOut()
+    }
 
     return (
         <Modal
@@ -88,7 +94,8 @@ const MobileNav = ({ openModal }) => {
                                 <div className=' flex flex-col text-black text-sm'>
                                     <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} to={'/shop'}> <LiaShoppingBagSolid /> SHOP</NavLink>
                                     <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} to={'/shop'}> <IoHeartOutline /> WISHLIST</NavLink>
-                                    <NavLink className={' border-b py-2 my-1 flex  items-center gap-2'} to={'/shop'}> <IoPersonOutline /> LOGIN / REGISTER</NavLink>
+                                    <NavLink className={' border-b py-2 my-1 flex  items-center gap-2'} to={'/login'}> <IoPersonOutline /> LOGIN / REGISTER</NavLink>
+                                    {user && <NavLink onClick={handleLogout} className={'flex items-center py-2 my-1 gap-2'}> <BiLogOut /> LOGOUT</NavLink>}
                                 </div>
                             </TabPanel>
                             <TabPanel value="2">

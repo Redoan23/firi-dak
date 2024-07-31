@@ -3,14 +3,19 @@ import { BsTelephone } from "react-icons/bs";
 import { CiShirt, CiShoppingCart } from "react-icons/ci";
 import { FaBars, FaMagnifyingGlass } from "react-icons/fa6";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import MobileNav from "./MobileNav";
 import Cart from "./ShoppingCart/Cart";
 import { GiSquareBottle } from "react-icons/gi";
 import { PiHoodieLight } from "react-icons/pi";
+import useAuth from "../../../Hooks/useAuth/useAuth";
+import { toast, Toaster } from "sonner";
+import Swal from "sweetalert2";
 
 
 const Navbar = () => {
+
+    const { user, logOut } = useAuth()
 
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileNav, setMobileNav] = useState(false);
@@ -47,6 +52,24 @@ const Navbar = () => {
         setOpenCart(true)
         setCartSwitch(!cartSwitch)
     }
+    const handleLogout = () => {
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You will be logged out",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Logout"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logOut()
+                    .then(toast(`logout successful`))
+            }
+        });
+
+    }
     return (
         <div className="  sticky top-0 z-50">
             {
@@ -57,21 +80,26 @@ const Navbar = () => {
             }
             <div className={` ${isScrolled ? "lg:pt-2 " : "lg:pt-8 "} w-full max-w-full mx-auto  px-2 text-black border-b bg-opacity-90 transition-all duration-300 bg-white`}>
                 <div className={`flex justify-between flex-start items-center duration-300 ease-in-out  w-full max-w-screen-xl mx-auto`}>
-                    <div className=" block  lg:hidden">
+                    <div className=" block lg:hidden">
                         <div onClick={handleMobileNav} className={`  flex items-center gap-3`}>
                             <FaBars />
                             <h3 className=" text-lg"> Menu</h3>
                         </div>
                     </div>
                     <div>
-                        <NavLink to={'/'}><h3 className={` ${isScrolled ? 'text-xl' : 'text-2xl'} font-black  ease-in-out duration-300`}><span className=" text-orange-600 text-4xl">F</span><span className=" text-[#c2c7d1fa]">IRIDAK</span></h3></NavLink>
+                        <NavLink to={'/'}><h3 className={` ${isScrolled ? 'text-xl' : 'text-2xl'} font-black ease-in-out duration-300`}><span className=" text-orange-600 text-4xl">F</span><span className=" text-[#c2c7d1fa]">IRIDAK</span></h3></NavLink>
                     </div>
                     <div className={` ${isScrolled ? " w-10/12 h-13" : ""} w-4/5 h-12 duration-300 ease-in-out lg:block hidden relative`}>
                         <input type="text" name="searchbar" id="searchbar" className=" w-full h-full bg-transparent border-2 p-2 outline-none" placeholder="search here..." />
                         <FaMagnifyingGlass className={` ${isScrolled ? " text-xl" : ""} absolute duration-300 ease-in-out right-4 bottom-4`} />
                     </div>
-                    <div className=" btn bg-transparent text-black border-none hover:bg-transparent shadow-none " onClick={handleCart}>
-                        <CiShoppingCart className=" text-3xl" />
+                    <div className=" flex items-center">
+                        <div className=" border-none btn bg-transparent text-black btn-sm hover:bg-transparent shadow-none " onClick={handleCart}>
+                            <CiShoppingCart className=" text-3xl" />
+                        </div>
+                        {user ? <button onClick={handleLogout} className=" btn btn-sm border-none bg-orange-600  text-white hover:text-orange-600 hover:bg-gray-200 rounded-none">Logout</button>
+                            : <Link to={'/login'}><button className=" btn btn-sm border-none bg-orange-600  text-white hover:text-orange-600 hover:bg-gray-200 rounded-none">Login</button></Link>
+                        }
                     </div>
                 </div>
                 <div className={` ${isScrolled ? "mt-2" : "mt-6"} border w-full  ease-in-out duration-300 lg:block hidden`}>
@@ -112,6 +140,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
+            <Toaster position="top-right" />
         </div>
     );
 };

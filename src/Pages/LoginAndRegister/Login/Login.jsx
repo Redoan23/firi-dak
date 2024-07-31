@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth/useAuth";
+import { toast } from "sonner";
 
 
 const Login = () => {
@@ -15,7 +16,10 @@ const Login = () => {
         const email = data?.email
         const password = data?.password
         loginUser(email, password)
-            .then(res => console.log(res.user))
+            .then(res => {
+                console.log(res)
+                toast(`Logged in as ${res?.user?.displayName? res.user.displayName : res.user.email }`)
+            })
     }
 
 
@@ -66,7 +70,7 @@ const Login = () => {
                             </Link>
                         </div>
                         <div className=" text-center py-4">
-                            <p>Already have an account? <Link className=" text-orange-600" to={'/register'}>Register</Link></p>
+                            <p>Don&apos;t have an account? <Link className=" text-orange-600" to={'/register'}>Register</Link></p>
                         </div>
                     </div>
                 </div>

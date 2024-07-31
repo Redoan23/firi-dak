@@ -1,30 +1,53 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth/useAuth";
+import { updateProfile } from "firebase/auth";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic/useAxiosPublic";
+import { toast } from "sonner";
+import { useState } from "react";
 
 
 const Register = () => {
 
+    const [loader, setLoader] = useState(false)
     const { createUser, googleLogin } = useAuth()
+    const axiosPublic = useAxiosPublic()
 
     const {
         register,
+        reset,
         handleSubmit,
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
+        setLoader(true)
+        const name = data?.name
         const email = data?.email
         const password = data?.password
+        const role = 'normalUser'
         createUser(email, password)
-            .then(res => console.log(res.user))
+            .then(res => {
+                const user = res?.user
+                updateProfile(user, {
+                    displayName: name,
+                })
+                    .then(() => {
+                        setLoader(false)
+                        toast(`Hi ${user?.displayName}, you successfully registered`)
+                    })
+                const userData = { name, email, role }
+                axiosPublic.post('/emailPassword/users', userData)
+            })
             .catch(err => console.log(err))
 
+        reset()
     }
 
     const handleGoogleRegister = () => {
         return googleLogin()
-
+            .then(res => console.log(res.user))
+            .catch(error => console.log(error))
     }
 
 
@@ -63,7 +86,7 @@ const Register = () => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn bg-orange-600 text-white rounded-none border-none hover:text-orange-600 hover:bg-gray-200">Register</button>
+                                <button className="btn bg-orange-600 text-white rounded-none border-none hover:text-orange-600 hover:bg-gray-200">{loader ? <span className="loading loading-dots loading-sm"></span> : 'Register'}</button>
                             </div>
                         </form>
                         <div>
