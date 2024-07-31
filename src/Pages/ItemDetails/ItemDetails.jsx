@@ -4,6 +4,8 @@ import { useQuery } from "react-query";
 import { useState } from "react";
 import AdditionalInfoTab from "./AdditionalInfoTab/AdditionalInfoTab";
 import RelatedProducts from "./RelatedProducts/RelatedProducts";
+import { getItemFromLocalStorage, setItemToLocalStorage, } from "../../components/localstorage";
+
 
 
 const ItemDetails = () => {
@@ -33,7 +35,12 @@ const ItemDetails = () => {
             setValue(value - 1)
         }
     }
-    console.log(value)
+    // add to cart API
+
+    const handleAddToCart = (id) => {
+        getItemFromLocalStorage('cart-item')
+        setItemToLocalStorage('cart-items', id, quantity)
+    }
 
     return (
         <div className=" mt-12">
@@ -42,6 +49,7 @@ const ItemDetails = () => {
                     <img
                         src={itemDetails.img}
                         className=" max-w-[320px] md:max-w-md object-cover rounded-lg shadow-lg" />
+                    {/* {isLoading && <span className=" text-center">loading...</span> } */}
                     <div>
                         <h1 className="text-4xl text-gray-700 font-bold">{itemDetails.name}</h1>
                         <p className="py-4 underline font-semibold text-xl text-orange-600">
@@ -62,7 +70,7 @@ const ItemDetails = () => {
                                 <input onChange={cartValue} defaultValue={value} value={value} min={1} type="number" name="amount" id="amount" className=" bg-white border w-12 text-center" />
                                 <button onClick={increaseValue} className=" px-1 border">+</button>
                             </div>
-                            <button className="btn min-h-[1rem] h-9  bg-orange-600 border-none rounded-none text-white hover:bg-gray-200 hover:text-orange-600 ease-in-out duration-500">Add to Cart</button>
+                            <button onClick={() => handleAddToCart(id)} className="btn min-h-[1rem] h-9  bg-orange-600 border-none rounded-none text-white hover:bg-gray-200 hover:text-orange-600 ease-in-out duration-500">Add to Cart</button>
                         </div>
                     </div>
                 </div>
