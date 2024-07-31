@@ -5,6 +5,7 @@ import { useState } from "react";
 import AdditionalInfoTab from "./AdditionalInfoTab/AdditionalInfoTab";
 import RelatedProducts from "./RelatedProducts/RelatedProducts";
 import { getItemFromLocalStorage, setItemToLocalStorage, } from "../../components/localstorage";
+import { toast } from "sonner";
 
 
 
@@ -23,23 +24,36 @@ const ItemDetails = () => {
 
 
     // functionalities for the add to cart button
-    const [value, setValue] = useState(1)
+    const [quantity, setQuantity] = useState(1)
+    const [selectedSize, setSelectedSize] = useState(null)
+
     const cartValue = (e) => {
-        setValue(parseInt(e.target.value))
+        setQuantity(parseInt(e.target.value))
     }
     const increaseValue = () => {
-        setValue(value + 1)
+        setQuantity(quantity + 1)
     }
     const decreaseValue = () => {
-        if (value >= 2) {
-            setValue(value - 1)
+        if (quantity >= 2) {
+            setQuantity(quantity - 1)
         }
     }
-    // add to cart API
 
-    const handleAddToCart = (id) => {
-        getItemFromLocalStorage('cart-item')
-        setItemToLocalStorage('cart-items', id, quantity)
+    const handleSizeSelection = (e) => {
+        setSelectedSize((e.target.value))
+    }
+
+    // add to cart functions
+
+    const handleAddToCart = (id, quantity, selectedSize) => {
+        if (!quantity) {
+            return toast('Please select quantity')
+        }
+        if (!selectedSize) {
+            return toast('Please choose size')
+        }
+        getItemFromLocalStorage('cart-items')
+        setItemToLocalStorage('cart-items', id, quantity, selectedSize)
     }
 
     return (
@@ -57,7 +71,7 @@ const ItemDetails = () => {
                         </p>
                         <div className=" flex gap-3 items-center py-4">
                             <p className=" text-gray-600">Size</p>
-                            <select name="size" id="size" className=" bg-white border-2 border-gray-500 p-1">
+                            <select onChange={handleSizeSelection} name="size" id="size" className=" bg-white border-2 border-gray-500 p-1">
                                 <option selected disabled value="choose and option">Choose an option</option>
                                 <option value="2.4">2.4</option>
                                 <option value="2.6">2.6</option>
@@ -67,10 +81,10 @@ const ItemDetails = () => {
                         <div className=" flex  gap-3">
                             <div className=" flex gap-1">
                                 <button onClick={decreaseValue} className=" px-1 border text-lg ">-</button>
-                                <input onChange={cartValue} defaultValue={value} value={value} min={1} type="number" name="amount" id="amount" className=" bg-white border w-12 text-center" />
+                                <input onChange={cartValue} value={quantity} min={1} type="number" name="amount" id="amount" className=" bg-white border w-12 text-center" />
                                 <button onClick={increaseValue} className=" px-1 border">+</button>
                             </div>
-                            <button onClick={() => handleAddToCart(id)} className="btn min-h-[1rem] h-9  bg-orange-600 border-none rounded-none text-white hover:bg-gray-200 hover:text-orange-600 ease-in-out duration-500">Add to Cart</button>
+                            <button onClick={() => handleAddToCart(id, quantity, selectedSize)} className="btn min-h-[1rem] h-9  bg-orange-600 border-none rounded-none text-white hover:bg-gray-200 hover:text-orange-600 ease-in-out duration-500">Add to Cart</button>
                         </div>
                     </div>
                 </div>

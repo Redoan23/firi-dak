@@ -8,19 +8,24 @@ const getItemFromLocalStorage = (key) => {
     return []
 }
 
-const setItemToLocalStorage = (key, id, quantity) => {
+const setItemToLocalStorage = (key, id, quantity, selectedSize) => {
     const itemArray = getItemFromLocalStorage(key)
     console.log(itemArray)
-    const findItem = itemArray.find(item => item === id)
+    const data = {
+        id: id,
+        q: quantity,
+        s: selectedSize
+    }
+    const findItem = itemArray.find(item => item.id === id)
     if (!findItem) {
-        itemArray.push(id)
+        itemArray.push(data)
         localStorage.setItem(key, JSON.stringify(itemArray))
     }
 
 }
 
-const deleteItemFromLocalStorage = (key) => {
+const removeItemFromLocalStorage = (key) => {
     localStorage.removeItem(key)
 }
 
-export { getItemFromLocalStorage  , setItemToLocalStorage,  deleteItemFromLocalStorage  }
+export { getItemFromLocalStorage, setItemToLocalStorage, removeItemFromLocalStorage }
