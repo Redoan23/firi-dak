@@ -17,19 +17,29 @@ const setItemToLocalStorage = (key, id, name, quantity, selectedSize) => {
         s: selectedSize
     }
     const findItem = itemArray.find(item => item.i === id)
-    const findItemSize = itemArray.find(item => item.s === selectedSize)
-    if (!findItem || !findItemSize) {
+    console.log('item found by find id', findItem)
+    // const findItemSize = itemArray.find(item => item.s === selectedSize)
+    const findItemBySize = itemArray.filter(item => item.s === selectedSize && item.i === id)
+    console.log('item found by find size', findItemBySize)
+    // if (!findItem || !findItemSize) {
+    //     itemArray.push(data)
+    //     localStorage.setItem(key, JSON.stringify(itemArray))
+    // }
+    if (findItemBySize.length === 0) {
+        console.log('true')
         itemArray.push(data)
         localStorage.setItem(key, JSON.stringify(itemArray))
     }
-    if (findItem && findItemSize) {
+    if (findItem && findItemBySize.length > 0) {
         const id = findItem?.i
         let retrievedItem = getItemFromLocalStorage(key)
-        let targetItem = retrievedItem.filter(item => item.i === id && item.s === findItemSize?.s)
-        targetItem[0].q = targetItem[0].q + quantity
+        console.log('retrived item', retrievedItem)
+        const targetItem = findItemBySize.find(item => item.i === id)
+        let finalItem = retrievedItem.filter(item => item.i === id && item.s === targetItem?.s)
+        console.log(finalItem)
+        finalItem[0].q = finalItem[0].q + quantity
         localStorage.removeItem(key)
         localStorage.setItem(key, JSON.stringify(retrievedItem))
-
     }
 }
 
