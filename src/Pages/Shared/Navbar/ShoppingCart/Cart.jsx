@@ -5,6 +5,10 @@ import { Slide } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { IoIosClose } from 'react-icons/io';
 import { getItemFromLocalStorage, removeSingleItem } from '../../../../components/localstorage';
+import useAuth from '../../../../Hooks/useAuth/useAuth';
+import { CiShoppingCart } from 'react-icons/ci';
+import { PiPaperPlaneTiltThin } from 'react-icons/pi';
+import { Link } from 'react-router-dom';
 
 const style = {
     position: 'absolute',
@@ -28,20 +32,23 @@ const style = {
 const Cart = ({ cartSwitch }) => {
 
     const cartItem = getItemFromLocalStorage('cart-items')
-    const [refreshCart, setRefreshCart] = useState(false)
+    const { refreshPage, setRefreshPage } = useAuth()
 
     useEffect(() => {
         if (cartItem.length > 0) {
             const subTotalCalculation = cartItem.reduce((accumulator, item) => { return (accumulator + (item.p * item.q)) }, 0)
             setSubTotal(subTotalCalculation)
         }
-    }, [cartItem, refreshCart])
+        else {
+            setSubTotal(0)
+        }
+    }, [cartItem, refreshPage])
 
     // remove Item
 
     const handleRemoveItem = (id, size) => {
         removeSingleItem('cart-items', id, size)
-        setRefreshCart(!refreshCart)
+        setRefreshPage(!refreshPage)
     }
 
     // modal part
@@ -82,7 +89,7 @@ const Cart = ({ cartSwitch }) => {
                         <div className=' text-center mt-10'>
                             {
                                 cartItem.length === 0 ?
-                                    <p>No Products in Your Cart</p>
+                                    <p className=' py-6'>No Products in Your Cart</p>
                                     :
                                     cartItem.map(
                                         (item, i) =>
@@ -107,8 +114,16 @@ const Cart = ({ cartSwitch }) => {
                                             </div>
                                     )
                             }
-                            <div className=' sticky bottom-0 p-3 bg-white shadow-lg border-t-2 border-gray-200'>
+                            <div className=' sticky bottom-0 p-4 pb-7 bg-white border-t-2 border-gray-200'>
                                 <p className=' text-center text-gray-600 text-base'>Subtotal: <span className=' text-red-600'>{subTotal}</span> TK</p>
+                                <div className=' flex gap-3 pt-3 justify-center'>
+                                    <Link to={'/cartDetails'} onClick={handleClose}>
+                                        <button className=' btn rounded-none bg-transparent border-[0.5px] border-gray-300 hover:border-gray-300 text-stone-600 text-sm hover:bg-orange-600 hover:text-white flex items-center gap-2 '><CiShoppingCart className=' text-lg' /> View Cart</button>
+                                    </Link>
+                                    <Link onClick={handleClose}>
+                                        <button className=' btn rounded-none bg-transparent border-[0.5px] border-gray-300 hover:border-gray-300 text-stone-600 text-sm hover:bg-orange-600 hover:text-white flex items-center gap-2 '> <PiPaperPlaneTiltThin /> Place Order</button>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </Typography>

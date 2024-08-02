@@ -5,6 +5,7 @@ import RelatedProducts from "./RelatedProducts/RelatedProducts";
 import { getItemFromLocalStorage, setItemToLocalStorage, } from "../../components/localstorage";
 import { toast } from "sonner";
 import useItemDetails from "../../Hooks/useItemDetails/useItemDetails";
+import useAuth from "../../Hooks/useAuth/useAuth";
 
 
 
@@ -12,6 +13,7 @@ const ItemDetails = () => {
 
     const { id } = useParams()
     const [itemDetails] = useItemDetails(id)
+    const { refreshPage, setRefreshPage } = useAuth()
 
     // functionalities for the add to cart button
     const [quantity, setQuantity] = useState(1)
@@ -47,6 +49,8 @@ const ItemDetails = () => {
         }
         getItemFromLocalStorage('cart-items')
         setItemToLocalStorage('cart-items', id, name, img, quantity, selectedSize, price)
+        setRefreshPage(!refreshPage)
+
     }
 
     return (

@@ -16,7 +16,7 @@ import { getItemFromLocalStorage } from "../../../components/localstorage";
 
 const Navbar = () => {
 
-    const { user, logOut } = useAuth()
+    const { user, logOut, refreshPage } = useAuth()
 
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileNav, setMobileNav] = useState(false);
@@ -25,6 +25,8 @@ const Navbar = () => {
     const [cartSwitch, setCartSwitch] = useState(false)
     const [hiddenCategory, setHiddenCategory] = useState(false)
     const [moreCategory, setMoreCategory] = useState(false)
+
+    const [itemLength, setItemLength] = useState(null)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -73,7 +75,12 @@ const Navbar = () => {
 
     }
     // get the items from local storage
-    const itemInTheStorage = getItemFromLocalStorage('cart-items')
+    useEffect(() => {
+        const itemInTheStorage = getItemFromLocalStorage('cart-items')
+        const totalQuantity = itemInTheStorage.reduce((accumulator, item) => { return (accumulator + item.q) }, 0)
+        setItemLength(totalQuantity)
+
+    }, [refreshPage])
 
     return (
         <div className="  sticky top-0 z-50">
@@ -101,7 +108,7 @@ const Navbar = () => {
                     <div className=" flex gap-5 items-center">
                         <div className=" relative border-none btn bg-transparent text-black btn-sm hover:bg-transparent shadow-none " onClick={handleCart}>
                             <CiShoppingCart className=" text-3xl" />
-                            <p className=" absolute -top-2 right-3 text-orange-600">{itemInTheStorage?.length}</p>
+                            <p className=" absolute -top-2 right-3 text-orange-600">{itemLength ? itemLength : 0}</p>
                         </div>
                         {user ? <button onClick={handleLogout} className=" hidden lg:block btn btn-sm border-none bg-orange-600  text-white hover:text-orange-600 hover:bg-gray-200 rounded-none">Logout</button>
                             : <Link to={'/login'}><button className=" hidden lg:block btn btn-sm border-none bg-orange-600  text-white hover:text-orange-600 hover:bg-gray-200 rounded-none">Login</button></Link>
