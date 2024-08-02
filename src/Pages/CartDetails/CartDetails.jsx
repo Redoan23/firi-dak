@@ -1,30 +1,11 @@
-import { useEffect, useState } from "react";
-import { getItemFromLocalStorage } from "../../components/localstorage";
 import { BiTrash } from "react-icons/bi";
-import useAuth from "../../Hooks/useAuth/useAuth";
 import { Link } from "react-router-dom";
+import useCartCalculations from "../../Hooks/useCartCalculations/useCartCalculations";
 
 
 const CartDetails = () => {
 
-    const { refreshPage } = useAuth()
-    const items = getItemFromLocalStorage('cart-items')
-    const [itemQuantity, setItemQuantity] = useState(null)
-    const [totalPrice, setTotalPrice] = useState(null)
-
-
-    useEffect(() => {
-        if (items.length > 0) {
-            const totalItems = items.reduce((acc, item) => { return (acc + item.q) }, 0)
-            const totalAmount = items.reduce((acc, item) => { return (acc + item.p) }, 0)
-
-            setItemQuantity(totalItems)
-            setTotalPrice(totalAmount)
-        }
-        else {
-            setItemQuantity(0)
-        }
-    }, [refreshPage])
+    const [itemQuantity, totalPrice, items] = useCartCalculations()
 
     return (
         <div>
@@ -83,7 +64,7 @@ const CartDetails = () => {
                                 </div>
                             </div>
                             <div className=" pt-10">
-                                <Link to={'/checkout'}><button className=" btn w-full bg-orange-600 text-white border-none hover:bg-gray-300 hover:text-white rounded-none">Proceed to Order</button></Link>
+                                <Link to={'/checkout'}><button className=" btn w-full bg-orange-600 text-white border-none hover:bg-gray-200 hover:text-orange-600 ease-in-out duration-500 rounded-none">Proceed to Order</button></Link>
                             </div>
                         </div>
                     </div>
