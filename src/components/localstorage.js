@@ -8,11 +8,12 @@ const getItemFromLocalStorage = (key) => {
     return []
 }
 
-const setItemToLocalStorage = (key, id, name, quantity, selectedSize, price) => {
+const setItemToLocalStorage = (key, id, name, img, quantity, selectedSize, price) => {
     const itemArray = getItemFromLocalStorage(key)
     const data = {
         i: id,
         n: name,
+        img: img,
         q: quantity,
         s: selectedSize,
         p: price
@@ -34,11 +35,22 @@ const setItemToLocalStorage = (key, id, name, quantity, selectedSize, price) => 
     }
 }
 
+
+const removeSingleItem = (key, id, size) => {
+    const retrieveCollection = getItemFromLocalStorage(key)
+    const filteredItem = retrieveCollection.filter(item => item.i === id && item.s == size)
+    const indexOfTheItem = retrieveCollection.indexOf(filteredItem[0])
+    retrieveCollection.splice(indexOfTheItem, 1)
+    localStorage.removeItem(key)
+    localStorage.setItem(key, JSON.stringify(retrieveCollection))
+}
+
 const removeItemFromLocalStorage = (key) => {
     localStorage.removeItem(key)
 }
 
+
 // WishList section
 
 
-export { getItemFromLocalStorage, setItemToLocalStorage, removeItemFromLocalStorage }
+export { getItemFromLocalStorage, setItemToLocalStorage, removeItemFromLocalStorage, removeSingleItem }

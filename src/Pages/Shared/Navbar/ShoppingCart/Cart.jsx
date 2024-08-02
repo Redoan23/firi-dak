@@ -4,7 +4,7 @@ import Modal from '@mui/material/Modal';
 import { Slide } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { IoIosClose } from 'react-icons/io';
-import { getItemFromLocalStorage } from '../../../../components/localstorage';
+import { getItemFromLocalStorage, removeSingleItem } from '../../../../components/localstorage';
 
 const style = {
     position: 'absolute',
@@ -27,8 +27,25 @@ const style = {
 
 const Cart = ({ cartSwitch }) => {
 
+    const cartItem = getItemFromLocalStorage('cart-items')
+    const [refreshCart, setRefreshCart] = useState(false)
+
+    useEffect(() => {
+        if (cartItem.length > 0) {
+            const subTotalCalculation = cartItem.reduce((accumulator, item) => { return (accumulator + (item.p * item.q)) }, 0)
+            setSubTotal(subTotalCalculation)
+        }
+    }, [cartItem, refreshCart])
+
+    // remove Item
+
+    const handleRemoveItem = (id, size) => {
+        removeSingleItem('cart-items', id, size)
+        setRefreshCart(!refreshCart)
+    }
 
     // modal part
+
     const [subTotal, setSubTotal] = useState(0)
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -38,13 +55,7 @@ const Cart = ({ cartSwitch }) => {
         handleOpen()
     }, [cartSwitch])
 
-    const cartItem = getItemFromLocalStorage('cart-items')
-    useEffect(() => {
-        if (cartItem.length > 0) {
-            const subTotalCalculation = cartItem.reduce((accumulator, item) => { return (accumulator + (item.p * item.q)) }, 0)
-            setSubTotal(subTotalCalculation)
-        }
-    }, [cartItem])
+
 
     return (
         <Modal
@@ -76,25 +87,28 @@ const Cart = ({ cartSwitch }) => {
                                     cartItem.map(
                                         (item, i) =>
                                             <div key={i} className=' my-3 '>
-                                                <div className=' flex items-center justify-center gap-6 border p-5 w-[80%] mx-auto'>
-                                                    <div>
-                                                        <img src="https://www.jsjs.com" alt="" className=' w-full h-full object-cover' />
+                                                <div className=' flex items-center justify-between gap-6 border p-2 w-[80%] mx-auto bg-white shadow-sm relative'>
+                                                    <div className=' overflow-hidden w-24 h-24'>
+                                                        <img src={item.img} alt="" className=' w-full h-full object-cover' />
                                                     </div>
                                                     <div>
                                                         <div className=' text-left'>
-                                                            <h3 className=' text-gray-600'>{item.n}</h3>
+                                                            <h3 className=' text-gray-600 text-base'>{item.n}</h3>
                                                             <p className=' text-sm'>Size: {item.s}</p>
                                                         </div>
                                                         <div className=''>
-                                                            <p className=' text-sm '>{item.q} x <span className=' text-red-600'>{item?.p}</span></p>
+                                                            <p className=' text-sm text-left'>{item.q} x <span className=' text-red-600'>{item?.p}</span></p>
                                                         </div>
+                                                    </div>
+                                                    <div onClick={() => handleRemoveItem(item.i, item.s)} className=' absolute top-1 right-1'>
+                                                        <IoIosClose className='  text-red-600 border hover:bg-gray-100 ease-in-out duration-300 ' />
                                                     </div>
                                                 </div>
                                             </div>
                                     )
                             }
-                            <div className=' sticky bottom-0 text-center p-3 bg-white shadow-lg border-t-2 border-gray-200'>
-                                <p className=' text-center text-gray-600'>subtotal: <span className=' text-orange-600'>{subTotal}</span></p>
+                            <div className=' sticky bottom-0 p-3 bg-white shadow-lg border-t-2 border-gray-200'>
+                                <p className=' text-center text-gray-600 text-base'>Subtotal: <span className=' text-red-600'>{subTotal}</span> TK</p>
                             </div>
                         </div>
                     </Typography>

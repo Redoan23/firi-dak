@@ -11,6 +11,7 @@ import { PiHoodieLight } from "react-icons/pi";
 import useAuth from "../../../Hooks/useAuth/useAuth";
 import { toast, Toaster } from "sonner";
 import Swal from "sweetalert2";
+import { getItemFromLocalStorage } from "../../../components/localstorage";
 
 
 const Navbar = () => {
@@ -69,7 +70,11 @@ const Navbar = () => {
             }
         });
 
+
     }
+    // get the items from local storage
+    const itemInTheStorage = getItemFromLocalStorage('cart-items')
+
     return (
         <div className="  sticky top-0 z-50">
             {
@@ -94,8 +99,9 @@ const Navbar = () => {
                         <FaMagnifyingGlass className={` ${isScrolled ? " text-xl" : ""} absolute duration-300 ease-in-out right-4 bottom-4`} />
                     </div>
                     <div className=" flex gap-5 items-center">
-                        <div className=" border-none btn bg-transparent text-black btn-sm hover:bg-transparent shadow-none " onClick={handleCart}>
+                        <div className=" relative border-none btn bg-transparent text-black btn-sm hover:bg-transparent shadow-none " onClick={handleCart}>
                             <CiShoppingCart className=" text-3xl" />
+                            <p className=" absolute -top-2 right-3 text-orange-600">{itemInTheStorage?.length}</p>
                         </div>
                         {user ? <button onClick={handleLogout} className=" hidden lg:block btn btn-sm border-none bg-orange-600  text-white hover:text-orange-600 hover:bg-gray-200 rounded-none">Logout</button>
                             : <Link to={'/login'}><button className=" hidden lg:block btn btn-sm border-none bg-orange-600  text-white hover:text-orange-600 hover:bg-gray-200 rounded-none">Login</button></Link>
