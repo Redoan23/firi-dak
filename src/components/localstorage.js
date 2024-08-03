@@ -1,3 +1,4 @@
+import { toast } from "sonner"
 
 
 const getItemFromLocalStorage = (key) => {
@@ -52,5 +53,41 @@ const removeItemFromLocalStorage = (key) => {
 
 // WishList section
 
+const setWishlistToLocalStorage = (key, id, name, img, price) => {
+    const list = getItemFromLocalStorage(key)
+    const data = {
+        i: id,
+        n: name,
+        img: img,
+        p: price
+    }
+    const findWishlistItem = list.find(item => item.i === id)
+    if (!findWishlistItem) {
+        list.push(data)
+        localStorage.setItem(key, JSON.stringify(list))
+        toast.success('Item added to your wishlist')
+    }
+    else {
+        toast.info('Already added to your wishlist')
+    }
+}
 
-export { getItemFromLocalStorage, setItemToLocalStorage, removeItemFromLocalStorage, removeSingleItem }
+const getWishlistItemFromLocalStorage = (key, id) => {
+    const wishlist = getItemFromLocalStorage(key)
+    if (wishlist.length > 0) {
+        const item = wishlist.find(item => item.i === id)
+        if (item) {
+            return item
+        }
+        else {
+            return null
+        }
+    }
+    else {
+        return null
+    }
+}
+
+export {
+    getItemFromLocalStorage, setItemToLocalStorage, removeItemFromLocalStorage, removeSingleItem, setWishlistToLocalStorage, getWishlistItemFromLocalStorage
+}

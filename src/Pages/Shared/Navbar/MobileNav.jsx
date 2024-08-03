@@ -25,7 +25,6 @@ const style = {
     top: '0%',
     left: '0%',
     transform: 'translate(0%, 0%)',
-    duration: '5s',
     width: '280px',
     height: '100%',
     bgcolor: 'background.paper',

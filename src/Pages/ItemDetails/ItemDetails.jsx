@@ -2,10 +2,11 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import AdditionalInfoTab from "./AdditionalInfoTab/AdditionalInfoTab";
 import RelatedProducts from "./RelatedProducts/RelatedProducts";
-import { getItemFromLocalStorage, setItemToLocalStorage, } from "../../components/localstorage";
+import { getItemFromLocalStorage, setItemToLocalStorage, setWishlistToLocalStorage, } from "../../components/localstorage";
 import { toast } from "sonner";
 import useItemDetails from "../../Hooks/useItemDetails/useItemDetails";
 import useAuth from "../../Hooks/useAuth/useAuth";
+import { IoHeartOutline } from "react-icons/io5";
 
 
 
@@ -53,6 +54,11 @@ const ItemDetails = () => {
 
     }
 
+    // add to wishlist functionalities
+    const handleWishlist = (key, id, name, img, price) => {
+        setWishlistToLocalStorage(key, id, name, img, price)
+    }
+
     return (
         <div className=" mt-12">
             <div className="hero bg-white w-[80%] place-items-center mx-auto">
@@ -69,7 +75,7 @@ const ItemDetails = () => {
                         <div className=" flex gap-3 items-center py-4">
                             <p className=" text-gray-600">Size</p>
                             <select onChange={handleSizeSelection} name="size" id="size" className=" bg-white border-2 border-gray-500 p-1">
-                                <option selected disabled value="choose and option">Choose an option</option>
+                                <option value=''>Choose an option</option>
                                 <option value="2.4">2.4</option>
                                 <option value="2.6">2.6</option>
                                 <option value="2.8">2.8</option>
@@ -83,6 +89,9 @@ const ItemDetails = () => {
                             </div>
                             <button onClick={() => handleAddToCart(id, name, img, quantity, selectedSize, price)} className="btn min-h-[1rem] h-9  bg-orange-600 border-none rounded-none text-white hover:bg-gray-200 hover:text-orange-600 ease-in-out duration-500">Add to Cart</button>
                         </div>
+
+                        <button onClick={() => handleWishlist('wishlist-items', itemDetails._id, itemDetails.name, itemDetails.img, itemDetails.price)} className=" text-orange-600 flex items-center gap-2 pt-5">Add to Wishlist <IoHeartOutline /></button>
+
                     </div>
                 </div>
             </div>

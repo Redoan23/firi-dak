@@ -19,6 +19,7 @@ const useCartCalculations = () => {
         }
         else {
             setItemQuantity(0)
+            setTotalPrice(0)
         }
     }, [refreshPage])
 

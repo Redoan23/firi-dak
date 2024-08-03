@@ -1,12 +1,20 @@
-import { Link } from "react-router-dom";
-import useBanglesData from "../../../Hooks/useBanglesData/useBanglesData";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic/useAxiosPublic";
 
 const RelatedProducts = () => {
 
-    const [bangles] = useBanglesData()
+
     const [finalArray, setFinalArray] = useState([])
     const [suggestion, setLoadSuggestion] = useState(false)
+    const [bangles, setBangles] = useState([])
+
+    const axiosPublic = useAxiosPublic()
+    useEffect(() => {
+        axiosPublic.get('/bangles')
+            .then(res => setBangles(res.data))
+
+    }, [])
 
     useEffect(() => {
         const shuffledArray = (array) => {
@@ -20,7 +28,15 @@ const RelatedProducts = () => {
         const randomizedArray = shuffledArray(bangles)
         setFinalArray(randomizedArray)
 
-    }, [bangles, suggestion])
+    }, [suggestion, bangles])
+
+
+    // for scrolling issue
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
 
 
     return (
@@ -43,7 +59,8 @@ const RelatedProducts = () => {
                                 <p className=" text-orange-600">{bangle.price} TK</p>
                                 <div className="card-actions justify-end">
                                     <Link onClick={() => setLoadSuggestion(!suggestion)} to={`/itemDetails/${bangle._id}`}>
-                                        <button className="btn w-32 rounded-none bg-orange-600 text-white border-none hover:bg-gray-100 hover:text-orange-600 ease-in-out duration-500">View</button>
+                                        <button className="btn w-32 rounded-none bg-orange-600 text-white border-none hover:bg-gray-100
+                                         hover:text-orange-600 ease-in-out duration-500">View</button>
                                     </Link>
                                 </div>
                             </div>

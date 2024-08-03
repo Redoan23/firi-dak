@@ -1,11 +1,18 @@
 import { BiTrash } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import useCartCalculations from "../../Hooks/useCartCalculations/useCartCalculations";
+import { removeSingleItem } from "../../components/localstorage";
+import useAuth from "../../Hooks/useAuth/useAuth";
 
 
 const CartDetails = () => {
 
     const [itemQuantity, totalPrice, items] = useCartCalculations()
+    const { refreshPage, setRefreshPage } = useAuth()
+    const handleItemDelete = (key, id, size) => {
+        removeSingleItem(key, id, size)
+        setRefreshPage(!refreshPage)
+    }
 
     return (
         <div>
@@ -30,7 +37,7 @@ const CartDetails = () => {
                                                     <div className=" space-y-2">
                                                         <div className="font-bold text-gray-600">{item.n}</div>
                                                         <div className="text-sm ">{itemQuantity} x {item?.s}</div>
-                                                        <button className=" "><BiTrash /> </button>
+                                                        <button onClick={() => handleItemDelete('cart-items', item?.i, item?.s)} className=" "><BiTrash /> </button>
                                                     </div>
                                                 </div>
                                             </div>

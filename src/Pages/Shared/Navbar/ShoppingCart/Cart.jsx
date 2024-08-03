@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Slide } from '@mui/material';
+import { easing, Slide } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { IoIosClose } from 'react-icons/io';
 import useAuth from '../../../../Hooks/useAuth/useAuth';
@@ -32,20 +32,7 @@ const style = {
 
 const Cart = ({ cartSwitch }) => {
 
-    // const cartItem = getItemFromLocalStorage('cart-items')
-    // const { refreshPage, setRefreshPage } = useAuth()
-
-    // useEffect(() => {
-    //     if (cartItem.length > 0) {
-    //         const subTotalCalculation = cartItem.reduce((accumulator, item) => { return (accumulator + (item.p * item.q)) }, 0)
-    //         setSubTotal(subTotalCalculation)
-    //     }
-    //     else {
-    //         setSubTotal(0)
-    //     }
-    // }, [cartItem, refreshPage])
-
-    const [itemQuantity, totalPrice, items] = useCartCalculations()
+    const [, totalPrice, items] = useCartCalculations()
     const { refreshPage, setRefreshPage } = useAuth()
 
     // remove Item
@@ -75,7 +62,7 @@ const Cart = ({ cartSwitch }) => {
             closeAfterTransition
             className=' overflow-y-auto overflow-x-hidden'
         >
-            <Slide direction='left' in={open} mountOnEnter unmountOnExit>
+            <Slide direction='left' in={open} trans mountOnEnter unmountOnExit >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         <div className=' border-b '>
@@ -122,7 +109,7 @@ const Cart = ({ cartSwitch }) => {
                                     <Link to={'/cartDetails'} onClick={handleClose}>
                                         <button className=' btn rounded-none bg-transparent border-[0.5px] border-gray-300 hover:border-gray-300 text-stone-600 text-sm hover:bg-orange-600 hover:text-white flex items-center gap-2 '><CiShoppingCart className=' text-lg' /> View Cart</button>
                                     </Link>
-                                    <Link onClick={handleClose}>
+                                    <Link to={'/checkout'} onClick={handleClose}>
                                         <button className=' btn rounded-none bg-transparent border-[0.5px] border-gray-300 hover:border-gray-300 text-stone-600 text-sm hover:bg-orange-600 hover:text-white flex items-center gap-2 '> <PiPaperPlaneTiltThin /> Place Order</button>
                                     </Link>
                                 </div>
