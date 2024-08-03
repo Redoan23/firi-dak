@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { easing, Slide } from '@mui/material';
+import { Slide } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { IoIosClose } from 'react-icons/io';
 import useAuth from '../../../../Hooks/useAuth/useAuth';

@@ -4,7 +4,7 @@ import { TfiEmail } from "react-icons/tfi";
 
 const Footer = () => {
     return (
-        <div className=" mt-12">
+        <div className=" ">
             <footer className="footer bg-white text-black p-10">
                 <aside>
                     {/* <svg
@@ -32,13 +32,13 @@ const Footer = () => {
                 <nav>
                     <h6 className="footer-title">Social</h6>
                     <div className="grid grid-flow-col items-center gap-4">
-                        <a href="www.facebook.com">
+                        <a href="https://www.facebook.com/FiRidaka?mibextid=ZbWKwL">
                             <BsFacebook className=" text-2xl text-blue-600"></BsFacebook>
                         </a>
-                        <a href="" className="">
+                        <a href="https://youtube.com/@firidaka?si=z-g3AkGM9QO0QefG" className="">
                             <BsYoutube className=" text-3xl text-red-600"></BsYoutube>
                         </a>
-                        <a href="" className=" ">
+                        <a href="https://www.instagram.com/firidaka?igsh=eWYza2hidmNxeGZ4" className=" ">
                             <BsInstagram className=" text-2xl text-[#E1306C]"></BsInstagram>
                         </a>
                     </div>

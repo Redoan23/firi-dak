@@ -1,3 +1,4 @@
+import { Toaster } from "sonner";
 import Accordian from "./Accordian/Accordian";
 import BanglesCards from "./BanglesCards/BanglesCards";
 import BannerSlider from "./BannerSlider/BannerSlider";
@@ -17,6 +18,10 @@ const Home = () => {
             </div>
             <div>
                 <Accordian />
+            </div>
+            {/*below the div is for toaster not any section of home page */}
+            <div>
+                <Toaster position="bottom-right" closeButton={true} />
             </div>
         </div>
     );

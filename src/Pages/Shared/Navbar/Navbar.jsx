@@ -9,9 +9,9 @@ import Cart from "./ShoppingCart/Cart";
 import { GiSquareBottle } from "react-icons/gi";
 import { PiHoodieLight } from "react-icons/pi";
 import useAuth from "../../../Hooks/useAuth/useAuth";
-import { toast, Toaster } from "sonner";
 import Swal from "sweetalert2";
 import { getItemFromLocalStorage } from "../../../components/localstorage";
+import { toast, Toaster } from "sonner";
 
 
 const Navbar = () => {
@@ -142,6 +142,7 @@ const Navbar = () => {
                             <div className=" flex items-center gap-3">
                                 <NavLink to={'/'} className=" hover:text-orange-600 duration-300 ease-in-out">Home</NavLink>
                                 <NavLink to={'/shop'} className=" hover:text-orange-600 duration-300 ease-in-out">Shop</NavLink>
+                                <NavLink to={'/dashboard'} className=" hover:text-orange-600 duration-300 ease-in-out">Dashboard</NavLink>
                             </div>
                         </div>
                         <div className=" ">
@@ -152,8 +153,9 @@ const Navbar = () => {
                         </div>
                     </div>
                 </div>
+                <Toaster position="bottom-right" closeButton={true}></Toaster>
             </div>
-            <Toaster position="top-right" closeButton={true} />
+
         </div>
     );
 };

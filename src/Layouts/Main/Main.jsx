@@ -11,7 +11,9 @@ const Main = () => {
                 <div className=" min-h-screen">
                     <Outlet></Outlet>
                 </div>
-                <Footer></Footer>
+                <div className=" mt-12">
+                    <Footer></Footer>
+                </div>
             </div>
         </div>
     );

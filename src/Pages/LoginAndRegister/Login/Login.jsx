@@ -22,7 +22,8 @@ const Login = () => {
                 toast(`Logged in as ${res?.user?.displayName ? res.user.displayName : res.user.email}`)
             })
             .catch(err => {
-                toast(`${err.message}`)
+                console.log(err)
+                return toast.error(`${err}`)
             })
 
         reset()
@@ -53,7 +54,6 @@ const Login = () => {
                 .catch(err => {
                     console.log(err)
                 })
-            // Swal.fire(`Entered email: ${email}`);
         }
     }
 
