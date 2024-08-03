@@ -22,32 +22,40 @@ const Dashboard = () => {
         <NavLink key={4} to={'/dashboard/ordersDone'}>Orders Done</NavLink>,
         <NavLink key={5} to={'/dashboard/extras'}>Extras</NavLink>,
     ]
+    const userRoute = [
+        <NavLink key={1} to={'/dashboard/userProfileInformation'}>Profile Information</NavLink>,
+        <NavLink key={1} to={'/dashboard/userShoppingCart'}>Shopping Cart</NavLink>,
+
+    ]
 
     return (
-        <div className=" bg-gray-100">
+        <div className={` bg-gray-100 ${showNav && "bg-gray-200 transform duration-150 ease-in-out bg-opacity-85 z-40"}`} >
             <DashboardNavbar></DashboardNavbar>
-            <div className=" flex">
-                <div className=" min-h-screen absolute z-30">
+            <div className=" flex" >
+                <div className=" min-h-screen absolute z-30" >
+                    <div className="">
+                        <div className={`${showNav ? " ease-in-out duration-200 " : "-translate-x-[100%] ease-in-out duration-200"} shadow-2xl bg-gray-500`} >
+                            <ul className=" relative flex flex-col bg-teal-700 text-[#FF7F50] w-48 min-h-screen h-fit p-3 space-y-4">
 
-                    <div>
-                        {
-                            user === 'admin' &&
+                                {/* toggle button */}
+                                <div className={` absolute text-right -right-6`} onClick={() => setShowNav(!showNav)} >
+                                    {showNav ? <MdClose className=" text-3xl font-bold" /> : <FaBars className=" text-3xl font-bold" />}
+                                </div>
+                                {/* toggle button ends */}
 
-                            <div className={`${showNav ? " ease-in-out duration-300 " : "-translate-x-[100%] ease-in-out duration-300"}`} >
-                                <ul className=" relative flex flex-col bg-teal-700 text-[#FF7F50] w-48 min-h-screen h-fit p-3 space-y-4">
-                                    <div className={` absolute text-right -right-4 ${showNav ? "" : " "}`} onClick={() => setShowNav(!showNav)} >
-                                       { showNav? <MdClose/> : <FaBars />}
-                                    </div>
-                                    {
-                                        adminRoute.map(route => <div className=" border p-2 text-left hover:bg-teal-600" key={route.key}>{route}</div>)
-                                    }
-                                </ul>
-                            </div>
-                        }
+                                {
+                                    user === 'admin' && adminRoute.map(route => <div className=" border p-2 text-left hover:bg-teal-600" key={route.key} onClick={()=>setShowNav(false)}>{route}</div>)
+                                }
+
+                                {
+                                    user === 'normalUser' && userRoute.map(route => <div className=" border p-2 text-left hover:bg-teal-600" key={route.key}>{route}</div>)
+                                }
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div className=" w-full">
-                    <div className=" min-h-screen">
+                <div className=" w-full" onClick={() => setShowNav(false)}>
+                    <div className=" min-h-screen max-w-screen-lg mx-auto">
                         <Outlet></Outlet>
                     </div>
                 </div>
