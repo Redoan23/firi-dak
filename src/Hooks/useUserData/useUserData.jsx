@@ -13,7 +13,6 @@ const useUserData = () => {
         queryKey: ['userData'],
         queryFn: async () => {
             const res = await axiosPublic.get(`/userData/${email}`)
-            console.log(res)
             return res.data
         }
     })

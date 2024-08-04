@@ -1,6 +1,21 @@
+import { useQuery } from "react-query";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic/useAxiosPublic";
+import useAllUser from "../../../Hooks/useAllUser/useAllUser";
 
 
 const AdminHome = () => {
+
+    const axiosPublic = useAxiosPublic()
+    const { data: registeredUser = [] } = useQuery({
+        queryKey: ['registeredUser'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/user/registered')
+            return res.data
+        }
+    })
+
+    const [allUser]=useAllUser()
+
     return (
         <div className=" max-w-lg mx-auto mt-12">
             <div className="stats shadow bg-white z-0">
@@ -11,15 +26,14 @@ const AdminHome = () => {
                 </div>
 
                 <div className="stat place-items-center">
-                    <div className="stat-title text-gray-500">Users</div>
-                    <div className="stat-value text-secondary">4,200</div>
+                    <div className="stat-title text-gray-500">Total Current Users</div>
+                    <div className="stat-value text-secondary">{allUser?.length}</div>
                     <div className="stat-desc text-secondary">↗︎ 40 (2%)</div>
                 </div>
 
                 <div className="stat place-items-center">
-                    <div className="stat-title text-gray-500">New Registers</div>
-                    <div className="stat-value">1,200</div>
-                    <div className="stat-desc">↘︎ 90 (14%)</div>
+                    <div className="stat-title text-gray-500">Total Registers</div>
+                    <div className="stat-value">{registeredUser?.length}</div>
                 </div>
             </div>
         </div>

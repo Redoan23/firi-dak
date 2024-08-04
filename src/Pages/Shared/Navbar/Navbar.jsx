@@ -12,11 +12,14 @@ import useAuth from "../../../Hooks/useAuth/useAuth";
 import Swal from "sweetalert2";
 import { getItemFromLocalStorage } from "../../../components/localstorage";
 import { toast, Toaster } from "sonner";
+import useUserData from "../../../Hooks/useUserData/useUserData";
 
 
 const Navbar = () => {
 
     const { user, logOut, refreshPage } = useAuth()
+    const [userData] = useUserData()
+    
 
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileNav, setMobileNav] = useState(false);
@@ -142,7 +145,7 @@ const Navbar = () => {
                             <div className=" flex items-center gap-3">
                                 <NavLink to={'/'} className=" hover:text-orange-600 duration-300 ease-in-out">Home</NavLink>
                                 <NavLink to={'/shop'} className=" hover:text-orange-600 duration-300 ease-in-out">Shop</NavLink>
-                                <NavLink to={'/dashboard'} className=" hover:text-orange-600 duration-300 ease-in-out">Dashboard</NavLink>
+                                {user && <NavLink to={'/dashboard'} className=" hover:text-orange-600 duration-300 ease-in-out">Dashboard</NavLink>}
                             </div>
                         </div>
                         <div className=" ">

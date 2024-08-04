@@ -74,6 +74,12 @@ const router = createBrowserRouter([
                 path: '/dashboard/extras',
                 element: <Extras></Extras>
             },
+
+            // normalUser
+            // {
+            //     path:'/dashboard',
+                
+            // }
         ]
     }
 ]);

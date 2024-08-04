@@ -11,7 +11,6 @@ const Dashboard = () => {
 
     const [userData] = useUserData()
     const user = userData?.role
-    console.log(user)
 
     const [showNav, setShowNav] = useState(false)
 
@@ -24,7 +23,7 @@ const Dashboard = () => {
     ]
     const userRoute = [
         <NavLink key={1} to={'/dashboard/userProfileInformation'}>Profile Information</NavLink>,
-        <NavLink key={1} to={'/dashboard/userShoppingCart'}>Shopping Cart</NavLink>,
+        <NavLink key={2} to={'/dashboard/userShoppingCart'}>Shopping Cart</NavLink>,
 
     ]
 
