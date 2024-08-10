@@ -32,7 +32,7 @@ const style = {
 
 const Cart = ({ cartSwitch }) => {
 
-    const [, totalPrice, items] = useCartCalculations()
+    const [ ,totalPrice, items] = useCartCalculations() //*MUST maintain the index serial/number, the first comma is not useless 
     const { refreshPage, setRefreshPage } = useAuth()
 
     // remove Item

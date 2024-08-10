@@ -156,7 +156,7 @@ const Navbar = () => {
                         </div>
                     </div>
                 </div>
-                <Toaster position="bottom-right" closeButton={true}></Toaster>
+                <Toaster position="bottom-right" closeButton={true} richColors></Toaster>
             </div>
 
         </div>

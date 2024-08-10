@@ -12,7 +12,7 @@ const useCartCalculations = () => {
     useEffect(() => {
         if (items.length > 0) {
             const totalItems = items.reduce((acc, item) => { return (acc + item.q) }, 0)
-            const totalAmount = items.reduce((acc, item) => { return (acc + item.p) }, 0)
+            const totalAmount = items.reduce((acc, item) => { return (acc + (item.q * item.p)) }, 0)
 
             setItemQuantity(totalItems)
             setTotalPrice(totalAmount)

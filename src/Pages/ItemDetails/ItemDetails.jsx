@@ -48,6 +48,13 @@ const ItemDetails = () => {
         if (!selectedSize) {
             return toast('Please choose size')
         }
+        // const items = getItemFromLocalStorage('cart-items')
+        // const targetItem = items.filter(item => item.i === id && item.s === selectedSize)
+        // let itemPrice = price
+        // if (targetItem.length>0) {
+        //     console.log(targetItem[0].q)
+        //     itemPrice = targetItem[0].q * price //TODO: here i need to do a optional chain or switch kind of thing
+        // }
         getItemFromLocalStorage('cart-items')
         setItemToLocalStorage('cart-items', id, name, img, quantity, selectedSize, price)
         setRefreshPage(!refreshPage)

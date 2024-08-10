@@ -21,7 +21,7 @@ const Home = () => {
             </div>
             {/*below the div is for toaster not any section of home page */}
             <div>
-                <Toaster position="bottom-right" closeButton={true} />
+                <Toaster position="bottom-right" closeButton={true} richColors />
             </div>
         </div>
     );

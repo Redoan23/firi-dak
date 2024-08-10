@@ -9,6 +9,9 @@ const getItemFromLocalStorage = (key) => {
     return []
 }
 
+
+
+
 const setItemToLocalStorage = (key, id, name, img, quantity, selectedSize, price) => {
     const itemArray = getItemFromLocalStorage(key)
     const data = {

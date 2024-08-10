@@ -1,13 +1,21 @@
 
 import { useForm } from "react-hook-form";
 import useCartCalculations from "../../Hooks/useCartCalculations/useCartCalculations";
+import useAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic";
+import { toast } from "sonner";
+import { getItemFromLocalStorage, removeItemFromLocalStorage } from "../../components/localstorage";
+import useAuth from "../../Hooks/useAuth/useAuth";
+import { useState } from "react";
 
 
 const Checkout = () => {
 
     // data from local storage
+    const cartData = getItemFromLocalStorage('cart-items')
+    const axiosPublic = useAxiosPublic()
     const [itemQuantity, totalPrice, items] = useCartCalculations()
-
+    const { refreshPage, setRefreshPage } = useAuth()
+    const [updateDelivery, setUpdateDelivery] = useState(0)
 
 
     const districts = [
@@ -27,15 +35,45 @@ const Checkout = () => {
 
     const onSubmit = (data) => {
 
-        
-        console.log('Form submitted:', data);
+        if (cartData.length === 0) {
+            return toast.info('Your cart is empty, add products to your cart to order')
+        }
+        data.orders = cartData
+
+        axiosPublic.post('/user/orderItems', data)
+            .then(res => {
+                if (res.data.insertedId) {
+                    toast.success('your order is successfully placed. Please wait for the confirmation from the owner')
+                    removeItemFromLocalStorage('cart-items')
+                    setRefreshPage(!refreshPage)
+                }
+            })
+            .catch(err => {
+                toast.error(`${err.message}`)
+            })
+
         reset()
     };
+
+    // update the delivery charge on the basis of shipping method
+
+    const handleUpdateDeliveryFee = (e) => {
+        if (totalPrice > 1499) {
+            setUpdateDelivery(0)
+            return
+        }
+        if (e.target.value === 'homeDelivery') {
+            setUpdateDelivery(100)
+        }
+        if (e.target.value === 'courier') {
+            setUpdateDelivery(50)
+        }
+    }
 
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)} className="p-6 bg-white">
-                <div className=" flex lg:flex-row flex-col items-center gap-6 justify-between w-[85%] mx-auto">
+                <div className=" flex lg:flex-row flex-col  gap-6 justify-between w-[85%] mx-auto">
                     <div className=" w-full ">
                         <div className="mb-4">
                             <label className="block text-gray-700 font-bold mb-2">Name *</label>
@@ -95,7 +133,7 @@ const Checkout = () => {
                             {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address.message}</p>}
                         </div>
                         <div className="mb-4">
-                            <label className="block text-gray-700 font-bold mb-2">Additional Information (optional)</label>
+                            <label className="block text-gray-700 font-bold mb-2">Notes (optional)</label>
                             <textarea
                                 {...register('notes')}
                                 className="w-full p-1 border bg-white border-gray-300 rounded-none focus:outline-none"
@@ -106,8 +144,8 @@ const Checkout = () => {
                     <div className=" w-full">
                         <div>
                             {
-                                items.map(item =>
-                                    <div key={item.i} className=" flex items-center p-4 gap-3 border">
+                                items.map((item, i) =>
+                                    <div key={i} className=" flex items-center p-4 gap-3 border">
                                         <div>
                                             <div className=" overflow-hidden">
                                                 <img src={item.img} alt="" className=" w-14 h-14 object-cover" />
@@ -120,8 +158,33 @@ const Checkout = () => {
                                     </div>)
                             }
                         </div>
+                        <div className="py-4" onChange={handleUpdateDeliveryFee}>
+                            <h3 className="text-xl font-bold mb-4">Select Delivery Option</h3>
+                            <div className="flex items-center mb-4">
+                                <input
+                                    type="radio"
+                                    id="homeDelivery"
+                                    value="homeDelivery"
+                                    {...register("deliveryOption", { required: "please choose a delivery option" })}
+                                    className="form-radio text-blue-600"
+                                />
+                                <label htmlFor="homeDelivery" className="ml-2">Home Delivery</label>
+                            </div>
+                            <div className="flex items-center mb-4">
+                                <input
+                                    type="radio"
+                                    id="courier"
+                                    value="courier"
+                                    {...register("deliveryOption", { required: "please choose a delivery option" })}
+                                    className="form-radio text-blue-600"
+                                />
+                                <label htmlFor="courier" className="ml-2">Courier</label>
+                            </div>
+                            {errors.deliveryOption && <p className="text-red-600">{errors.deliveryOption.message}</p>}
+                        </div>
+
                         <div className=" w-full">
-                            <div className="bg-white py-4  w-full ">
+                            <div className="bg-white py-4 w-full ">
                                 <div className="flex justify-between  pb-2 mb-2">
                                     <span className="text-gray-800 font-semibold">Total Items:</span>
                                     <span className="text-gray-800">{itemQuantity}</span>
@@ -136,11 +199,11 @@ const Checkout = () => {
                                 </div> */}
                                 <div className="flex justify-between  pb-2 mb-2">
                                     <span className="text-gray-800 font-semibold">Shipping Cost:</span>
-                                    <span className="text-gray-800">0 TK</span>
+                                    <span className="text-gray-800"> {updateDelivery} TK</span>
                                 </div>
                                 <div className="flex justify-between border-t border-b items-center py-2 mt-2">
                                     <span className="text-xl font-bold">Subtotal:</span>
-                                    <span className="text-xl font-bold">{totalPrice}TK</span>
+                                    <span className="text-xl font-bold">{totalPrice + updateDelivery}TK</span>
                                 </div>
                             </div>
 
