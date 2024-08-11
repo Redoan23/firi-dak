@@ -1,9 +1,14 @@
-
 import { useForm } from 'react-hook-form';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic/useAxiosPublic';
+import { toast, Toaster } from 'sonner';
 
 
 
 const AddProducts = () => {
+
+    const axiosPublic = useAxiosPublic()
+
+
     const {
         register,
         handleSubmit,
@@ -11,9 +16,17 @@ const AddProducts = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data);
-        // Handle form submission logic here
-        
+
+        axiosPublic.post('/bangles', data)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.insertedId) {
+                    toast.success('Item is added to the database')
+                }
+            })
+            .catch(err => {
+                toast.error(`${err.message}`)
+            })
     };
 
     return (
@@ -99,7 +112,7 @@ const AddProducts = () => {
                     </button>
                 </form>
             </div>
-
+            <Toaster richColors />
         </div>
     );
 };
