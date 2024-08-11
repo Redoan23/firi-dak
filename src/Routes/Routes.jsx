@@ -14,6 +14,7 @@ import OrdersDone from "../Pages/Admin/OrdersDone/OrdersDone";
 import UserControl from "../Pages/Admin/UserControl/UserControl";
 import Extras from "../Pages/Admin/Extras/Extras";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
+import AddProducts from "../Pages/Admin/AddProducts/AddProducts";
 
 const router = createBrowserRouter([
     {
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
                 element: <UserControl></UserControl>
             },
             {
+                path: '/dashboard/addProducts',
+                element: <AddProducts></AddProducts>
+            },
+            {
                 path: '/dashboard/extras',
                 element: <Extras></Extras>
             },
@@ -78,7 +83,7 @@ const router = createBrowserRouter([
             // normalUser
             // {
             //     path:'/dashboard',
-                
+
             // }
         ]
     }

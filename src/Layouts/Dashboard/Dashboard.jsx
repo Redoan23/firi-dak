@@ -20,6 +20,7 @@ const Dashboard = () => {
         { key: 3, to: '/dashboard/ordersPending', label: 'Orders Pending' },
         { key: 4, to: '/dashboard/ordersDone', label: 'Orders Done' },
         { key: 5, to: '/dashboard/extras', label: 'Extras' },
+        { key: 6, to: '/dashboard/addProducts', label: 'Add Products' },
 
 
     ]
