@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 const useBanglesData = () => {
     const axiosPublic = useAxiosPublic()
 
-    const { data: bangles = [], isLoading } = useQuery({
+    const { data: bangles = [], isLoading, refetch } = useQuery({
         queryKey: ['bangles'],
         queryFn: async () => {
             const res = await axiosPublic.get('/bangles')
@@ -12,7 +12,7 @@ const useBanglesData = () => {
         }
     })
 
-    return [bangles, isLoading]
+    return [bangles, refetch ,isLoading]
 };
 
 
