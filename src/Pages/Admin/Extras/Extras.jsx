@@ -3,7 +3,7 @@
 const Extras = () => {
     return (
         <div>
-            this is extras
+           delivery fee
         </div>
     );
 };
