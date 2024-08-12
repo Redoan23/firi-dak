@@ -11,7 +11,7 @@ const PendingOrderDetails = ({ data }) => {
     return (
         <ModalWrapper>
             <div className=' p-5 overflow-auto max-h-screen'>
-                <h3 className=' text-center font-semibold text-xl'>Total ordered items: {data?.orders.length}</h3>
+                <h3 className=' text-center font-semibold text-xl'>Total ordered items: {data?.orders?.length}</h3>
                 <div className=' flex gap-3 p-4'>
                     <div>
                         <h3 className='text-gray-500'><span className=' font-bold text-gray-500'>Name:</span> {data?.name}</h3>
