@@ -18,7 +18,7 @@ const OrdersPending = () => {
 
     const handleShowDetails = (order) => {
         Reoverlay.showModal(PendingOrderDetails, {
-            confirmText: order
+            data: order
         })
     }
 

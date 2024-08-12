@@ -2,16 +2,32 @@ import { ModalWrapper, Reoverlay } from 'reoverlay';
 
 import 'reoverlay/lib/ModalWrapper.css';
 
-const PendingOrderDetails = ({ confirmText = [] }) => {
-    console.log(confirmText)
+const PendingOrderDetails = ({ data }) => {
+    console.log(data)
     const closeModal = () => {
         Reoverlay.hideModal();
     }
 
     return (
         <ModalWrapper>
-            <div className=' p-5'>
-                <h3 className=' text-center font-semibold text-xl'>Total ordered items: {confirmText.length}</h3>
+            <div className=' p-5 overflow-auto max-h-screen'>
+                <h3 className=' text-center font-semibold text-xl'>Total ordered items: {data?.orders.length}</h3>
+                <div className=' flex gap-3 p-4'>
+                    <div>
+                        <h3 className='text-gray-500'><span className=' font-bold text-gray-500'>Name:</span> {data?.name}</h3>
+                        <h3 className='text-gray-500'> <span className=' font-bold text-gray-500'>Number:</span> {data?.phone}</h3>
+                        <h3 className='text-gray-500'> <span className=' font-bold text-gray-500'>Secondary Number:</span>{data?.secondaryPhone}</h3>
+                    </div>
+                    <div className=' border-r border-gray-500'>
+
+                    </div>
+                    <div>
+                        <h3 className='text-gray-500'><span className=' font-bold text-gray-500'>District:</span> {data?.district}</h3>
+                        <h3 className='text-gray-500'> <span className=' font-bold text-gray-500'>Address: </span>{data?.address}</h3>
+                    </div>
+                </div>
+                <h3 className=' text-center text-gray-500 p-3'>
+                    <span className=' font-bold text-orange-500'>Note:</span> {data?.notes ? data.notes : 'No Notes'}</h3>
                 <div className="overflow-x-auto">
                     <table className="table">
                         <thead>
@@ -25,7 +41,7 @@ const PendingOrderDetails = ({ confirmText = [] }) => {
                         </thead>
                         <tbody>
                             {
-                                confirmText?.orders.map((order, i) =>
+                                data?.orders?.map((order, i) =>
                                     <tr key={i}>
                                         <th>{i + 1}</th>
                                         <td><img src={order?.img} alt="" className=' h-16 w-16 object-cover' /></td>
@@ -34,6 +50,7 @@ const PendingOrderDetails = ({ confirmText = [] }) => {
                                         <td>{order.q}</td>
                                     </tr>)
                             }
+                            {/* TODO: here i need to add the other infos like phone email etc.... */}
                         </tbody>
                     </table>
                 </div>

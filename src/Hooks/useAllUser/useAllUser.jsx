@@ -12,7 +12,6 @@ const useAllUser = () => {
             return res.data
         }
     })
-    console.log(allUser)
 
     return [allUser, isLoading, refetch]
 };
