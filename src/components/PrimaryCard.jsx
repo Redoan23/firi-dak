@@ -6,7 +6,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { FreeMode, Pagination, Navigation } from 'swiper/modules';
 import { IoHeartOutline } from 'react-icons/io5';
-import {  useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { setWishlistToLocalStorage } from './localstorage';
 
@@ -14,20 +14,9 @@ import { setWishlistToLocalStorage } from './localstorage';
 const PrimaryCard = ({ title, dataArray }) => {
 
     const [hoveredIndex, setHoveredIndex] = useState(null)
-    // const [wishlistItem, setWishlistItem] = useState(false)
     const handleWishlist = (key, id, name, img, price) => {
         setWishlistToLocalStorage(key, id, name, img, price)
     }
-
-    // useEffect(() => {
-    //     const wishlistItem = getWishlistItemFromLocalStorage('wishlist-items', key)
-    //     if (wishlistItem) {
-    //         setWishlistItem(true)
-    //     }
-    //     else {
-    //         setWishlistItem(false)
-    //     }
-    // }, [])
 
     return (
         <div className=" mt-12 mx-auto">
@@ -63,28 +52,34 @@ const PrimaryCard = ({ title, dataArray }) => {
                                             <Link to={`/itemDetails/${data._id}`}>
                                                 <img className=" w-full h-full object-cover hover:scale-[1.05] duration-200 ease-in-out transition-all" src={data.img} alt="Bangle" />
                                             </Link>
-                                            {
-                                                data?.discount && <div className="absolute z-50 top-4 left-2 bg-orange-600 text-white w-12 h-12 rounded-full text-center flex justify-center items-center">
-                                                    -{data.discount}%
-                                                </div>
-                                            }
-                                            {/* {
-                                                data?.category==='bracelets' && <div className=' text-emerald-900 absolute top-0'>ggg</div>
-                                            } */}
+                                            <div className=' absolute z-50 top-4 left-2 space-y-2'>
+                                                {
+                                                    data?.discount && <div className=" bg-orange-600 text-white w-12 h-12 rounded-full text-center flex justify-center items-center text-xs">
+                                                        -{data.discount}%
+                                                    </div>
+                                                }
+                                                {
+                                                    data?.stockStatus === 'Stock Out' && <div className=" bg-orange-600 text-white w-12 h-12 rounded-full text-center flex justify-center items-center text-xs">
+                                                        {data.stockStatus}
+                                                    </div>
+                                                }
+                                            </div>
                                             <div className={` absolute top-14 -right-6 ease-in-out shadow-sm duration-300  ${hoveredIndex === i ? "-translate-x-6" : "translate-x-20"}`} title='add to wishlist'>
                                                 <button onClick={() => handleWishlist('wishlist-items', data._id, data.name, data.img, data.price)} className=' bg-white py-3 px-5'>
-                                                     <IoHeartOutline className=' text-xl' /> </button>
+                                                    <IoHeartOutline className=' text-xl' /> </button>
                                             </div>
                                         </div>
                                         <div className="card-body text-center mx-auto h-40">
                                             <h2 className="card-title text-base">{data.name}</h2>
-                                            {data?.discount ?
-                                                <div className=" flex gap-2 justify-center items-center">
-                                                    <span className=" text-gray-400 text-sm line-through">{data.price} Tk</span>
-                                                    <span className=" text-orange-600 text-base">{data.price - (data.price * data.discount / 100)} TK</span>
-                                                </div>
-                                                :
-                                                <div> <p className=" text-center text-orange-600 text-base">{data.price} TK</p></div>}
+                                            {
+                                                data?.discount ?
+                                                    <div className=" flex gap-2 justify-center items-center">
+                                                        <span className=" text-gray-400 text-sm line-through">{data.price} Tk</span>
+                                                        <span className=" text-orange-600 text-base">{data.price - (data.price * data.discount / 100)} TK</span>
+                                                    </div>
+                                                    :
+                                                    <div> <p className=" text-center text-orange-600 text-base">{data.price} TK</p></div>
+                                            }
                                             <div className="card-actions justify-center">
                                                 <Link to={`/itemDetails/${data._id}`}>
                                                     <button className="btn rounded-none text-white  bg-orange-600 border-none hover:bg-gray-200 hover:text-orange-600 min-h-[2rem] ease-in-out duration-500 h-10  ">Add to Cart</button>
