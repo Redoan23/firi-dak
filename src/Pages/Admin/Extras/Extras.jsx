@@ -34,14 +34,14 @@ const Extras = () => {
     return (
         <div className=" mt-12">
             <h3 className=" text-center font-bold text-4xl">Set Fees</h3>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 p-4 bg-white shadow-lg mt-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 p-4 bg-white shadow-lg mt-6 rounded w-1/2 mx-auto">
                 <div>
                     <label className="block text-gray-700">Courier Fee</label>
                     <input
                         type="number"
                         step="0.01"
                         {...register('courierFee')}
-                        className="w-full p-2 bg-gray-300 outline-none border-none"
+                        className="w-full p-2 bg-gray-100 rounded outline-none border-none"
                     />
                 </div>
                 <div>
@@ -50,7 +50,7 @@ const Extras = () => {
                         type="number"
                         step="0.01"
                         {...register('homeDeliveryFee')}
-                        className="w-full p-2 bg-gray-300 outline-none border-none"
+                        className="w-full p-2 bg-gray-100 rounded outline-none border-none"
                     />
                 </div>
                 <button

@@ -17,16 +17,17 @@ const AddProducts = () => {
 
     const onSubmit = (data) => {
 
-        axiosPublic.post('/bangles', data)
-            .then(res => {
-                console.log(res.data)
-                if (res.data.insertedId) {
-                    toast.success('Item is added to the database')
-                }
-            })
-            .catch(err => {
-                toast.error(`${err.message}`)
-            })
+        // axiosPublic.post('/bangles', data)
+        //     .then(res => {
+        //         console.log(res.data)
+        //         if (res.data.insertedId) {
+        //             toast.success('Item is added to the database')
+        //         }
+        //     })
+        //     .catch(err => {
+        //         toast.error(`${err.message}`)
+        //     })
+        console.log(data)
     };
 
     return (
@@ -105,6 +106,14 @@ const AddProducts = () => {
                             {...register('discount')}
                             className="w-full p-2 bg-white border border-gray-300 rounded shadow-sm focus:outline-none border-none"
                         />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-700 ">Stock Status</label>
+                        <select {...register('stockStatus')} name="stockStatus" id="stockStatus" className=' bg-white w-full rounded focus:outline-none' required>
+                            <option value="">Set Stock Status</option>
+                            <option value="Sale">Sale</option>
+                            <option value="Stock Out">Stock Out</option>
+                        </select>
                     </div>
 
                     <button type="submit" className="w-full bg-orange-600 text-white py-2 rounded shadow-lg">

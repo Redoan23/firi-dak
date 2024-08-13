@@ -24,6 +24,7 @@ const PendingOrderDetails = ({ data }) => {
                     <div>
                         <h3 className='text-gray-500'><span className=' font-bold text-gray-500'>District:</span> {data?.district}</h3>
                         <h3 className='text-gray-500'> <span className=' font-bold text-gray-500'>Address: </span>{data?.address}</h3>
+                        <h3 className='text-gray-500'> <span className=' font-bold text-gray-500'>Payable Total: </span>{data?.payableTotal} TK</h3>
                     </div>
                 </div>
                 <h3 className=' text-center text-gray-500 p-3'>

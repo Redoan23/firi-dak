@@ -8,7 +8,6 @@ const useBanglesData = () => {
         queryKey: ['bangles'],
         queryFn: async () => {
             const res = await axiosPublic.get('/bangles')
-            console.log(res.data)
             return res.data
         }
     })

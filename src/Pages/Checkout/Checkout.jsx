@@ -6,9 +6,13 @@ import { toast } from "sonner";
 import { getItemFromLocalStorage, removeItemFromLocalStorage } from "../../components/localstorage";
 import useAuth from "../../Hooks/useAuth/useAuth";
 import { useState } from "react";
+import useExtraInfoData from "../../Hooks/useExtraInfoData/useExtraInfoData";
 
 
 const Checkout = () => {
+
+    const [extraInfoData] = useExtraInfoData()
+    const deliveryFee = extraInfoData[0]
 
     // data from local storage
     const cartData = getItemFromLocalStorage('cart-items')
@@ -17,6 +21,7 @@ const Checkout = () => {
     const { refreshPage, setRefreshPage } = useAuth()
     const [updateDelivery, setUpdateDelivery] = useState(0)
 
+    const subtotal = updateDelivery + totalPrice
 
     const districts = [
         "Bagerhat", "Bandarban", "Barguna", "Barisal", "Bhola", "Bogra", "Brahmanbaria",
@@ -33,17 +38,26 @@ const Checkout = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
     });
 
+
+
     const onSubmit = (data) => {
+
+        console.log(data)
+
+        if (!updateDelivery) {
+            return toast.error('Please')
+        }
 
         if (cartData.length === 0) {
             return toast.info('Your cart is empty, add products to your cart to order')
         }
         data.orders = cartData
+        data.payableTotal = subtotal
 
         axiosPublic.post('/user/orderItems', data)
             .then(res => {
                 if (res.data.insertedId) {
-                    toast.success('your order is successfully placed. Please wait for the confirmation from the owner')
+                    toast.success('your order is successfully placed. Please wait for the confirmation')
                     removeItemFromLocalStorage('cart-items')
                     setRefreshPage(!refreshPage)
                 }
@@ -63,10 +77,10 @@ const Checkout = () => {
             return
         }
         if (e.target.value === 'homeDelivery') {
-            setUpdateDelivery(100)
+            setUpdateDelivery(deliveryFee.homeDeliveryFee)
         }
         if (e.target.value === 'courier') {
-            setUpdateDelivery(50)
+            setUpdateDelivery(deliveryFee.courierFee)
         }
     }
 
@@ -203,7 +217,7 @@ const Checkout = () => {
                                 </div>
                                 <div className="flex justify-between border-t border-b items-center py-2 mt-2">
                                     <span className="text-xl font-bold">Subtotal:</span>
-                                    <span className="text-xl font-bold">{totalPrice + updateDelivery}TK</span>
+                                    <span className="text-xl font-bold">{subtotal}TK</span>
                                 </div>
                             </div>
 

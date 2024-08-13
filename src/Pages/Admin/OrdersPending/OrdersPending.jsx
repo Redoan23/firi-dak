@@ -74,6 +74,7 @@ const OrdersPending = () => {
                             <th>Phone</th>
                             <th>District</th>
                             <th>Delivery Option</th>
+                            <th>Payable Total</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -85,6 +86,7 @@ const OrdersPending = () => {
                                 <td>{order.phone}</td>
                                 <td>{order.district}</td>
                                 <td>{order.deliveryOption}</td>
+                                <td>{order?.payableTotal} Tk</td>
                                 <td>
                                     <button className="btn btn-xs btn-success text-white mr-2" onClick={() => handleAcceptOrder(order._id, order)}>Accept</button>
                                     <button className="btn btn-xs btn-error text-white mr-2" onClick={() => handleDeleteOrder(order._id)}>Delete</button>
