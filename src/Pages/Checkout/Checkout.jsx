@@ -22,6 +22,7 @@ const Checkout = () => {
     const [updateDelivery, setUpdateDelivery] = useState(0)
 
     const subtotal = updateDelivery + totalPrice
+    const date = new Date().getDate()
 
     const districts = [
         "Bagerhat", "Bandarban", "Barguna", "Barisal", "Bhola", "Bogra", "Brahmanbaria",
@@ -45,7 +46,7 @@ const Checkout = () => {
         console.log(data)
 
         if (!updateDelivery) {
-            return toast.error('Please')
+            return toast.error('Please select the delivery option again')
         }
 
         if (cartData.length === 0) {
@@ -53,6 +54,7 @@ const Checkout = () => {
         }
         data.orders = cartData
         data.payableTotal = subtotal
+        data.orderDate = date
 
         axiosPublic.post('/user/orderItems', data)
             .then(res => {
@@ -87,7 +89,7 @@ const Checkout = () => {
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)} className="p-6 bg-white">
-                <div className=" flex lg:flex-row flex-col  gap-6 justify-between w-[85%] mx-auto">
+                <div className=" flex lg:flex-row flex-col gap-6 justify-between w-[85%] mx-auto">
                     <div className=" w-full ">
                         <div className="mb-4">
                             <label className="block text-gray-700 font-bold mb-2">Name *</label>
@@ -207,10 +209,6 @@ const Checkout = () => {
                                     <span className="text-gray-800 font-semibold">Total Price:</span>
                                     <span className="text-gray-800">{totalPrice} TK</span>
                                 </div>
-                                {/* <div className="flex justify-between  pb-2 mb-2">
-                                    <span className="text-gray-800 font-semibold">Discount:</span>
-                                    <span className="text-gray-800">0 TK</span>
-                                </div> */}
                                 <div className="flex justify-between  pb-2 mb-2">
                                     <span className="text-gray-800 font-semibold">Shipping Cost:</span>
                                     <span className="text-gray-800"> {updateDelivery} TK</span>
