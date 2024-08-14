@@ -3,16 +3,12 @@ import DashboardNavbar from "./DashboardNavbar/DashboardNavbar";
 import useUserData from "../../Hooks/useUserData/useUserData";
 import Footer from "../../Pages/Shared/Footer/Footer";
 import { FaBars } from "react-icons/fa6";
-import { useEffect, useState } from "react";
-import { MdClose } from "react-icons/md";
 
 
 const Dashboard = () => {
 
     const [userData] = useUserData()
     const user = userData?.role
-
-    const [showNav, setShowNav] = useState(false)
 
     const adminRoute = [
         { key: 1, to: '/dashboard', label: 'Admin Home' },
@@ -21,8 +17,6 @@ const Dashboard = () => {
         { key: 4, to: '/dashboard/ordersDone', label: 'Orders Done' },
         { key: 5, to: '/dashboard/extras', label: 'Extras' },
         { key: 6, to: '/dashboard/addProducts', label: 'Add Products' },
-
-
     ]
     const userRoute = [
         { key: 1, to: '/dashboard/userProfileInformation', label: 'Profile Information' },
@@ -34,38 +28,34 @@ const Dashboard = () => {
         <NavLink
             key={route.key}
             to={route.to}
-            onClick={() => setShowNav(false)}
-            className={'p-3 mx-5 border text-center hover:bg-teal-600'}
+
+            className={'p-3 mx-5 mt-10 border text-center hover:bg-teal-600'}
         >
             {route.label}
         </NavLink>
     ));
 
-    // to hide scrolling while showing the slide
-    useEffect(() => {
-        if (showNav) {
-            document.body.style.overflow= 'hidden';
-        } else {
-            document.body.style.overflow= 'auto';
-        }
-        return () => {
-            document.body.style.overflow= 'auto';
-        };
-    }, [showNav]);
-
     return (
-        <div className={` bg-gray-100 ${showNav && "bg-gray-200 transform duration-150 ease-in-out bg-opacity-85 z-40"}`} >
-            <DashboardNavbar></DashboardNavbar>
-            <div className=" " >
-                <div className=" absolute z-30 top-0 h-full" >
-                    <div className={`${showNav ? " ease-in-out duration-200 " : "-translate-x-[100%] ease-in-out duration-200"} shadow-2xl bg-gray-500 h-full`} >
-                        <ul className=" relative flex flex-col bg-teal-700 text-[#FF7F50] w-[16rem] md:w-72 min-h-screen h-full p-3 space-y-4">
+        <div className='bg-gray-100'>
 
-                            {/* toggle button */}
-                            <div className={` absolute text-right -right-8`} onClick={() => setShowNav(!showNav)} >
-                                {showNav ? <MdClose className=" text-3xl font-bold" /> : <FaBars className=" text-2xl font-bold" />}
-                            </div>
-                            {/* toggle button ends */}
+            <DashboardNavbar></DashboardNavbar>
+
+            <div className=" " >
+                <div className="drawer">
+                    <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+                    <div className="drawer-content my-5 mx-4 md:mx-10">
+                        <Outlet></Outlet>
+                        <label htmlFor="my-drawer" className=" absolute -top-8 left-2 drawer-button"><FaBars className=" text-xl" /> </label>
+                    </div>
+                    <div className="drawer-side">
+
+                        <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
+                        <ul className="menu bg-teal-900 text-base-content space-y-3 min-h-full w-[290px] lg:w-80 p-4">
+                            <NavLink to={'/'} className={'text-center py-3'}>
+                                <h3 className='font-black ease-in-out duration-300'>
+                                    <span className=" text-orange-600 text-4xl">F</span><span className=" text-[#c2c7d1fa]">IRIDAK</span>
+                                </h3>
+                            </NavLink>
 
                             {
                                 user === 'admin' && renderNavLinks(adminRoute)
@@ -74,11 +64,6 @@ const Dashboard = () => {
                                 user === 'normalUser' && renderNavLinks(userRoute)
                             }
                         </ul>
-                    </div>
-                </div>
-                <div className=" w-full" onClick={() => setShowNav(false)}>
-                    <div className=" min-h-screen max-w-screen-lg mx-auto">
-                        <Outlet></Outlet>
                     </div>
                 </div>
             </div>
