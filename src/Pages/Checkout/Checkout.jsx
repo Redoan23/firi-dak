@@ -7,6 +7,7 @@ import { getItemFromLocalStorage, removeItemFromLocalStorage } from "../../compo
 import useAuth from "../../Hooks/useAuth/useAuth";
 import { useState } from "react";
 import useExtraInfoData from "../../Hooks/useExtraInfoData/useExtraInfoData";
+import moment from "moment";
 
 
 const Checkout = () => {
@@ -22,7 +23,7 @@ const Checkout = () => {
     const [updateDelivery, setUpdateDelivery] = useState(0)
 
     const subtotal = updateDelivery + totalPrice
-    const date = new Date().getDate()
+    const date = moment().format('DD/MM/YYYY')
 
     const districts = [
         "Bagerhat", "Bandarban", "Barguna", "Barisal", "Bhola", "Bogra", "Brahmanbaria",

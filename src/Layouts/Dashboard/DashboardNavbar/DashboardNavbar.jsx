@@ -8,7 +8,7 @@ import NotificationModal from "./NotificationModal/NotificationModal";
 const DashboardNavbar = () => {
 
     const axiosPublic = useAxiosPublic()
-    const { data: notificationData = [] } = useQuery({
+    const { data: notificationData = [], refetch } = useQuery({
         queryKey: ['notificationData'],
         queryFn: async () => {
             const res = await axiosPublic.get('/notificationData')
@@ -18,7 +18,8 @@ const DashboardNavbar = () => {
 
     const handleShowDetails = (notifications) => {
         Reoverlay.showModal(NotificationModal, {
-            notifications: notifications
+            notifications: notifications,
+            refetch: refetch
         })
     }
 
@@ -30,7 +31,7 @@ const DashboardNavbar = () => {
                         <span className=" text-orange-600 text-4xl">F</span><span className=" text-[#c2c7d1fa]">IRIDAK</span>
                     </h3>
                 </NavLink>
-                <div onClick={()=>handleShowDetails(notificationData)} >
+                <div onClick={() => handleShowDetails(notificationData)} >
                     <button className="btn btn-ghost btn-circle">
                         <div className="indicator">
                             <svg
@@ -55,7 +56,7 @@ const DashboardNavbar = () => {
                     </button>
                 </div>
             </div>
-            <ModalContainer/>
+            <ModalContainer />
         </div>
     );
 };

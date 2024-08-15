@@ -3,19 +3,17 @@ import { ModalWrapper } from 'reoverlay';
 import 'reoverlay/lib/ModalWrapper.css';
 import useAxiosPublic from '../../../../Hooks/useAxiosPublic/useAxiosPublic';
 
-const NotificationModal = ({ notifications }) => {
+const NotificationModal = ({ notifications, refetch }) => {
     const axiosPublic = useAxiosPublic()
-    console.log(notifications)
-    // const closeModal = () => {
-    //     Reoverlay.hideModal();
-    // }
 
     const handleDeleteNotification = (id) => {
         axiosPublic.delete(`/deleteNotification/${id}`)
+        refetch()
     }
 
     const handleDeleteAllNotification = () => {
         axiosPublic.delete('/deleteAllNotification')
+        refetch()
     }
 
     return (
@@ -30,15 +28,18 @@ const NotificationModal = ({ notifications }) => {
                     </div>
                     <div className=' flex flex-col gap-2' >
                         {
-                            notifications?.map((notification) =>
-                                <div key={notification._id} className=' w-full p-4 min-w-[260px] bg-gray-100 relative '>
-                                    <h3 className=' text-lg text-gray-700'>{notification?.name} ordered {
-                                        notification?.orders?.length} Items.
-                                    </h3>
-                                    <p className=' text-xs pl-1'>please check the pending list</p>
-                                    <p className=' text-xs pl-1'>{notification?.orderDate}</p>
-                                    <p onClick={() => handleDeleteNotification(notification._id)} className=' absolute right-3 top-2 hover:cursor-pointer'> <CgClose /> </p>
-                                </div>)
+                            notifications.length > 0 ?
+                                notifications.map((notification) =>
+                                    <div key={notification._id} className=' w-full p-4 min-w-[260px] bg-gray-100 relative '>
+                                        <h3 className=' text-lg text-gray-700'>{notification?.name} ordered {
+                                            notification?.orders?.length} Items.
+                                        </h3>
+                                        <p className=' text-xs pl-1'>please check the pending list</p>
+                                        <p className=' text-xs pl-1'>{notification?.orderDate}</p>
+                                        <p onClick={() => handleDeleteNotification(notification._id)} className=' absolute right-3 top-2 hover:cursor-pointer'> <CgClose /> </p>
+                                    </div>)
+                                :
+                                <p className=' text-center'>No New Notifications</p>
                         }
                     </div>
                 </div>
