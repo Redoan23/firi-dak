@@ -32,7 +32,7 @@ const style = {
 
 const Cart = ({ cartSwitch }) => {
 
-    const [ ,totalPrice, items] = useCartCalculations() //*MUST maintain the index serial/number, the first comma is not useless 
+    const [, totalPrice, items] = useCartCalculations() //*MUST maintain the index number/serial, the first comma is not useless 
     const { refreshPage, setRefreshPage } = useAuth()
 
     // remove Item
@@ -62,7 +62,7 @@ const Cart = ({ cartSwitch }) => {
             closeAfterTransition
             className=' overflow-y-auto overflow-x-hidden'
         >
-            <Slide direction='left' in={open} trans mountOnEnter unmountOnExit >
+            <Slide direction='left' in={open} timeout={300}  mountOnEnter unmountOnExit >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         <div className=' border-b '>
