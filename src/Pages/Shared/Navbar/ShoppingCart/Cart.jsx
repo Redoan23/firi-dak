@@ -83,7 +83,7 @@ const Cart = ({ cartSwitch }) => {
                                     items.map(
                                         (item, i) =>
                                             <div key={i} className=' my-3 '>
-                                                <div className=' flex items-center justify-between gap-6 border p-2 w-[80%] mx-auto bg-white shadow-sm relative'>
+                                                <div className=' flex items-center  gap-6 border p-2 w-[80%] mx-auto bg-white shadow-sm relative'>
                                                     <div className=' overflow-hidden w-24 h-24'>
                                                         <img src={item.img} alt="" className=' w-full h-full object-cover' />
                                                     </div>

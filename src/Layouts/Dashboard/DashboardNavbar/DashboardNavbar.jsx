@@ -21,6 +21,7 @@ const DashboardNavbar = () => {
             notifications: notifications,
             refetch: refetch
         })
+        refetch()
     }
 
     return (

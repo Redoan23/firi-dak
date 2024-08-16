@@ -17,6 +17,7 @@ const PendingOrderDetails = ({ data }) => {
                         <h3 className='text-gray-500'><span className=' font-bold text-gray-500'>Name:</span> {data?.name}</h3>
                         <h3 className='text-gray-500'> <span className=' font-bold text-gray-500'>Number:</span> {data?.phone}</h3>
                         <h3 className='text-gray-500'> <span className=' font-bold text-gray-500'>Secondary Number:</span>{data?.secondaryPhone}</h3>
+                        <h3 className='text-gray-500'> <span className=' font-bold text-gray-500'>Date of order:</span>{data?.orderDate}</h3>
                     </div>
                     <div className=' border-r border-gray-500'>
 
@@ -51,14 +52,14 @@ const PendingOrderDetails = ({ data }) => {
                                         <td>{order.q}</td>
                                     </tr>)
                             }
-                            {/* TODO: here i need to add the other infos like phone email etc.... */}
                         </tbody>
                     </table>
                 </div>
 
             </div>
             <div className=' text-center py-3'>
-                <button className=' text-center mx-auto btn btn-sm rounded-sm bg-orange-600 text-white hover:bg-orange-700 border-none' onClick={closeModal}>Close</button>
+                <button className=' text-center mx-auto btn btn-sm rounded-sm bg-orange-600 text-white
+                z hover:bg-orange-700 border-none' onClick={closeModal}>Close</button>
             </div>
         </ModalWrapper>
     )

@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import useCartCalculations from "../../Hooks/useCartCalculations/useCartCalculations";
 import { removeSingleItem } from "../../components/localstorage";
 import useAuth from "../../Hooks/useAuth/useAuth";
+import useExtraInfoData from "../../Hooks/useExtraInfoData/useExtraInfoData";
 
 
 const CartDetails = () => {
 
+    const [extraInfoData] = useExtraInfoData()
+    console.log(extraInfoData)
     const [itemQuantity, totalPrice, items] = useCartCalculations()
     const { refreshPage, setRefreshPage } = useAuth()
     const handleItemDelete = (key, id, size) => {
@@ -57,16 +60,10 @@ const CartDetails = () => {
                                 </div>
                                 <div className=" space-y-4">
                                     <p>Shipping :</p>
-                                    <form action="" className=" flex flex-col items-end">
-                                        <label htmlFor="courier" className=" flex items-center gap-4">
-                                            Home Delivery
-                                            <input type="radio" name="delivery" id="homeDelivery" className="" />
-                                        </label>
-                                        <label htmlFor="courier" className=" flex items-center gap-4">
-                                            Courier
-                                            <input type="radio" name="delivery" id="courier" />
-                                        </label>
-                                    </form>
+                                    <div action="" className=" flex flex-col items-end">
+                                        <p className=" flex items-center gap-4"> Home Delivery ({extraInfoData ? extraInfoData[0]?.homeDeliveryFee + ' TK' : '...'})</p>
+                                        <p className=" flex items-center gap-4"> Courier ({extraInfoData ? extraInfoData[0]?.courierFee + ' TK' : '...'})</p>
+                                    </div>
                                     <p className=" border-t border-b py-3 flex items-center justify-between">SubTotal: <span className=" text-orange-600">{totalPrice} TK</span></p>
                                 </div>
                             </div>

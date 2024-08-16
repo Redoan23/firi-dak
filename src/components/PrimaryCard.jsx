@@ -75,7 +75,7 @@ const PrimaryCard = ({ title, dataArray }) => {
                                                 data?.discount ?
                                                     <div className=" flex gap-2 justify-center items-center">
                                                         <span className=" text-gray-400 text-sm line-through">{data.price} Tk</span>
-                                                        <span className=" text-orange-600 text-base">{data.price - (data.price * data.discount / 100)} TK</span>
+                                                        <span className=" text-orange-600 text-base">{data.discountedPrice} TK</span>
                                                     </div>
                                                     :
                                                     <div> <p className=" text-center text-orange-600 text-base">{data.price} TK</p></div>

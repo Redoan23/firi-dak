@@ -20,7 +20,7 @@ const ItemDetails = () => {
     const [quantity, setQuantity] = useState(1)
     const [selectedSize, setSelectedSize] = useState(null)
     const name = itemDetails?.name
-    const price = itemDetails?.price
+    const price = itemDetails?.discountedPrice
     const img = itemDetails?.img
 
     const cartValue = (e) => {
@@ -69,9 +69,14 @@ const ItemDetails = () => {
                     {/* {isLoading && <span className=" text-center">loading...</span> } */}
                     <div>
                         <h1 className="text-4xl text-gray-700 font-bold">{itemDetails.name}</h1>
-                        <p className="py-4 underline font-semibold text-xl text-orange-600">
-                            {itemDetails.price} TK
-                        </p>
+                        <div className=" flex items-center gap-3">
+                            <p className=" line-through">
+                                {itemDetails.price} Tk
+                            </p>
+                            <p className="py-4 underline font-semibold text-xl text-orange-600">
+                                {itemDetails.discountedPrice} TK
+                            </p>
+                        </div>
                         <div className=" flex gap-3 items-center py-4">
                             <p className=" text-gray-600">Size</p>
                             <select onChange={handleSizeSelection} name="size" id="size" className=" bg-white border-2 border-gray-500 p-1">
@@ -90,7 +95,7 @@ const ItemDetails = () => {
                             <button onClick={() => handleAddToCart(id, name, img, quantity, selectedSize, price)} className="btn min-h-[1rem] h-9  bg-orange-600 border-none rounded-none text-white hover:bg-gray-200 hover:text-orange-600 ease-in-out duration-500">Add to Cart</button>
                         </div>
 
-                        <button onClick={() => handleWishlist('wishlist-items', itemDetails._id, itemDetails.name, itemDetails.img, itemDetails.price)} className=" text-orange-600 flex items-center gap-2 pt-5">Add to Wishlist <IoHeartOutline /></button>
+                        <button onClick={() => handleWishlist('wishlist-items', itemDetails._id, itemDetails.name, itemDetails.img, itemDetails.discountedPrice)} className=" text-orange-600 flex items-center gap-2 pt-5">Add to Wishlist <IoHeartOutline /></button>
 
                     </div>
                 </div>

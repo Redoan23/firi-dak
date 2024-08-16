@@ -17,16 +17,16 @@ const AddProducts = () => {
 
     const onSubmit = (data) => {
 
-        // axiosPublic.post('/bangles', data)
-        //     .then(res => {
-        //         console.log(res.data)
-        //         if (res.data.insertedId) {
-        //             toast.success('Item is added to the database')
-        //         }
-        //     })
-        //     .catch(err => {
-        //         toast.error(`${err.message}`)
-        //     })
+        axiosPublic.post('/bangles', data)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.insertedId) {
+                    toast.success('Item added to the database')
+                }
+            })
+            .catch(err => {
+                toast.error(`${err.message}`)
+            })
         console.log(data)
     };
 
