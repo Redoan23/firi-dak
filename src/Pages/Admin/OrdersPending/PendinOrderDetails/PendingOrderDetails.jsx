@@ -3,7 +3,6 @@ import { ModalWrapper, Reoverlay } from 'reoverlay';
 import 'reoverlay/lib/ModalWrapper.css';
 
 const PendingOrderDetails = ({ data }) => {
-    console.log(data)
     const closeModal = () => {
         Reoverlay.hideModal();
     }

@@ -9,7 +9,6 @@ import useExtraInfoData from "../../Hooks/useExtraInfoData/useExtraInfoData";
 const CartDetails = () => {
 
     const [extraInfoData] = useExtraInfoData()
-    console.log(extraInfoData)
     const [itemQuantity, totalPrice, items] = useCartCalculations()
     const { refreshPage, setRefreshPage } = useAuth()
     const handleItemDelete = (key, id, size) => {

@@ -57,7 +57,6 @@ const UserControl = () => {
             if (result.isConfirmed) {
 
                 const res = await axiosPublic.delete(`/user/delete/${email}`)
-                console.log(res)
                 if (res.data.deletedCount > 0) {
                     toast.success(`Deleted user `)
                     refetch()

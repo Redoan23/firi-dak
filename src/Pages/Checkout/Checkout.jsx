@@ -44,8 +44,6 @@ const Checkout = () => {
 
     const onSubmit = (data) => {
 
-        console.log(data)
-
         if (!updateDelivery) {
             return toast.error('Please select the delivery option again')
         }

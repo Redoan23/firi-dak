@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth/useAuth";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 import Swal from "sweetalert2";
 
 
@@ -13,16 +13,13 @@ const Login = () => {
         reset
     } = useForm()
     const onSubmit = (data) => {
-        console.log(data)
         const email = data?.email
         const password = data?.password
         loginUser(email, password)
             .then(res => {
-                console.log(res)
                 toast(`Logged in as ${res?.user?.displayName ? res.user.displayName : res.user.email}`)
             })
             .catch(err => {
-                console.log(err)
                 return toast.error(`${err}`)
             })
 
@@ -50,9 +47,9 @@ const Login = () => {
         });
         if (email) {
             resetUserPassword(email)
-                .then(toast(`Please check your email, a mail has been sent to ${email}`))
+                .then(toast.info(`Please check your email, a mail has been sent to ${email}`))
                 .catch(err => {
-                    console.log(err)
+                    toast.error(`${err?.message ? err.message : 'Error'}`)
                 })
         }
     }
@@ -107,6 +104,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+            <Toaster richColors />
         </div>
     );
 };

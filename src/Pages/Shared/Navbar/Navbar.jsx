@@ -19,7 +19,8 @@ const Navbar = () => {
 
     const { user, logOut, refreshPage } = useAuth()
     const [userData] = useUserData()
-    
+    const userRole = userData?.role
+
 
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileNav, setMobileNav] = useState(false);
@@ -47,7 +48,6 @@ const Navbar = () => {
     }, []);
 
     const handleMobileNav = () => {
-        console.log('working')
         setMobileNav(true)
         setOpenModal(!openModal)
     }
@@ -145,7 +145,8 @@ const Navbar = () => {
                             <div className=" flex items-center gap-3">
                                 <NavLink to={'/'} className=" hover:text-orange-600 duration-300 ease-in-out">Home</NavLink>
                                 <NavLink to={'/shop'} className=" hover:text-orange-600 duration-300 ease-in-out">Shop</NavLink>
-                                {user && <NavLink to={'/dashboard'} className=" hover:text-orange-600 duration-300 ease-in-out">Dashboard</NavLink>}
+                                {userRole === 'admin' && <NavLink to={'/dashboard/adminHome'} className=" hover:text-orange-600 duration-300 ease-in-out">Dashboard</NavLink>}
+                                {userRole === 'normalUser' && <NavLink to={'/dashboard/userHome'} className=" hover:text-orange-600 duration-300 ease-in-out">Dashboard</NavLink>}
                             </div>
                         </div>
                         <div className=" ">

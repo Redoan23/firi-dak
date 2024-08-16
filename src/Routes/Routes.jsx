@@ -15,6 +15,10 @@ import UserControl from "../Pages/Admin/UserControl/UserControl";
 import Extras from "../Pages/Admin/Extras/Extras";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 import AddProducts from "../Pages/Admin/AddProducts/AddProducts";
+import UserHome from "../Pages/User/UserHome/UserHome";
+import ShoppingCart from "../Pages/User/ShoppingCart/ShoppingCart";
+import Orders from "../Pages/User/Orders/Orders";
+
 
 const router = createBrowserRouter([
     {
@@ -51,12 +55,13 @@ const router = createBrowserRouter([
             },
         ]
     },
+
     {
         path: '/dashboard',
         element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
         children: [
             {
-                path: '/dashboard',
+                path: '/dashboard/adminHome',
                 element: <AdminHome></AdminHome>
             },
             {
@@ -79,12 +84,19 @@ const router = createBrowserRouter([
                 path: '/dashboard/extras',
                 element: <Extras></Extras>
             },
+            {
+                path: '/dashboard/userHome',
+                element: <UserHome></UserHome>
+            },
+            {
+                path: '/dashboard/userShoppingCart',
+                element: <ShoppingCart></ShoppingCart>
+            },
+            {
+                path: '/dashboard/orders',
+                element: <Orders></Orders>
+            },
 
-            // normalUser
-            // {
-            //     path:'/dashboard',
-
-            // }
         ]
     }
 ]);

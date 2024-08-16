@@ -62,7 +62,7 @@ const Cart = ({ cartSwitch }) => {
             closeAfterTransition
             className=' overflow-y-auto overflow-x-hidden'
         >
-            <Slide direction='left' in={open} timeout={300}  mountOnEnter unmountOnExit >
+            <Slide direction='left' in={open} timeout={300} mountOnEnter unmountOnExit >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         <div className=' border-b '>

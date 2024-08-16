@@ -10,7 +10,6 @@ const Extras = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data);
         if (!data.homeDeliveryFee && !data.courierFee) {
             return toast.error('Please set a valid amount')
         }

@@ -10,8 +10,9 @@ const Dashboard = () => {
     const [userData] = useUserData()
     const user = userData?.role
 
+
     const adminRoute = [
-        { key: 1, to: '/dashboard', label: 'Admin Home' },
+        { key: 1, to: '/dashboard/adminHome', label: 'Admin Home' },
         { key: 2, to: '/dashboard/userControl', label: 'User Control' },
         { key: 3, to: '/dashboard/ordersPending', label: 'Orders Pending' },
         { key: 4, to: '/dashboard/ordersDone', label: 'Orders Done' },
@@ -19,8 +20,9 @@ const Dashboard = () => {
         { key: 6, to: '/dashboard/addProducts', label: 'Add Products' },
     ]
     const userRoute = [
-        { key: 1, to: '/dashboard/userProfileInformation', label: 'Profile Information' },
+        { key: 1, to: '/dashboard/userHome', label: 'Profile Information' },
         { key: 2, to: '/dashboard/userShoppingCart', label: 'Shopping Cart' },
+        { key: 2, to: '/dashboard/orders', label: 'Orders' },
 
     ]
 
@@ -40,7 +42,7 @@ const Dashboard = () => {
 
             <DashboardNavbar></DashboardNavbar>
 
-            <div className=" " >
+            <div className=" ">
                 <div className="drawer">
                     <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                     <div className="drawer-content my-5 mx-4 md:mx-10">

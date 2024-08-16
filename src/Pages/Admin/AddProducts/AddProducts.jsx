@@ -19,7 +19,6 @@ const AddProducts = () => {
 
         axiosPublic.post('/bangles', data)
             .then(res => {
-                console.log(res.data)
                 if (res.data.insertedId) {
                     toast.success('Item added to the database')
                 }
@@ -27,7 +26,6 @@ const AddProducts = () => {
             .catch(err => {
                 toast.error(`${err.message}`)
             })
-        console.log(data)
     };
 
     return (
