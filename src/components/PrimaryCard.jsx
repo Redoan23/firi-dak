@@ -72,7 +72,7 @@ const PrimaryCard = ({ title, dataArray }) => {
                                         <div className="card-body text-center mx-auto h-40">
                                             <h2 className="card-title text-base">{data.name}</h2>
                                             {
-                                                data?.discount ?
+                                                data?.discountedPrice ?
                                                     <div className=" flex gap-2 justify-center items-center">
                                                         <span className=" text-gray-400 text-sm line-through">{data.price} Tk</span>
                                                         <span className=" text-orange-600 text-base">{data.discountedPrice} TK</span>

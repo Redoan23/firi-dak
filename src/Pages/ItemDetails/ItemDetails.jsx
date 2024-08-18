@@ -20,7 +20,9 @@ const ItemDetails = () => {
     const [quantity, setQuantity] = useState(1)
     const [selectedSize, setSelectedSize] = useState(null)
     const name = itemDetails?.name
-    const price = itemDetails?.discountedPrice
+    const originalPrice = itemDetails?.price
+    const PriceWithDiscount = itemDetails?.discountedPrice
+    const price = PriceWithDiscount ? PriceWithDiscount : originalPrice
     const img = itemDetails?.img
 
     const cartValue = (e) => {
@@ -69,13 +71,21 @@ const ItemDetails = () => {
                     {/* {isLoading && <span className=" text-center">loading...</span> } */}
                     <div>
                         <h1 className="text-4xl text-gray-700 font-bold">{itemDetails.name}</h1>
-                        <div className=" flex items-center gap-3">
-                            <p className=" line-through">
-                                {itemDetails.price} Tk
-                            </p>
-                            <p className="py-4 underline font-semibold text-xl text-orange-600">
-                                {itemDetails.discountedPrice} TK
-                            </p>
+                        <div>
+                            {itemDetails.discountedPrice ?
+                                <div className=" flex items-center gap-3">
+                                    <p className=" line-through">
+                                        {itemDetails.price} Tk
+                                    </p>
+                                    <p className="py-4 underline font-semibold text-xl text-orange-600">
+                                        {itemDetails.discountedPrice} TK
+                                    </p>
+                                </div>
+                                :
+                                <p className="py-4 underline font-semibold text-xl text-orange-600 ">
+                                    {itemDetails.price} Tk
+                                </p>
+                            }
                         </div>
                         <div className=" flex gap-3 items-center py-4">
                             <p className=" text-gray-600">Size</p>
