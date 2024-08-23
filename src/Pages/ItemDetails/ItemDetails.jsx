@@ -72,19 +72,20 @@ const ItemDetails = () => {
                     <div>
                         <h1 className="text-4xl text-gray-700 font-bold">{itemDetails.name}</h1>
                         <div>
-                            {itemDetails.discountedPrice ?
-                                <div className=" flex items-center gap-3">
-                                    <p className=" line-through">
+                            {
+                                itemDetails.discountedPrice ?
+                                    <div className=" flex items-center gap-3">
+                                        <p className=" line-through">
+                                            {itemDetails.price} Tk
+                                        </p>
+                                        <p className="py-4 underline font-semibold text-xl text-orange-600">
+                                            {itemDetails.discountedPrice} TK
+                                        </p>
+                                    </div>
+                                    :
+                                    <p className="py-4 underline font-semibold text-xl text-orange-600 ">
                                         {itemDetails.price} Tk
                                     </p>
-                                    <p className="py-4 underline font-semibold text-xl text-orange-600">
-                                        {itemDetails.discountedPrice} TK
-                                    </p>
-                                </div>
-                                :
-                                <p className="py-4 underline font-semibold text-xl text-orange-600 ">
-                                    {itemDetails.price} Tk
-                                </p>
                             }
                         </div>
                         <div className=" flex gap-3 items-center py-4">

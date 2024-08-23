@@ -117,10 +117,10 @@ const Checkout = () => {
                             />
                         </div>
                         <div className="mb-4">
-                            <label className="block text-gray-700 font-bold mb-2">Email *</label>
+                            <label className="block text-gray-700 font-bold mb-2">Email (optional)</label>
                             <input
                                 type="email"
-                                {...register('email', { required: 'Email is required' })}
+                                {...register('email')}
                                 className="w-full p-1 border bg-white border-gray-300 rounded-none focus:outline-none"
                             />
                             {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}

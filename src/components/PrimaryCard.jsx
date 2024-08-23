@@ -47,19 +47,21 @@ const PrimaryCard = ({ title, dataArray }) => {
                         dataArray.map((data, i) =>
                             <SwiperSlide key={i} className=" mx-auto">
                                 <div className=" w-full mx-auto flex justify-center" >
-                                    <div className="card card-compact bg-transparent w-[90%]  md:w-96 text-gray-500 text-center rounded-none" >
+                                    <div className="card card-compact bg-transparent w-[90%] md:w-96 text-gray-500 text-center rounded-none" >
                                         <div className=" relative w-full h-44 md:h-80 overflow-hidden" onMouseOver={() => setHoveredIndex(i)} onMouseLeave={() => setHoveredIndex(null)} >
                                             <Link to={`/itemDetails/${data._id}`}>
                                                 <img className=" w-full h-full object-cover hover:scale-[1.05] duration-200 ease-in-out transition-all" src={data.img} alt="Bangle" />
                                             </Link>
                                             <div className=' absolute z-50 top-4 left-2 space-y-2'>
                                                 {
-                                                    data?.discount && <div className=" bg-orange-600 text-white w-12 h-12 rounded-full text-center flex justify-center items-center text-xs">
+                                                    data?.discount &&
+                                                    <div className=" bg-orange-600 text-white w-12 h-12 rounded-full text-center flex justify-center items-center text-xs">
                                                         -{data.discount}%
                                                     </div>
                                                 }
                                                 {
-                                                    data?.stockStatus === 'Stock Out' && <div className=" bg-orange-600 text-white w-12 h-12 rounded-full text-center flex justify-center items-center text-xs">
+                                                    data?.stockStatus === 'Stock Out' &&
+                                                    <div className=" bg-orange-600 text-white w-12 h-12 rounded-full text-center flex justify-center items-center text-xs">
                                                         {data.stockStatus}
                                                     </div>
                                                 }
@@ -70,7 +72,7 @@ const PrimaryCard = ({ title, dataArray }) => {
                                             </div>
                                         </div>
                                         <div className="card-body text-center mx-auto h-40">
-                                            <h2 className="card-title text-base">{data.name}</h2>
+                                            <h2 className="card-title text-base w-full h-8">{data.name}</h2>
                                             {
                                                 data?.discountedPrice ?
                                                     <div className=" flex gap-2 justify-center items-center">
@@ -91,7 +93,6 @@ const PrimaryCard = ({ title, dataArray }) => {
                             </SwiperSlide>
                         )
                     }
-
                 </Swiper>
             </div>
         </div>

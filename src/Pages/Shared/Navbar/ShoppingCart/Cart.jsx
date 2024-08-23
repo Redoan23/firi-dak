@@ -105,14 +105,17 @@ const Cart = ({ cartSwitch }) => {
                             }
                             <div className=' sticky bottom-0 p-4 pb-7 bg-white border-t-2 border-gray-200'>
                                 <p className=' text-center text-gray-600 text-base'>Subtotal: <span className=' text-red-600'>{totalPrice}</span> TK</p>
-                                <div className=' flex gap-3 pt-3 justify-center'>
-                                    <Link to={'/cartDetails'} onClick={handleClose}>
-                                        <button className=' btn rounded-none bg-transparent border-[0.5px] border-gray-300 hover:border-gray-300 text-stone-600 text-sm hover:bg-orange-600 hover:text-white flex items-center gap-2 '><CiShoppingCart className=' text-lg' /> View Cart</button>
-                                    </Link>
-                                    <Link to={'/checkout'} onClick={handleClose}>
-                                        <button className=' btn rounded-none bg-transparent border-[0.5px] border-gray-300 hover:border-gray-300 text-stone-600 text-sm hover:bg-orange-600 hover:text-white flex items-center gap-2 '> <PiPaperPlaneTiltThin /> Place Order</button>
-                                    </Link>
-                                </div>
+                                {
+                                    items.length > 0 &&
+                                    <div className=' flex gap-3 pt-3 justify-center'>
+                                        <Link to={'/cartDetails'} onClick={handleClose}>
+                                            <button className=' btn rounded-none bg-transparent border-[0.5px] border-gray-300 hover:border-gray-300 text-stone-600 text-sm hover:bg-orange-600 hover:text-white flex items-center gap-2 '><CiShoppingCart className=' text-lg' /> View Cart</button>
+                                        </Link>
+                                        <Link to={'/checkout'} onClick={handleClose}>
+                                            <button className=' btn rounded-none bg-transparent border-[0.5px] border-gray-300 hover:border-gray-300 text-stone-600 text-sm hover:bg-orange-600 hover:text-white flex items-center gap-2 '> <PiPaperPlaneTiltThin /> Place Order</button>
+                                        </Link>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </Typography>

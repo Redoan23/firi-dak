@@ -19,6 +19,7 @@ import { CiShirt } from 'react-icons/ci';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import useAuth from '../../../Hooks/useAuth/useAuth';
 import { BiLogOut } from 'react-icons/bi';
+import Swal from 'sweetalert2';
 
 const style = {
     position: 'absolute',
@@ -54,6 +55,17 @@ const MobileNav = ({ openModal }) => {
 
     const handleLogout = () => {
         return logOut()
+    }
+
+    // notification for empty category
+    const handleUpcomingNotification = () => {
+        return Swal.fire({
+            title: "Upcoming soon",
+            icon: "info",
+            position: "top-end",
+            timer:1000,
+            showConfirmButton:false
+        });
     }
 
     return (
@@ -99,10 +111,10 @@ const MobileNav = ({ openModal }) => {
                             </TabPanel>
                             <TabPanel value="2">
                                 <div className=' flex flex-col text-black text-sm'>
-                                    <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} to={'/shop'}> SPECIAL DISCOUNT PRODUCTS</NavLink>
-                                    <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} to={'/shop'}> <GiSquareBottle /> ATTAR</NavLink>
-                                    <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} to={'/shop'}> <CiShirt /> T-SHIRT</NavLink>
-                                    <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} to={'/shop'}> <PiHoodieLight /> HOODIE</NavLink>
+                                    <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} onClick={handleUpcomingNotification}> SPECIAL DISCOUNT PRODUCTS</NavLink>
+                                    <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} onClick={handleUpcomingNotification}> <GiSquareBottle /> ATTAR</NavLink>
+                                    <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} onClick={handleUpcomingNotification}> <CiShirt /> T-SHIRT</NavLink>
+                                    <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} onClick={handleUpcomingNotification}> <PiHoodieLight /> HOODIE</NavLink>
                                 </div>
                             </TabPanel>
                         </TabContext>

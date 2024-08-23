@@ -74,9 +74,19 @@ const Navbar = () => {
                     .then(toast(`logout successful`))
             }
         });
-
-
     }
+
+    // notification for empty category
+    const handleUpcomingNotification = () => {
+        return Swal.fire({
+            title: "Upcoming soon",
+            icon: "info",
+            position: "top-end",
+            timer:1000,
+            showConfirmButton:false
+        });
+    }
+
     // get the items from local storage
     useEffect(() => {
         const itemInTheStorage = getItemFromLocalStorage('cart-items')
@@ -94,7 +104,7 @@ const Navbar = () => {
                 openCart && <Cart cartSwitch={cartSwitch}></Cart>
             }
             <div className={` ${isScrolled ? "lg:pt-2 " : "lg:pt-8 "} w-full max-w-full mx-auto  px-2 text-black border-b bg-opacity-90 transition-all duration-300 bg-white`}>
-                <div className={`flex justify-between flex-start items-center duration-300 ease-in-out  w-full max-w-screen-xl mx-auto`}>
+                <div className={`flex justify-between flex-start items-center duration-300 ease-in-out w-full max-w-screen-xl mx-auto lg:py-0 py-2`}>
                     <div className=" block lg:hidden">
                         <div onClick={handleMobileNav} className={`  flex items-center gap-3`}>
                             <FaBars />
@@ -132,10 +142,10 @@ const Navbar = () => {
                                 <div className=" absolute">
                                     <div>
                                         <div className={` flex flex-col text-black text-sm bg-white border box-shadow shadow-lg  w-60 ${hiddenCategory ? "  " : " hidden"} duration-300 transition-transform ease-in-out `}>
-                                            <NavLink className={' border-b p-2  flex items-center gap-2 hover:text-orange-600 hover:bg-gray-100 ease-in-out duration-300'} to={'/shop'}> SPECIAL DISCOUNT PRODUCTS</NavLink>
-                                            <NavLink className={' border-b p-2  flex items-center gap-2 hover:text-orange-600 hover:bg-gray-100 ease-in-out duration-300'} to={'/shop'}> <GiSquareBottle /> ATTAR</NavLink>
-                                            <NavLink className={' border-b p-2  flex items-center gap-2 hover:text-orange-600 hover:bg-gray-100 ease-in-out duration-300'} to={'/shop'}> <CiShirt /> T-SHIRT</NavLink>
-                                            <NavLink className={' border-b p-2  flex items-center gap-2 hover:text-orange-600 hover:bg-gray-100 ease-in-out duration-300'} to={'/shop'}> <PiHoodieLight /> HOODIE</NavLink>
+                                            <NavLink className={' border-b p-2  flex items-center gap-2 hover:text-orange-600 hover:bg-gray-100 ease-in-out duration-300'} onClick={handleUpcomingNotification}> SPECIAL DISCOUNT PRODUCTS</NavLink>
+                                            <NavLink className={' border-b p-2  flex items-center gap-2 hover:text-orange-600 hover:bg-gray-100 ease-in-out duration-300'} onClick={handleUpcomingNotification}> <GiSquareBottle /> ATTAR</NavLink>
+                                            <NavLink className={' border-b p-2  flex items-center gap-2 hover:text-orange-600 hover:bg-gray-100 ease-in-out duration-300'} onClick={handleUpcomingNotification}> <CiShirt /> T-SHIRT</NavLink>
+                                            <NavLink className={' border-b p-2  flex items-center gap-2 hover:text-orange-600 hover:bg-gray-100 ease-in-out duration-300'} onClick={handleUpcomingNotification}> <PiHoodieLight /> HOODIE</NavLink>
                                             {moreCategory && <h3 className={' border-b p-2  text-center uppercase'} > No more categories</h3>}
                                             <button onClick={() => setMoreCategory(!moreCategory)} className={' p-2  flex items-center bg-gray-100 gap-2 text-center justify-center'}>{moreCategory ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}</button>
                                         </div>
@@ -152,7 +162,7 @@ const Navbar = () => {
                         <div className=" ">
                             <h3 className=" text-2xl flex gap-2 items-center">
                                 <BsTelephone />
-                                01700112233
+                                01327319170
                             </h3>
                         </div>
                     </div>

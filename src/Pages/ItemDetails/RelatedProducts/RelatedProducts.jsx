@@ -40,7 +40,7 @@ const RelatedProducts = () => {
 
 
     return (
-        <div className=" flex gap-20 mx-auto w-[80%]">
+        <div className=" flex gap-20 mx-auto w-[80%] lg:flex-row flex-col">
             {
                 finalArray.slice(0, 3).map(bangle =>
 

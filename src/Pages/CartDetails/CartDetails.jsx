@@ -20,34 +20,35 @@ const CartDetails = () => {
         <div>
             <div>
                 {items.length ?
-                    <div className=" flex lg:flex-row flex-col  justify-around">
-                        <div className=" w-1/2 m-5">
+                    <div className=" flex lg:flex-row flex-col  lg:justify-around items-center">
+                        <div className=" lg:w-1/2 m-5">
                             <h3 className=" text-3xl font-semibold p-5">You have {itemQuantity} items in your cart</h3>
                             <div className="overflow-x-auto p-8">
-                                {items.map(item =>
-                                    <div key={item.i}>
-                                        <div className=" pb-6 flex items-center w-full">
-                                            <div className=" w-[80%]">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="avatar">
-                                                        <div className="mask mask-square h-24 w-24">
-                                                            <img
-                                                                src={item.img}
-                                                                alt=" item image" />
+                                {
+                                    items.map(item =>
+                                        <div key={item.i} >
+                                            <div className=" pb-6 flex justify-between gap-5 items-center w-full">
+                                                <div className=" w-[80%]">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="avatar">
+                                                            <div className="mask mask-square h-24 w-24">
+                                                                <img
+                                                                    src={item.img}
+                                                                    alt=" item image" />
+                                                            </div>
+                                                        </div>
+                                                        <div className=" space-y-2">
+                                                            <div className="font-bold text-gray-600">{item.n}</div>
+                                                            <div className="text-sm ">{itemQuantity} x {item?.s}</div>
+                                                            <button onClick={() => handleItemDelete('cart-items', item?.i, item?.s)} className=" "><BiTrash /> </button>
                                                         </div>
                                                     </div>
-                                                    <div className=" space-y-2">
-                                                        <div className="font-bold text-gray-600">{item.n}</div>
-                                                        <div className="text-sm ">{itemQuantity} x {item?.s}</div>
-                                                        <button onClick={() => handleItemDelete('cart-items', item?.i, item?.s)} className=" "><BiTrash /> </button>
-                                                    </div>
                                                 </div>
+                                                <p className=" text-orange-600 w-[20%]">
+                                                    {item.p} TK
+                                                </p>
                                             </div>
-                                            <p className=" text-orange-600 w-[20%]">
-                                                {item.p} TK
-                                            </p>
-                                        </div>
-                                    </div>)
+                                        </div>)
                                 }
                             </div>
                         </div>

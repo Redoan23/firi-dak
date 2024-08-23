@@ -55,9 +55,9 @@ const Login = () => {
     }
 
     return (
-        <div className=" flex flex-col items-center justify-center w-full min-h-[80vh]">
-            <div className="hero bg-white min-h-[40vh] w-[70%] mx-auto  ">
-                <div className="hero-content flex-col lg:flex-row">
+        <div className=" flex flex-col items-center justify-center w-full min-h-[80vh] mt-5">
+            <div className="hero bg-white min-h-[40vh] w-[85%] lg:w-[70%] mx-auto rounded-lg ">
+                <div className="hero-content flex-col lg:flex-row sm:justify-center">
                     <div className="text-center lg:text-left">
                         <h1 className="text-5xl font-bold">Please Login</h1>
                         <p className="py-6">

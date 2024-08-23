@@ -22,7 +22,7 @@ const Shop = () => {
                                 <Link to={`/itemDetails/${bangle._id}`}>
                                     <img className=" w-full h-full object-cover hover:scale-[1.05] duration-200 ease-in-out transition-all" src={bangle.img} alt="Bangle" />
                                 </Link>
-                                <div className=' absolute z-50 top-4 left-2 space-y-2'>
+                                <div className=' absolute top-4 left-2 space-y-2'>
                                     {
                                         bangle?.discount && <div className=" bg-orange-600 text-white w-12 h-12 rounded-full text-center flex justify-center items-center text-xs">
                                             -{bangle.discount}%
@@ -42,7 +42,7 @@ const Shop = () => {
                             <div className="card-body text-center mx-auto h-40">
                                 <h2 className="card-title text-base">{bangle.name}</h2>
                                 {
-                                    bangle?.discount ?
+                                    bangle?.discountedPrice ?
                                         <div className=" flex gap-2 justify-center items-center">
                                             <span className=" text-gray-400 text-sm line-through">{bangle.price} Tk</span>
                                             <span className=" text-orange-600 text-base">{bangle.discountedPrice} TK</span>
