@@ -82,8 +82,8 @@ const Navbar = () => {
             title: "Upcoming soon",
             icon: "info",
             position: "top-end",
-            timer:1000,
-            showConfirmButton:false
+            timer: 1000,
+            showConfirmButton: false
         });
     }
 
@@ -169,7 +169,6 @@ const Navbar = () => {
                 </div>
                 <Toaster position="bottom-right" closeButton={true} richColors></Toaster>
             </div>
-
         </div>
     );
 };

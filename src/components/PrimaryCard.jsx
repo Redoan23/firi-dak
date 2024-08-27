@@ -72,7 +72,7 @@ const PrimaryCard = ({ title, dataArray }) => {
                                             </div>
                                         </div>
                                         <div className="card-body text-center mx-auto h-40">
-                                            <h2 className="card-title text-base w-full h-8">{data.name}</h2>
+                                            <h2 className="card-title text-black w-full h-8">{data.name}</h2>
                                             {
                                                 data?.discountedPrice ?
                                                     <div className=" flex gap-2 justify-center items-center">

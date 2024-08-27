@@ -1,12 +1,12 @@
 import { BsFacebook, BsInstagram, BsYoutube } from "react-icons/bs";
-import { TfiEmail } from "react-icons/tfi";
+import { CiLocationOn, CiMail } from "react-icons/ci";
 
 
 const Footer = () => {
     return (
         <div>
             <footer className="footer lg:grid-cols-3 bg-white text-black p-10 ">
-                <aside className="">
+                <aside className=" text-left">
                     <div>
                         <span className=" text-orange-600 text-4xl font-bold">F</span><span className=" text-gray-600">IRIDAK</span>
                     </div>
@@ -16,12 +16,15 @@ const Footer = () => {
                         Your trust is our identity
                     </p>
                     <p className=" flex items-center gap-1">
-                        <TfiEmail />
-                        abiumar.info@gmail.com
+                        <CiMail />
+                        info@firidak.com
+                    </p>
+                    <p className=" flex items-center gap-1 ">
+                        <CiLocationOn/>  Netrakona, Mymenshingh, Bangladesh
                     </p>
                 </aside>
                 <nav className=" lg:place-items-center w-full">
-                    <h6 className="footer-title">Social</h6>
+                    <h6 className="footer-title">Subscribe and Follow</h6>
                     <div className="grid grid-flow-col items-center gap-4">
                         <a href="https://www.facebook.com/FiRidaka?mibextid=ZbWKwL">
                             <BsFacebook className=" text-2xl text-blue-600"></BsFacebook>
