@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth/useAuth";
 import { toast, Toaster } from "sonner";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const Login = () => {
@@ -56,6 +57,11 @@ const Login = () => {
 
     return (
         <div className=" flex flex-col items-center justify-center w-full min-h-[80vh] mt-5">
+              <Helmet>
+                <title>
+                    FIRIDAK | LOGIN
+                </title>
+            </Helmet>
             <div className="hero bg-white min-h-[40vh] w-[85%] lg:w-[70%] mx-auto rounded-lg ">
                 <div className="hero-content flex-col lg:flex-row sm:justify-center">
                     <div className="text-center lg:text-left">

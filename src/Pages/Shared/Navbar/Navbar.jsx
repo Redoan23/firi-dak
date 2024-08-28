@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { BsTelephone } from "react-icons/bs";
-import { CiShirt, CiShoppingCart } from "react-icons/ci";
+import { CiHeart, CiShirt, CiShoppingCart } from "react-icons/ci";
 import { FaBars, FaMagnifyingGlass } from "react-icons/fa6";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
@@ -55,7 +55,6 @@ const Navbar = () => {
     const handleCart = () => {
         setOpenCart(true)
         setCartToggle(!cartToggle)
-        // setCartSwitch(!cartSwitch)
     }
     const handleLogout = () => {
 
@@ -117,8 +116,15 @@ const Navbar = () => {
                         <input type="text" name="searchbar" id="searchbar" className=" w-full h-full bg-transparent border-2 p-2 outline-none" placeholder="search here..." />
                         <FaMagnifyingGlass className={` ${isScrolled ? " text-xl" : ""} absolute duration-300 ease-in-out right-4 bottom-4`} />
                     </div>
+
+                    {/* wishlist and cart button/icon */}
+
                     <div className=" flex gap-5 items-center">
-                        <div className=" relative border-none btn bg-transparent text-black btn-sm hover:bg-transparent shadow-none " onClick={handleCart}>
+                        <NavLink to={'/wishlistDetails'} className=" relative border-none p-0 m-0 btn bg-transparent text-black btn-sm hover:bg-transparent shadow-none ">
+                            <CiHeart className=" text-3xl" />
+                            {/* <p className=" absolute -top-2 right-3 text-red-600">{itemLength ? itemLength : 0}</p> */}
+                        </NavLink>
+                        <div className=" relative border-none p-0 m-0 btn bg-transparent text-black btn-sm hover:bg-transparent shadow-none " onClick={handleCart}>
                             <CiShoppingCart className=" text-3xl" />
                             <p className=" absolute -top-2 right-3 text-orange-600">{itemLength ? itemLength : 0}</p>
                         </div>
@@ -154,8 +160,12 @@ const Navbar = () => {
                             <div className=" flex items-center gap-3">
                                 <NavLink to={'/'} className=" hover:text-orange-600 duration-300 ease-in-out">Home</NavLink>
                                 <NavLink to={'/shop'} className=" hover:text-orange-600 duration-300 ease-in-out">Shop</NavLink>
-                                {userRole === 'admin' && <NavLink to={'/dashboard/adminHome'} className=" hover:text-orange-600 duration-300 ease-in-out">Dashboard</NavLink>}
-                                {userRole === 'normalUser' && <NavLink to={'/dashboard/userHome'} className=" hover:text-orange-600 duration-300 ease-in-out">Dashboard</NavLink>}
+                                {
+                                    userRole === 'admin' && <NavLink to={'/dashboard/adminHome'} onClick={() => setOpenCart(false)} className=" hover:text-orange-600 duration-300 ease-in-out">Dashboard</NavLink>
+                                }
+                                {/* {
+                                    userRole === 'normalUser' && <NavLink to={'/dashboard/userHome'} className=" hover:text-orange-600 duration-300 ease-in-out">Dashboard</NavLink>
+                                } */}
                                 <NavLink to={'/aboutUs'} className=" hover:text-orange-600 duration-300 ease-in-out">About Us</NavLink>
                             </div>
                         </div>

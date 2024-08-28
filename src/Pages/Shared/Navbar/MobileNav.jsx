@@ -104,7 +104,7 @@ const MobileNav = ({ openModal }) => {
                             <TabPanel value="1">
                                 <div className=' flex flex-col text-black text-sm'>
                                     <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} to={'/shop'}> <LiaShoppingBagSolid /> SHOP</NavLink>
-                                    <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} to={'/shop'}> <IoHeartOutline /> WISHLIST</NavLink>
+                                    <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} to={'/wishlistDetails'}> <IoHeartOutline /> WISHLIST</NavLink>
                                     <NavLink className={' border-b py-2 my-1 flex  items-center gap-2'} to={'/login'}> <IoPersonOutline /> LOGIN / REGISTER</NavLink>
                                     {user && <NavLink onClick={handleLogout} className={'flex items-center py-2 my-1 gap-2'}> <BiLogOut /> LOGOUT</NavLink>}
                                 </div>

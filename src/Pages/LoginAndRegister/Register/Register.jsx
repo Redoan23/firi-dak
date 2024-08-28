@@ -5,6 +5,7 @@ import { updateProfile } from "firebase/auth";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic/useAxiosPublic";
 import { toast } from "sonner";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 
 const Register = () => {
@@ -71,6 +72,11 @@ const Register = () => {
 
     return (
         <div className=" flex flex-col items-center justify-center w-full min-h-[80vh] mt-5">
+            <Helmet>
+                <title>
+                    FIRIDAK | REGISTER
+                </title>
+            </Helmet>
             <div className="hero bg-white min-h-[40vh] w-[85%] lg:w-[70%] mx-auto rounded-lg ">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">

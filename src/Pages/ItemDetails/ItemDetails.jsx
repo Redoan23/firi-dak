@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import useItemDetails from "../../Hooks/useItemDetails/useItemDetails";
 import useAuth from "../../Hooks/useAuth/useAuth";
 import { IoHeartOutline } from "react-icons/io5";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -63,6 +64,11 @@ const ItemDetails = () => {
 
     return (
         <div className=" mt-12">
+            <Helmet>
+                <title>
+                    FIRIDAK | Item Details
+                </title>
+            </Helmet>
             <div className="hero bg-white w-[80%] place-items-center mx-auto">
                 <div className="hero-content overflow-hidden py-14 flex-col lg:flex-row">
                     <img

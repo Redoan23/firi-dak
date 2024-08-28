@@ -8,6 +8,7 @@ import useAuth from "../../Hooks/useAuth/useAuth";
 import { useState } from "react";
 import useExtraInfoData from "../../Hooks/useExtraInfoData/useExtraInfoData";
 import moment from "moment";
+import { Helmet } from "react-helmet-async";
 
 
 const Checkout = () => {
@@ -87,6 +88,11 @@ const Checkout = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>
+                    FIRIDAK | CHECKOUT
+                </title>
+            </Helmet>
             <form onSubmit={handleSubmit(onSubmit)} className="p-6 bg-white">
                 <div className=" flex lg:flex-row flex-col gap-6 justify-between w-[85%] mx-auto">
                     <div className=" w-full ">

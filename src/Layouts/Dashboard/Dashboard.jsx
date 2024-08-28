@@ -3,6 +3,7 @@ import DashboardNavbar from "./DashboardNavbar/DashboardNavbar";
 import useUserData from "../../Hooks/useUserData/useUserData";
 import Footer from "../../Pages/Shared/Footer/Footer";
 import { FaBars } from "react-icons/fa6";
+import { Helmet } from "react-helmet-async";
 
 
 const Dashboard = () => {
@@ -39,6 +40,11 @@ const Dashboard = () => {
 
     return (
         <div className='bg-gray-100'>
+            <Helmet>
+                <title>
+                    FIRIDAK | DASHBOARD
+                </title>
+            </Helmet>
 
             <DashboardNavbar></DashboardNavbar>
 

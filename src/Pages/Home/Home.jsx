@@ -11,7 +11,7 @@ const Home = () => {
         <div className=" mt-16 mx-auto">
             <Helmet>
                 <title>
-                    FIRIDAK || HOME
+                    FIRIDAK | HOME
                 </title>
             </Helmet>
             <div>

@@ -3,6 +3,7 @@ import useBanglesData from "../../Hooks/useBanglesData/useBanglesData";
 import { IoHeartOutline } from "react-icons/io5";
 import { useState } from "react";
 import { setWishlistToLocalStorage } from "../../components/localstorage";
+import { Helmet } from "react-helmet-async";
 
 const Shop = () => {
 
@@ -14,6 +15,11 @@ const Shop = () => {
 
     return (
         <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-12 lg:px-10 px-5">
+            <Helmet>
+                <title>
+                    FIRIDAK | SHOP
+                </title>
+            </Helmet>
             {
                 bangles.map((bangle, i) =>
                     <div key={i} className=" w-full mx-auto flex justify-center" >

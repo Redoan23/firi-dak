@@ -19,6 +19,8 @@ import UserHome from "../Pages/User/UserHome/UserHome";
 import ShoppingCart from "../Pages/User/ShoppingCart/ShoppingCart";
 import Orders from "../Pages/User/Orders/Orders";
 import AboutUs from "../Pages/AboutUs/AboutUs";
+import WishlistDetails from "../Pages/WishlistDetails/WishlistDetails";
+import AdminRoutes from "./AdminRoutes/AdminRoutes";
 
 
 const router = createBrowserRouter([
@@ -51,6 +53,10 @@ const router = createBrowserRouter([
                 element: <CartDetails></CartDetails>
             },
             {
+                path: '/wishlistDetails',
+                element: <WishlistDetails></WishlistDetails>
+            },
+            {
                 path: '/checkout',
                 element: <Checkout></Checkout>
             },
@@ -67,27 +73,27 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard/adminHome',
-                element: <AdminHome></AdminHome>
+                element: <AdminRoutes><AdminHome></AdminHome></AdminRoutes>
             },
             {
                 path: '/dashboard/ordersPending',
-                element: <OrdersPending></OrdersPending>
+                element: <AdminRoutes><OrdersPending></OrdersPending></AdminRoutes>
             },
             {
                 path: '/dashboard/ordersDone',
-                element: <OrdersDone></OrdersDone>
+                element: <AdminRoutes><OrdersDone></OrdersDone></AdminRoutes>
             },
             {
                 path: '/dashboard/userControl',
-                element: <UserControl></UserControl>
+                element: <AdminRoutes><UserControl></UserControl></AdminRoutes>
             },
             {
                 path: '/dashboard/addProducts',
-                element: <AddProducts></AddProducts>
+                element: <AdminRoutes><AddProducts></AddProducts></AdminRoutes>
             },
             {
                 path: '/dashboard/extras',
-                element: <Extras></Extras>
+                element: <AdminRoutes><Extras></Extras></AdminRoutes>
             },
             {
                 path: '/dashboard/userHome',

@@ -4,6 +4,7 @@ import useCartCalculations from "../../Hooks/useCartCalculations/useCartCalculat
 import { removeSingleItem } from "../../components/localstorage";
 import useAuth from "../../Hooks/useAuth/useAuth";
 import useExtraInfoData from "../../Hooks/useExtraInfoData/useExtraInfoData";
+import { Helmet } from "react-helmet-async";
 
 
 const CartDetails = () => {
@@ -18,6 +19,11 @@ const CartDetails = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>
+                    FIRIDAK | CART DETAILS
+                </title>
+            </Helmet>
             <div>
                 {items.length ?
                     <div className=" flex lg:flex-row flex-col  lg:justify-around items-center">

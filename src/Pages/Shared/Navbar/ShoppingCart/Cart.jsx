@@ -16,7 +16,6 @@ const style = {
     top: '0%',
     right: '0%',
     transform: 'translate(0%, 0%)',
-    overflowY: 'scroll',
     width: {
         sm: '40%',
         xs: '65%',
@@ -61,9 +60,9 @@ const Cart = () => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             closeAfterTransition
-            sx={{ overflowY: 'auto' }}
+            sx={{ overflowY: 'scroll', overflowX: 'hidden' }}
         >
-            <Slide direction='left' in={open}  mountOnEnter unmountOnExit >
+            <Slide direction='left' in={open} mountOnEnter unmountOnExit >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         <div className=' border-b '>
@@ -85,9 +84,9 @@ const Cart = () => {
                                         (item, i) =>
                                             <div key={i} className=' my-3 '>
                                                 <div className=' flex items-center  gap-6 border p-2 w-[80%] mx-auto bg-white shadow-sm relative'>
-                                                    <div className=' overflow-hidden w-24 h-24'>
+                                                    <Link to={`/itemDetails/${item.i}`} className=' overflow-hidden w-24 h-24'>
                                                         <img src={item.img} alt="" className=' w-full h-full object-cover' />
-                                                    </div>
+                                                    </Link>
                                                     <div>
                                                         <div className=' text-left'>
                                                             <h3 className=' text-gray-600 text-base'>{item.n}</h3>
