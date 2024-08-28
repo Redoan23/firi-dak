@@ -16,6 +16,7 @@ const style = {
     top: '0%',
     right: '0%',
     transform: 'translate(0%, 0%)',
+    overflowY: 'scroll',
     width: {
         sm: '40%',
         xs: '65%',
@@ -30,10 +31,10 @@ const style = {
 
 };
 
-const Cart = ({ cartSwitch }) => {
+const Cart = () => {
 
     const [, totalPrice, items] = useCartCalculations() //*MUST maintain the index number/serial, the first comma is not useless 
-    const { refreshPage, setRefreshPage } = useAuth()
+    const { refreshPage, setRefreshPage, cartToggle } = useAuth()
 
     // remove Item
 
@@ -49,7 +50,7 @@ const Cart = ({ cartSwitch }) => {
 
     useEffect(() => {
         handleOpen()
-    }, [cartSwitch])
+    }, [cartToggle])
 
 
 
@@ -60,9 +61,9 @@ const Cart = ({ cartSwitch }) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             closeAfterTransition
-            className=' overflow-y-auto overflow-x-hidden'
+            sx={{ overflowY: 'auto' }}
         >
-            <Slide direction='left' in={open} timeout={300} mountOnEnter unmountOnExit >
+            <Slide direction='left' in={open}  mountOnEnter unmountOnExit >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         <div className=' border-b '>

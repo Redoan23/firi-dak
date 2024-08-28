@@ -18,6 +18,7 @@ import AddProducts from "../Pages/Admin/AddProducts/AddProducts";
 import UserHome from "../Pages/User/UserHome/UserHome";
 import ShoppingCart from "../Pages/User/ShoppingCart/ShoppingCart";
 import Orders from "../Pages/User/Orders/Orders";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 
 const router = createBrowserRouter([
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
             {
                 path: '/checkout',
                 element: <Checkout></Checkout>
+            },
+            {
+                path: '/aboutUs',
+                element: <AboutUs />
             },
         ]
     },

@@ -8,6 +8,8 @@ const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null)
     const [refreshPage, setRefreshPage] = useState(false)
+    const [cartToggle, setCartToggle] = useState(false)
+    const [openCart, setOpenCart] = useState(false)
     const [loading, setLoading] = useState(true)
 
     const googleProvider = new GoogleAuthProvider()
@@ -50,9 +52,10 @@ const AuthProvider = ({ children }) => {
 
 
     const authInfo = {
-        createUser, loginUser, googleLogin, logOut, resetUserPassword, refreshPage, setRefreshPage, loading, user,
-    
+        createUser, loginUser, googleLogin, logOut, resetUserPassword, refreshPage, setRefreshPage, cartToggle, setCartToggle,
+        openCart, setOpenCart, loading, user,
     }
+
     return (
         < AuthContext.Provider value={authInfo} >
             {children}

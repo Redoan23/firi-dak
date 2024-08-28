@@ -17,7 +17,7 @@ import useUserData from "../../../Hooks/useUserData/useUserData";
 
 const Navbar = () => {
 
-    const { user, logOut, refreshPage } = useAuth()
+    const { user, logOut, refreshPage, setCartToggle, cartToggle, setOpenCart, openCart } = useAuth()
     const [userData] = useUserData()
     const userRole = userData?.role
 
@@ -25,8 +25,6 @@ const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileNav, setMobileNav] = useState(false);
     const [openModal, setOpenModal] = useState(false)
-    const [openCart, setOpenCart] = useState(false)
-    const [cartSwitch, setCartSwitch] = useState(false)
     const [hiddenCategory, setHiddenCategory] = useState(false)
     const [moreCategory, setMoreCategory] = useState(false)
 
@@ -56,7 +54,8 @@ const Navbar = () => {
 
     const handleCart = () => {
         setOpenCart(true)
-        setCartSwitch(!cartSwitch)
+        setCartToggle(!cartToggle)
+        // setCartSwitch(!cartSwitch)
     }
     const handleLogout = () => {
 
@@ -101,7 +100,7 @@ const Navbar = () => {
                 mobileNav && <MobileNav openModal={openModal} ></MobileNav>
             }
             {
-                openCart && <Cart cartSwitch={cartSwitch}></Cart>
+                openCart && <Cart ></Cart>
             }
             <div className={` ${isScrolled ? "lg:pt-2 " : "lg:pt-8 "} w-full max-w-full mx-auto  px-2 text-black border-b bg-opacity-90 transition-all duration-300 bg-white`}>
                 <div className={`flex justify-between flex-start items-center duration-300 ease-in-out w-full max-w-screen-xl mx-auto lg:py-0 py-2`}>
@@ -157,6 +156,7 @@ const Navbar = () => {
                                 <NavLink to={'/shop'} className=" hover:text-orange-600 duration-300 ease-in-out">Shop</NavLink>
                                 {userRole === 'admin' && <NavLink to={'/dashboard/adminHome'} className=" hover:text-orange-600 duration-300 ease-in-out">Dashboard</NavLink>}
                                 {userRole === 'normalUser' && <NavLink to={'/dashboard/userHome'} className=" hover:text-orange-600 duration-300 ease-in-out">Dashboard</NavLink>}
+                                <NavLink to={'/aboutUs'} className=" hover:text-orange-600 duration-300 ease-in-out">About Us</NavLink>
                             </div>
                         </div>
                         <div className=" ">
