@@ -4,6 +4,7 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
+import Reviews from './Reviews/Reviews';
 
 const AdditionalInfoTab = ({ itemInfo }) => {
     const [value, setValue] = React.useState('1');
@@ -17,7 +18,7 @@ const AdditionalInfoTab = ({ itemInfo }) => {
         <Box sx={{
             width: '80%', typography: 'body1',
             margin: 'auto',
-            minHeight:'200px'
+            minHeight: '200px'
 
         }}>
             <div>
@@ -50,7 +51,9 @@ const AdditionalInfoTab = ({ itemInfo }) => {
                         <p> <span className=' text-gray-700 font-semibold text-xl'>Size Available :</span> {itemInfo.size}</p>
 
                     </TabPanel>
-                    <TabPanel value="2">Reviews</TabPanel>
+                    <TabPanel value="2">
+                        <Reviews itemData={itemInfo} />
+                    </TabPanel>
                 </TabContext>
             </div>
         </Box>

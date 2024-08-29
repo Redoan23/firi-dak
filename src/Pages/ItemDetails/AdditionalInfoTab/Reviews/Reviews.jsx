@@ -1,9 +1,14 @@
+import ReviewFormPopup from "./ReviewFormPopup/ReviewFormPopup";
 
 
-const Reviews = () => {
+const Reviews = ({ itemData }) => {
+    const itemId = itemData?._id
     return (
         <div>
-            well this is reviews
+            <div>
+                <ReviewFormPopup itemId={itemId} />
+            </div>
+            this is reviews
         </div>
     );
 };
