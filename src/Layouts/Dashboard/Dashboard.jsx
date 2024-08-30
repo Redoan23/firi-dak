@@ -4,26 +4,29 @@ import useUserData from "../../Hooks/useUserData/useUserData";
 import Footer from "../../Pages/Shared/Footer/Footer";
 import { FaBars } from "react-icons/fa6";
 import { Helmet } from "react-helmet-async";
+import usePendingReviews from "../../Hooks/usePendingReviews/usePendingReviews";
 
 
 const Dashboard = () => {
 
     const [userData] = useUserData()
     const user = userData?.role
+    const [pendingReviews] = usePendingReviews()
 
 
     const adminRoute = [
         { key: 1, to: '/dashboard/adminHome', label: 'Admin Home' },
         { key: 2, to: '/dashboard/userControl', label: 'User Control' },
         { key: 3, to: '/dashboard/ordersPending', label: 'Orders Pending' },
-        { key: 4, to: '/dashboard/ordersDone', label: 'Orders Done' },
-        { key: 5, to: '/dashboard/extras', label: 'Extras' },
-        { key: 6, to: '/dashboard/addProducts', label: 'Add Products' },
+        { key: 4, to: '/dashboard/reviewsPending', label: `Review Pending [${pendingReviews.length}]` },
+        { key: 5, to: '/dashboard/ordersDone', label: 'Orders Done' },
+        { key: 6, to: '/dashboard/extras', label: 'Extras' },
+        { key: 7, to: '/dashboard/addProducts', label: 'Add Products' },
     ]
     const userRoute = [
         { key: 1, to: '/dashboard/userHome', label: 'Profile Information' },
         { key: 2, to: '/dashboard/userShoppingCart', label: 'Shopping Cart' },
-        { key: 2, to: '/dashboard/orders', label: 'Orders' },
+        { key: 3, to: '/dashboard/orders', label: 'Orders' },
 
     ]
 

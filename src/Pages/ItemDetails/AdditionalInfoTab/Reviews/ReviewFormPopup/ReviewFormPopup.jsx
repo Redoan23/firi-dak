@@ -11,6 +11,8 @@ import '@smastrom/react-rating/style.css'
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import moment from 'moment';
+import useAxiosPublic from '../../../../../Hooks/useAxiosPublic/useAxiosPublic';
+import { toast, Toaster } from 'sonner';
 
 
 
@@ -27,6 +29,8 @@ const style = {
 
 const ReviewFormPopup = ({ itemId }) => {
 
+    const axiosPublic = useAxiosPublic()
+
     // modal
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -37,7 +41,7 @@ const ReviewFormPopup = ({ itemId }) => {
     const date = moment().format('MMMM D, YYYY')
 
     // form part
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const onSubmit = (data) => {
         if (rating === 0) {
@@ -46,7 +50,19 @@ const ReviewFormPopup = ({ itemId }) => {
         data.itemId = itemId
         data.rating = rating
         data.reviewDate = date
-        console.log(data);
+
+        axiosPublic.post('/pendingReview', data)
+            .then(res => {
+                if (res.data.insertedId) {
+                    toast.info('Thank you. Your review will be posted shortly')
+                }
+            })
+            .catch(err => {
+                toast.error(`${err.message}`)
+            })
+
+        reset()
+        handleClose()
     };
 
 
@@ -54,7 +70,7 @@ const ReviewFormPopup = ({ itemId }) => {
         <div>
             <div>
                 <div>
-                    <Button sx={{ color: '#F97316' }} onClick={handleOpen}>Click to write a review</Button>
+                    <Button sx={{ color: '#F97316', textAlign: 'center' }} onClick={handleOpen}>Click to write a review</Button>
                     <Modal
                         open={open}
                         onClose={handleClose}
@@ -134,8 +150,6 @@ const ReviewFormPopup = ({ itemId }) => {
                                         Submit Review
                                     </button>
                                 </form>
-
-
                             </Typography>
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
 
@@ -144,6 +158,7 @@ const ReviewFormPopup = ({ itemId }) => {
                     </Modal>
                 </div>
             </div>
+            <Toaster richColors duration={4000} />
         </div>
     );
 };

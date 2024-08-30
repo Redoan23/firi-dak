@@ -99,7 +99,7 @@ const Navbar = () => {
                 mobileNav && <MobileNav openModal={openModal} ></MobileNav>
             }
             {
-                openCart && <Cart ></Cart>
+                openCart && <Cart></Cart>
             }
             <div className={` ${isScrolled ? "lg:pt-2 " : "lg:pt-8 "} w-full max-w-full mx-auto  px-2 text-black border-b bg-opacity-90 transition-all duration-300 bg-white`}>
                 <div className={`flex justify-between flex-start items-center duration-300 ease-in-out w-full max-w-screen-xl mx-auto lg:py-0 py-2`}>

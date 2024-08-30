@@ -21,6 +21,7 @@ import Orders from "../Pages/User/Orders/Orders";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import WishlistDetails from "../Pages/WishlistDetails/WishlistDetails";
 import AdminRoutes from "./AdminRoutes/AdminRoutes";
+import ReviewPending from "../Pages/Admin/ReviewPending/ReviewPending";
 
 
 const router = createBrowserRouter([
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/ordersPending',
                 element: <AdminRoutes><OrdersPending></OrdersPending></AdminRoutes>
+            },
+            {
+                path: '/dashboard/reviewsPending',
+                element: <AdminRoutes><ReviewPending></ReviewPending></AdminRoutes>
             },
             {
                 path: '/dashboard/ordersDone',
