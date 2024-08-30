@@ -74,7 +74,6 @@ const ItemDetails = () => {
                     <img
                         src={itemDetails.img}
                         className=" max-w-[320px] md:max-w-md object-cover rounded-lg shadow-lg" />
-                    {/* {isLoading && <span className=" text-center">loading...</span> } */}
                     <div>
                         <h1 className="text-4xl text-gray-700 font-bold">{itemDetails.name}</h1>
                         <div>
@@ -113,7 +112,6 @@ const ItemDetails = () => {
                         </div>
 
                         <button onClick={() => handleWishlist('wishlist-items', itemDetails._id, itemDetails.name, itemDetails.img, itemDetails.discountedPrice)} className=" text-orange-600 flex items-center gap-2 pt-5">Add to Wishlist <IoHeartOutline /></button>
-
                     </div>
                 </div>
             </div>

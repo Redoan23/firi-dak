@@ -69,8 +69,8 @@ const ReviewFormPopup = ({ itemId }) => {
     return (
         <div>
             <div>
-                <div>
-                    <Button sx={{ color: '#F97316', textAlign: 'center' }} onClick={handleOpen}>Click to write a review</Button>
+                <div className=''>
+                    <Button sx={{ color: 'red', textAlign: 'left' }} onClick={handleOpen}>Click to write a review</Button>
                     <Modal
                         open={open}
                         onClose={handleClose}

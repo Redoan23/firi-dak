@@ -8,6 +8,7 @@ const Reviews = ({ itemData }) => {
 
     const axiosPublic = useAxiosPublic()
     const itemId = itemData?._id
+    // const itemName = itemData?.name
     const { data: reviews = [] } = useQuery({
         queryKey: ['review'],
         queryFn: async () => {
@@ -20,31 +21,39 @@ const Reviews = ({ itemData }) => {
 
     return (
         <div>
-            <div>
+            <div className=" pb-5">
                 <ReviewFormPopup itemId={itemId} />
             </div>
-            <div className=" mx-auto">
+            <div className=" space-y-4">
                 {
-                    reviews.map(review =>
-                        <div key={review._id} className=" mx-auto">
-                            <div className=" border-2 p-4 h-fit w-72 lg:w-[500px] space-y-4 text-gray-600 mx-auto">
-                                <div className=" space-y-1">
-                                    <h3 className=" text-gray-600">{review.name}, <span className=" text-xs text-gray-400">{review.reviewDate}</span> </h3>
-                                    <h3>
-                                        <Rating style={{ maxWidth: 80 }} value={review.rating} readOnly />
-                                    </h3>
+                    reviews.map(review => (
+                        <div key={review._id} className="mx-auto">
+                            <div className="border-2 border-gray-300 p-6 min-h-[160px] h-auto w-96 lg:w-full text-gray-600 mx-auto flex gap-3">
+                                <div className=" flex-shrink-0 h-16 w-16">
+                                    <img className="w-16 h-16 object-cover" src="/user1.png" alt="" />
                                 </div>
-                                <div>
-                                    <p>
+                                <div className="space-y-3 w-full">
+                                    <div className="space-y-1">
+                                        <h3 className="text-gray-600 text-sm">
+                                            {review.name},
+                                            <span className="text-xs text-gray-400">
+                                                {review.reviewDate}
+                                            </span>
+                                        </h3>
+                                        <h3>
+                                            <Rating style={{ maxWidth: 60 }} value={review.rating} readOnly />
+                                        </h3>
+                                    </div>
+                                    <p className="break-words overflow-hidden text-ellipsis  ">
                                         {review.reviewText}
                                     </p>
                                 </div>
                             </div>
                         </div>
-                    )
+                    ))
                 }
             </div>
-        </div>
+        </div >
     );
 };
 

@@ -13,10 +13,13 @@ import Swal from "sweetalert2";
 import { getItemFromLocalStorage } from "../../../components/localstorage";
 import { toast, Toaster } from "sonner";
 import useUserData from "../../../Hooks/useUserData/useUserData";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic/useAxiosPublic";
+import SearchResult from "./SearchResult/SearchResult";
 
 
 const Navbar = () => {
 
+    const axiosPublic = useAxiosPublic()
     const { user, logOut, refreshPage, setCartToggle, cartToggle, setOpenCart, openCart } = useAuth()
     const [userData] = useUserData()
     const userRole = userData?.role
@@ -93,8 +96,39 @@ const Navbar = () => {
 
     }, [refreshPage])
 
+    // search functionality
+    const [searchText, setSearchText] = useState(null)
+    const [searchResultData, setSearchResultData] = useState(null)
+    console.log(searchResultData)
+    const handleSetSearch = (e) => {
+        setSearchText(e.target.value)
+
+        if (searchText === '') {
+            setSearchResultData(null)
+            return
+        }
+
+        axiosPublic.get(`/searchItem/${searchText}`)
+            .then(res => {
+                console.log(res.data)
+                setSearchResultData(res.data)
+            })
+    }
+
+    const handleSearch = () => {
+        if (searchText==='') {
+            setSearchResultData(null)
+            return
+        }
+        axiosPublic.get(`/searchItem/${searchText}`)
+            .then(res => {
+                console.log(res.data)
+                setSearchResultData(res.data)
+            })
+    }
+
     return (
-        <div className="  sticky top-0 z-50">
+        <div className=" sticky top-0 z-50">
             {
                 mobileNav && <MobileNav openModal={openModal} ></MobileNav>
             }
@@ -104,17 +138,31 @@ const Navbar = () => {
             <div className={` ${isScrolled ? "lg:pt-2 " : "lg:pt-8 "} w-full max-w-full mx-auto  px-2 text-black border-b bg-opacity-90 transition-all duration-300 bg-white`}>
                 <div className={`flex justify-between flex-start items-center duration-300 ease-in-out w-full max-w-screen-xl mx-auto lg:py-0 py-2`}>
                     <div className=" block lg:hidden">
-                        <div onClick={handleMobileNav} className={`  flex items-center gap-3`}>
+                        <div onClick={handleMobileNav} className={` flex items-center gap-3`}>
                             <FaBars />
                             <h3 className=" text-lg"> Menu</h3>
                         </div>
                     </div>
+
+                    {/* Shop Name/ title  */}
+
                     <div>
-                        <NavLink to={'/'}><h3 className={` ${isScrolled ? 'text-xl' : 'text-2xl'} font-black ease-in-out duration-300`}><span className=" text-orange-600 text-4xl">F</span><span className=" text-[#c2c7d1fa]">IRIDAK</span></h3></NavLink>
+                        <NavLink to={'/'}>
+                            <h3 className={` ${isScrolled ? 'text-xl' : 'text-2xl'} font-black ease-in-out duration-300`}>
+                                <span className=" text-orange-600 text-4xl">F</span>
+                                <span className=" text-[#c2c7d1fa]">IRIDAK</span>
+                            </h3>
+                        </NavLink>
                     </div>
+
+                    {/* search input box */}
+
                     <div className={` ${isScrolled ? " w-10/12 h-13" : ""} w-[75%] h-12 duration-300 ease-in-out lg:block hidden relative`}>
-                        <input type="text" name="searchbar" id="searchbar" className=" w-full h-full bg-transparent border-2 p-2 outline-none" placeholder="search here..." />
-                        <FaMagnifyingGlass className={` ${isScrolled ? " text-xl" : ""} absolute duration-300 ease-in-out right-4 bottom-4`} />
+                        <input onChange={handleSetSearch} type="text" name="searchbar" id="searchbar" className=" w-full h-full bg-transparent border-2 p-2 outline-none" placeholder="search here..." />
+                        <FaMagnifyingGlass onClick={handleSearch} className={` ${isScrolled ? " text-xl" : ""} absolute duration-300 ease-in-out right-4 bottom-4`} />
+                        {
+                            searchResultData && <SearchResult ItemData={searchResultData} ></SearchResult>
+                        }
                     </div>
 
                     {/* wishlist and cart button/icon */}
