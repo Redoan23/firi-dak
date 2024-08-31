@@ -3,11 +3,13 @@ import Navbar from "../../Pages/Shared/Navbar/Navbar";
 import Footer from "../../Pages/Shared/Footer/Footer";
 import BottomNav from "../../Pages/Shared/BottomNav/BottomNav";
 import "./bottomnav.css"
+import useAuth from "../../Hooks/useAuth/useAuth";
 
 
 const Main = () => {
+    const {searchModal, setSearchModal} = useAuth()
     return (
-        <div className=' bg-gray-100'>
+        <div onClick={() => setSearchModal(!searchModal)} className=' bg-gray-100'>
             <div className=" min-h-screen mx-auto">
                 <Navbar></Navbar>
                 <div className=" min-h-screen">

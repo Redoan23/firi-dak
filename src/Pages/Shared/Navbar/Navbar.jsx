@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BsTelephone } from "react-icons/bs";
 import { CiHeart, CiShirt, CiShoppingCart } from "react-icons/ci";
-import { FaBars, FaMagnifyingGlass } from "react-icons/fa6";
+import { FaBars, } from "react-icons/fa6";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 import MobileNav from "./MobileNav";
@@ -20,7 +20,7 @@ import SearchResult from "./SearchResult/SearchResult";
 const Navbar = () => {
 
     const axiosPublic = useAxiosPublic()
-    const { user, logOut, refreshPage, setCartToggle, cartToggle, setOpenCart, openCart } = useAuth()
+    const { user, logOut, refreshPage, setCartToggle, cartToggle, setOpenCart, openCart, searchModal } = useAuth()
     const [userData] = useUserData()
     const userRole = userData?.role
 
@@ -96,39 +96,49 @@ const Navbar = () => {
 
     }, [refreshPage])
 
+
     // search functionality
-    const [searchText, setSearchText] = useState(null)
+
+
+    // const [searchText, setSearchText] = useState('')
     const [searchResultData, setSearchResultData] = useState(null)
-    console.log(searchResultData)
     const handleSetSearch = (e) => {
-        setSearchText(e.target.value)
 
-        if (searchText === '') {
+        const value = e.target.value
+        // setSearchText(value)
+        console.log(value)
+
+        if (!value) {
+            console.log(true)
             setSearchResultData(null)
             return
         }
 
-        axiosPublic.get(`/searchItem/${searchText}`)
+        axiosPublic.get(`/searchItem/${value}`)
             .then(res => {
-                console.log(res.data)
                 setSearchResultData(res.data)
             })
     }
 
-    const handleSearch = () => {
-        if (searchText==='') {
-            setSearchResultData(null)
-            return
-        }
-        axiosPublic.get(`/searchItem/${searchText}`)
-            .then(res => {
-                console.log(res.data)
-                setSearchResultData(res.data)
-            })
-    }
+    // const handleSearch = () => {
+
+    //     if (searchText === '') {
+    //         setSearchResultData(null)
+    //         return
+    //     }
+    //     axiosPublic.get(`/searchItem/${searchText}`)
+    //         .then(res => {
+    //             console.log(res.data)
+    //             setSearchResultData(res.data)
+    //         })
+    // }
+
+    useEffect(() => {
+        setSearchResultData(null)
+    }, [searchModal])
 
     return (
-        <div className=" sticky top-0 z-50">
+        <div onClick={() => setSearchResultData(null)} className=" sticky top-0 z-50">
             {
                 mobileNav && <MobileNav openModal={openModal} ></MobileNav>
             }
@@ -158,29 +168,43 @@ const Navbar = () => {
                     {/* search input box */}
 
                     <div className={` ${isScrolled ? " w-10/12 h-13" : ""} w-[75%] h-12 duration-300 ease-in-out lg:block hidden relative`}>
-                        <input onChange={handleSetSearch} type="text" name="searchbar" id="searchbar" className=" w-full h-full bg-transparent border-2 p-2 outline-none" placeholder="search here..." />
-                        <FaMagnifyingGlass onClick={handleSearch} className={` ${isScrolled ? " text-xl" : ""} absolute duration-300 ease-in-out right-4 bottom-4`} />
+                        <input
+                            onChange={handleSetSearch}
+                            type="text"
+                            name="searchbar"
+                            id="searchbar"
+                            className=" w-full h-full bg-transparent border-2 p-2 outline-none"
+                            placeholder="search here..."
+                        />
+                        {/* <FaMagnifyingGlass onClick={handleSearch} className={` ${isScrolled ? " text-xl" : ""} absolute duration-300 ease-in-out right-4 bottom-4`} /> */}
                         {
-                            searchResultData && <SearchResult ItemData={searchResultData} ></SearchResult>
+                            searchResultData &&
+
+                            <div onClick={() => setSearchResultData(null)}>
+                                <SearchResult ItemData={searchResultData} ></SearchResult>
+                            </div>
                         }
                     </div>
 
                     {/* wishlist and cart button/icon */}
 
                     <div className=" flex gap-5 items-center">
+
                         <NavLink to={'/wishlistDetails'} className=" relative border-none p-0 m-0 btn bg-transparent text-black btn-sm hover:bg-transparent shadow-none ">
                             <CiHeart className=" text-3xl" />
-                            {/* <p className=" absolute -top-2 right-3 text-red-600">{itemLength ? itemLength : 0}</p> */}
                         </NavLink>
+
                         <div className=" relative border-none p-0 m-0 btn bg-transparent text-black btn-sm hover:bg-transparent shadow-none " onClick={handleCart}>
                             <CiShoppingCart className=" text-3xl" />
                             <p className=" absolute -top-2 right-3 text-orange-600">{itemLength ? itemLength : 0}</p>
                         </div>
+
                         {user ? <button onClick={handleLogout} className=" hidden lg:block btn btn-sm border-none bg-orange-600  text-white hover:text-orange-600 hover:bg-gray-200 rounded-none">Logout</button>
                             : <Link to={'/login'}><button className=" hidden lg:block btn btn-sm border-none bg-orange-600  text-white hover:text-orange-600 hover:bg-gray-200 rounded-none">Login</button></Link>
                         }
                     </div>
                 </div>
+
                 <div className={` ${isScrolled ? "mt-2" : "mt-6"} border w-full  ease-in-out duration-300 lg:block hidden`}>
                     <div className=" flex items-center justify-between  max-w-screen-xl mx-auto">
                         <div className=" flex items-center gap-4">
