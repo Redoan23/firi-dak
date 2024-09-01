@@ -1,4 +1,4 @@
-import * as React from 'react';
+
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
@@ -10,7 +10,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Slide } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { IoHeartOutline, IoPersonOutline } from 'react-icons/io5';
 import { LiaShoppingBagSolid } from 'react-icons/lia';
 import { PiHoodieLight } from 'react-icons/pi';
@@ -20,14 +20,20 @@ import { FaMagnifyingGlass } from 'react-icons/fa6';
 import useAuth from '../../../Hooks/useAuth/useAuth';
 import { BiLogOut } from 'react-icons/bi';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic/useAxiosPublic';
+import MobileSearchResult from './MobileSearchResult/MobileSearchResult';
+import { toast } from 'sonner';
+import { useEffect, useState } from 'react';
+import { CgClose } from 'react-icons/cg';
 
 const style = {
     position: 'absolute',
     top: '0%',
     left: '0%',
     transform: 'translate(0%, 0%)',
-    width: '280px',
-    height: '100%',
+    width: '290px',
+    minHeight: '100%',
+    height: 'auto',
     bgcolor: 'background.paper',
     border: '2px solid ',
     boxShadow: 24,
@@ -37,19 +43,20 @@ const style = {
 
 const MobileNav = ({ openModal }) => {
 
+    const axiosPublic = useAxiosPublic()
     const { user, logOut } = useAuth()
-    const [value, setValue] = React.useState('1');
+    const [value, setValue] = useState('1');
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
     // modal part
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         handleOpen()
     }, [openModal])
 
@@ -63,9 +70,34 @@ const MobileNav = ({ openModal }) => {
             title: "Upcoming soon",
             icon: "info",
             position: "top-end",
-            timer:1000,
-            showConfirmButton:false
+            timer: 1000,
+            showConfirmButton: false
         });
+    }
+
+
+    // search functionality
+
+    const [searchText, setSearchText] = useState('')
+    const [manualSearchData, setManualSearchData] = useState([])
+
+
+    const handleSearch = () => {
+        if (searchText === '') {
+            setManualSearchData(null)
+            return
+        }
+        axiosPublic.get(`/searchItem/${searchText}`)
+            .then(res => {
+                setManualSearchData(res.data)
+            })
+            .catch(err => {
+                toast.error(`${err.message}`)
+            })
+    }
+
+    const handleClear = () => {
+        setManualSearchData([])
     }
 
     return (
@@ -75,14 +107,34 @@ const MobileNav = ({ openModal }) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             closeAfterTransition
+            sx={{ overflowY: 'auto', minHeight: '100vw', height: 'auto' }}
         >
             <Slide direction='right' in={open} mountOnEnter unmountOnExit>
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         {/* Text in a modal */}
                         <div className=' relative '>
-                            <input type="text" name="search" id="search" className=' w-44 rounded-md bg-gray-100 border-none outline-none text-sm p-2' placeholder=' search here... ' />
-                            <FaMagnifyingGlass className=' absolute top-2 right-0 text-orange-600' />
+                            <input
+                                type="text"
+                                onChange={(e) => setSearchText(e.target.value)}
+                                name="search"
+                                id="search"
+                                className=' w-44 rounded-md bg-gray-100 border-none outline-none text-sm p-2'
+                                placeholder=' search here... '
+                            />
+                            <Link onClick={handleSearch}>
+                                <FaMagnifyingGlass className=' absolute top-2 right-4 text-orange-600' />
+                            </Link>
+                            <div className=''>
+                                {manualSearchData.length > 0 &&
+                                    < button onClick={handleClear}
+                                        className=' mt-1 flex justify-end text-red-500 absolute -right-4 top-1 text-[22px]'
+                                    >
+                                        <CgClose />
+                                    </button>
+                                }
+                                <MobileSearchResult searchData={manualSearchData} onClear={handleClear} />
+                            </div>
                         </div>
                         <TabContext value={value}>
                             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -121,7 +173,7 @@ const MobileNav = ({ openModal }) => {
                     </Typography>
                 </Box>
             </Slide>
-        </Modal>
+        </Modal >
     )
 };
 

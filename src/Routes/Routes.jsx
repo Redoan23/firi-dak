@@ -22,6 +22,7 @@ import AboutUs from "../Pages/AboutUs/AboutUs";
 import WishlistDetails from "../Pages/WishlistDetails/WishlistDetails";
 import AdminRoutes from "./AdminRoutes/AdminRoutes";
 import ReviewPending from "../Pages/Admin/ReviewPending/ReviewPending";
+import MobileSearchResult from "../Pages/Shared/Navbar/MobileSearchResult/MobileSearchResult";
 
 
 const router = createBrowserRouter([
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
             {
                 path: '/aboutUs',
                 element: <AboutUs />
+            },
+            {
+                path: '/mobileSearchResult',
+                element: <MobileSearchResult />
             },
         ]
     },
