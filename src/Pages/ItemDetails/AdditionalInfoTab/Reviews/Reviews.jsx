@@ -2,14 +2,17 @@ import { useQuery } from "react-query";
 import ReviewFormPopup from "./ReviewFormPopup/ReviewFormPopup";
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic/useAxiosPublic";
 import { Rating } from "@smastrom/react-rating";
+import useUserData from "../../../../Hooks/useUserData/useUserData";
+import { BiTrash } from "react-icons/bi";
+import Swal from "sweetalert2";
+import { toast, Toaster } from "sonner";
 
 
 const Reviews = ({ itemData }) => {
 
     const axiosPublic = useAxiosPublic()
     const itemId = itemData?._id
-    // const itemName = itemData?.name
-    const { data: reviews = [] } = useQuery({
+    const { data: reviews = [], refetch } = useQuery({
         queryKey: ['review'],
         queryFn: async () => {
             const res = await axiosPublic.get(`/review/${itemId}`)
@@ -17,7 +20,39 @@ const Reviews = ({ itemData }) => {
         }
     })
 
-    console.log(reviews)
+    const [userData] = useUserData()
+    const userRole = userData?.role
+
+    const handleDeleteReview = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axiosPublic.delete(`/deletePostedReview/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "The review has been deleted.",
+                                icon: "success"
+                            });
+                            
+                            refetch()
+                        }
+                    })
+                    .catch(err => {
+                        toast.error(`${err.message}`)
+                    })
+            }
+        });
+    }
 
     return (
         <div>
@@ -48,11 +83,15 @@ const Reviews = ({ itemData }) => {
                                         {review.reviewText}
                                     </p>
                                 </div>
+                                {
+                                    userRole === 'admin' && <BiTrash onClick={() => handleDeleteReview(review._id)} />
+                                }
                             </div>
                         </div>
                     ))
                 }
             </div>
+            <Toaster richColors position="bottom-right" />
         </div >
     );
 };
