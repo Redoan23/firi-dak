@@ -146,7 +146,7 @@ const Checkout = () => {
                             {errors.district && <p className="text-red-500 text-xs mt-1">{errors.district.message}</p>}
                         </div>
                         <div className="mb-4">
-                            <label className="block text-gray-700 font-bold mb-2">Address *</label>
+                            <label className="block text-gray-700 font-bold mb-2">Full Address *</label>
                             <textarea
                                 {...register('address', { required: 'Address is required' })}
                                 className="w-full p-1 border bg-white border-gray-300 rounded-none focus:outline-none"

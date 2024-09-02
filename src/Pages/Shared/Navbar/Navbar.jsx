@@ -245,7 +245,7 @@ const Navbar = () => {
                         </div>
                     </div>
                 </div>
-                <Toaster position="bottom-right" closeButton={true} richColors className=" z-[100]"></Toaster>
+                <Toaster position="top-right" closeButton={true} richColors className=" z-[100]"></Toaster>
             </div>
         </div>
     );

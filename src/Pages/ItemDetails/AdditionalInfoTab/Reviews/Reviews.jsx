@@ -91,7 +91,7 @@ const Reviews = ({ itemData }) => {
                     ))
                 }
             </div>
-            <Toaster richColors position="bottom-right" className=" z-[100]" />
+            <Toaster richColors position="top-right" className=" z-[100]" />
         </div >
     );
 };
