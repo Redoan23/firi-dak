@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { BsTelephone } from "react-icons/bs";
-import { CiHeart, CiShirt, CiShoppingCart } from "react-icons/ci";
+import { CiHeart, CiShoppingCart } from "react-icons/ci";
 import { FaBars, } from "react-icons/fa6";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 import MobileNav from "./MobileNav";
 import Cart from "./ShoppingCart/Cart";
-import { GiSquareBottle } from "react-icons/gi";
-import { PiHoodieLight } from "react-icons/pi";
+import { GiLabCoat, GiRolledCloth } from "react-icons/gi";
 import useAuth from "../../../Hooks/useAuth/useAuth";
 import Swal from "sweetalert2";
 import { getItemFromLocalStorage } from "../../../components/localstorage";
@@ -15,6 +14,7 @@ import { toast, Toaster } from "sonner";
 import useUserData from "../../../Hooks/useUserData/useUserData";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic/useAxiosPublic";
 import SearchResult from "./SearchResult/SearchResult";
+import { LiaRingSolid } from "react-icons/lia";
 
 
 const Navbar = () => {
@@ -105,11 +105,8 @@ const Navbar = () => {
     const handleSetSearch = (e) => {
 
         const value = e.target.value
-        // setSearchText(value)
-        console.log(value)
 
         if (!value) {
-            console.log(true)
             setSearchResultData(null)
             return
         }
@@ -128,7 +125,6 @@ const Navbar = () => {
     //     }
     //     axiosPublic.get(`/searchItem/${searchText}`)
     //         .then(res => {
-    //             console.log(res.data)
     //             setSearchResultData(res.data)
     //         })
     // }
@@ -220,9 +216,9 @@ const Navbar = () => {
                                     <div>
                                         <div className={` flex flex-col text-black text-sm bg-white border box-shadow shadow-lg  w-60 ${hiddenCategory ? "  " : " hidden"} duration-300 transition-transform ease-in-out `}>
                                             <NavLink className={' border-b p-2  flex items-center gap-2 hover:text-orange-600 hover:bg-gray-100 ease-in-out duration-300'} onClick={handleUpcomingNotification}> SPECIAL DISCOUNT PRODUCTS</NavLink>
-                                            <NavLink className={' border-b p-2  flex items-center gap-2 hover:text-orange-600 hover:bg-gray-100 ease-in-out duration-300'} onClick={handleUpcomingNotification}> <GiSquareBottle /> ATTAR</NavLink>
-                                            <NavLink className={' border-b p-2  flex items-center gap-2 hover:text-orange-600 hover:bg-gray-100 ease-in-out duration-300'} onClick={handleUpcomingNotification}> <CiShirt /> T-SHIRT</NavLink>
-                                            <NavLink className={' border-b p-2  flex items-center gap-2 hover:text-orange-600 hover:bg-gray-100 ease-in-out duration-300'} onClick={handleUpcomingNotification}> <PiHoodieLight /> HOODIE</NavLink>
+                                            <NavLink className={' border-b p-2  flex items-center gap-2 hover:text-orange-600 hover:bg-gray-100 ease-in-out duration-300'} to={'/'}> <LiaRingSolid /> Bangles</NavLink>
+                                            <NavLink className={' border-b p-2  flex items-center gap-2 hover:text-orange-600 hover:bg-gray-100 ease-in-out duration-300'} onClick={handleUpcomingNotification}> <GiLabCoat />Kurtis</NavLink>
+                                            <NavLink className={' border-b p-2  flex items-center gap-2 hover:text-orange-600 hover:bg-gray-100 ease-in-out duration-300'} onClick={handleUpcomingNotification}> <GiRolledCloth />Shari</NavLink>
                                             {moreCategory && <h3 className={' border-b p-2  text-center uppercase'} > No more categories</h3>}
                                             <button onClick={() => setMoreCategory(!moreCategory)} className={' p-2  flex items-center bg-gray-100 gap-2 text-center justify-center'}>{moreCategory ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}</button>
                                         </div>
@@ -244,12 +240,12 @@ const Navbar = () => {
                         <div className=" ">
                             <h3 className=" text-2xl flex gap-2 items-center">
                                 <BsTelephone />
-                                01327319170
+                                01540530416
                             </h3>
                         </div>
                     </div>
                 </div>
-                <Toaster position="bottom-right" closeButton={true} richColors></Toaster>
+                <Toaster position="bottom-right" closeButton={true} richColors className=" z-[100]"></Toaster>
             </div>
         </div>
     );

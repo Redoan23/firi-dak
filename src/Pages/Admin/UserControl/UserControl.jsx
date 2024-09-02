@@ -111,7 +111,7 @@ const UserControl = () => {
                     </tbody>
                 </table>
             </div>
-            <Toaster></Toaster>
+            <Toaster className=" z-[100]"></Toaster>
         </div>
     );
 };

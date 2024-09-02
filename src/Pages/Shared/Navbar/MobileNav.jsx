@@ -12,10 +12,8 @@ import Modal from '@mui/material/Modal';
 import { Slide } from '@mui/material';
 import { Link, NavLink } from 'react-router-dom';
 import { IoHeartOutline, IoPersonOutline } from 'react-icons/io5';
-import { LiaShoppingBagSolid } from 'react-icons/lia';
-import { PiHoodieLight } from 'react-icons/pi';
-import { GiSquareBottle } from 'react-icons/gi';
-import { CiShirt } from 'react-icons/ci';
+import { LiaRingSolid, LiaShoppingBagSolid } from 'react-icons/lia';
+import { GiLabCoat, GiRolledCloth } from 'react-icons/gi';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import useAuth from '../../../Hooks/useAuth/useAuth';
 import { BiLogOut } from 'react-icons/bi';
@@ -164,9 +162,9 @@ const MobileNav = ({ openModal }) => {
                             <TabPanel value="2">
                                 <div className=' flex flex-col text-black text-sm'>
                                     <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} onClick={handleUpcomingNotification}> SPECIAL DISCOUNT PRODUCTS</NavLink>
-                                    <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} onClick={handleUpcomingNotification}> <GiSquareBottle /> ATTAR</NavLink>
-                                    <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} onClick={handleUpcomingNotification}> <CiShirt /> T-SHIRT</NavLink>
-                                    <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} onClick={handleUpcomingNotification}> <PiHoodieLight /> HOODIE</NavLink>
+                                    <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} to={'/'}> < LiaRingSolid /> Bangles</NavLink>
+                                    <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} onClick={handleUpcomingNotification}> <GiLabCoat /> Kurtis</NavLink>
+                                    <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} onClick={handleUpcomingNotification}> <GiRolledCloth /> Shari</NavLink>
                                 </div>
                             </TabPanel>
                         </TabContext>

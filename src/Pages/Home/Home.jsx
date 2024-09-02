@@ -11,7 +11,7 @@ const Home = () => {
         <div className=" mt-16 mx-auto">
             <Helmet>
                 <title>
-                    FIRIDAK | HOME
+                    FIRIDAK - your trust is our identity
                 </title>
             </Helmet>
             <div>
@@ -27,7 +27,7 @@ const Home = () => {
 
             {/*below the div is for toaster not any section of home page */}
             <div>
-                <Toaster position="bottom-right" closeButton={true} richColors />
+                <Toaster position="bottom-right" closeButton={true} richColors className=" z-[100]" />
             </div>
         </div>
     );

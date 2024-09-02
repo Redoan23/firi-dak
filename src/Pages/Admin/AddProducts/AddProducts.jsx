@@ -119,7 +119,7 @@ const AddProducts = () => {
                     </button>
                 </form>
             </div>
-            <Toaster richColors />
+            <Toaster richColors className=" z-[100]" />
         </div>
     );
 };

@@ -95,7 +95,7 @@ const AllProducts = () => {
                     </table>
                 </div>
             </div>
-            <Toaster richColors />
+            <Toaster richColors className=" z-[100]" />
         </div>
     );
 };

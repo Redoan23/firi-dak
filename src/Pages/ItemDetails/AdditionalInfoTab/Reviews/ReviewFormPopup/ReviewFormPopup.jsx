@@ -158,7 +158,7 @@ const ReviewFormPopup = ({ itemId }) => {
                     </Modal>
                 </div>
             </div>
-            <Toaster richColors duration={4000} />
+            <Toaster richColors duration={4000} className=" z-[100]" />
         </div>
     );
 };

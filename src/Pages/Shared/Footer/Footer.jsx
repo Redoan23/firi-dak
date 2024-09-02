@@ -1,5 +1,5 @@
 import { BsFacebook, BsInstagram, BsYoutube } from "react-icons/bs";
-import { CiLocationOn, CiMail } from "react-icons/ci";
+import { CiLocationOn, CiMail, CiPhone } from "react-icons/ci";
 
 
 const Footer = () => {
@@ -16,11 +16,15 @@ const Footer = () => {
                         Your trust is our identity
                     </p>
                     <p className=" flex items-center gap-1">
+                        <CiPhone />
+                        01540530416
+                    </p>
+                    <p className=" flex items-center gap-1">
                         <CiMail />
                         info@firidak.com
                     </p>
                     <p className=" flex items-center gap-1 ">
-                        <CiLocationOn/>  Netrakona, Mymenshingh, Bangladesh
+                        <CiLocationOn />  Netrakona, Mymenshingh, Bangladesh
                     </p>
                 </aside>
                 <nav className=" lg:place-items-center w-full">

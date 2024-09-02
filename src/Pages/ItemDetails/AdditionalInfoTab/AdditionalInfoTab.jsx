@@ -51,7 +51,7 @@ const AdditionalInfoTab = ({ itemInfo }) => {
                         <p> <span className=' text-gray-700 font-semibold text-xl'>Size Available :</span> {itemInfo.size}</p>
 
                     </TabPanel>
-                    <TabPanel value="2">
+                    <TabPanel value="2" className=' mx-auto flex justify-center'>
                         <Reviews itemData={itemInfo} />
                     </TabPanel>
                 </TabContext>

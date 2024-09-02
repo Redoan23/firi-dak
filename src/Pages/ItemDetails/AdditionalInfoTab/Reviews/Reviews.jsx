@@ -59,11 +59,11 @@ const Reviews = ({ itemData }) => {
             <div className=" pb-5">
                 <ReviewFormPopup itemId={itemId} />
             </div>
-            <div className=" space-y-4">
+            <div className=" space-y-4 w-full">
                 {
                     reviews.map(review => (
-                        <div key={review._id} className="mx-auto">
-                            <div className="border-2 border-gray-300 p-6 min-h-[160px] h-auto w-96 lg:w-full text-gray-600 mx-auto flex gap-3">
+                        <div key={review._id} className="mx-auto w-full">
+                            <div className="border-2 border-gray-300 p-4 min-h-[160px] h-auto w-72 md:w-96 lg:w-full text-gray-600 justify-center flex gap-3">
                                 <div className=" flex-shrink-0 h-16 w-16">
                                     <img className="w-16 h-16 object-cover" src="/user1.png" alt="" />
                                 </div>
@@ -91,7 +91,7 @@ const Reviews = ({ itemData }) => {
                     ))
                 }
             </div>
-            <Toaster richColors position="bottom-right" />
+            <Toaster richColors position="bottom-right" className=" z-[100]" />
         </div >
     );
 };
