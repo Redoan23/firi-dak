@@ -14,7 +14,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { IoHeartOutline, IoPersonOutline } from 'react-icons/io5';
 import { LiaRingSolid, LiaShoppingBagSolid } from 'react-icons/lia';
 import { GiLabCoat, GiRolledCloth } from 'react-icons/gi';
-import { FaMagnifyingGlass } from 'react-icons/fa6';
+import { FaBars, FaMagnifyingGlass } from 'react-icons/fa6';
 import useAuth from '../../../Hooks/useAuth/useAuth';
 import { BiLogOut } from 'react-icons/bi';
 import Swal from 'sweetalert2';
@@ -23,6 +23,7 @@ import MobileSearchResult from './MobileSearchResult/MobileSearchResult';
 import { toast } from 'sonner';
 import { useEffect, useState } from 'react';
 import { CgClose } from 'react-icons/cg';
+import useUserData from '../../../Hooks/useUserData/useUserData';
 
 const style = {
     position: 'absolute',
@@ -43,6 +44,7 @@ const MobileNav = ({ openModal }) => {
 
     const axiosPublic = useAxiosPublic()
     const { user, logOut } = useAuth()
+    const [userData] = useUserData()
     const [value, setValue] = useState('1');
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -156,7 +158,13 @@ const MobileNav = ({ openModal }) => {
                                     <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} to={'/shop'}> <LiaShoppingBagSolid /> SHOP</NavLink>
                                     <NavLink className={' border-b py-2 my-1 flex items-center gap-2'} to={'/wishlistDetails'}> <IoHeartOutline /> WISHLIST</NavLink>
                                     <NavLink className={' border-b py-2 my-1 flex  items-center gap-2'} to={'/login'}> <IoPersonOutline /> LOGIN / REGISTER</NavLink>
-                                    {user && <NavLink onClick={handleLogout} className={'flex items-center py-2 my-1 gap-2'}> <BiLogOut /> LOGOUT</NavLink>}
+                                    {
+                                        userData?.role === 'admin' &&
+                                        <NavLink className={' border-b py-2 my-1 flex  items-center gap-2'} to={'/dashboard/adminHome'}> <FaBars/>Dashboard</NavLink>
+                                    }
+                                    {
+                                        user && <NavLink onClick={handleLogout} className={'flex items-center py-2 my-1 gap-2'}> <BiLogOut /> LOGOUT</NavLink>
+                                    }
                                 </div>
                             </TabPanel>
                             <TabPanel value="2">

@@ -66,11 +66,10 @@ const AddProducts = () => {
                     </div>
 
                     <div className="mb-4">
-                        <label className="block text-gray-700">Weight</label>
+                        <label className="block text-gray-700">Description</label>
                         <input
-                            type="number"
-                            step="0.1"
-                            {...register('weight', { required: 'weight is required', })}
+                            type="text"
+                            {...register('description', { required: 'description is required', })}
                             className="w-full p-2 bg-white border border-gray-300 rounded shadow-sm focus:outline-none border-none"
                         />
                         {errors.size && <p className="text-red-600">{errors.size.message}</p>}

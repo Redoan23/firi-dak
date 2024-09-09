@@ -47,8 +47,11 @@ const AdditionalInfoTab = ({ itemInfo }) => {
                     </Box>
                     <TabPanel value="1">
 
-                        <p><span className=' text-gray-700 font-semibold text-xl'>Weight :</span> {itemInfo.weight} g</p>
-                        <p> <span className=' text-gray-700 font-semibold text-xl'>Size Available :</span> {itemInfo.size}</p>
+                        <p> <span className=' text-gray-700 font-semibold text-xl'>Size Available :</span> {itemInfo?.size}</p>
+                        <p>
+                            <span className=' text-gray-700 font-semibold text-xl'>Description :</span>
+                            <span>{itemInfo?.description}</span>
+                        </p>
 
                     </TabPanel>
                     <TabPanel value="2" className=' mx-auto flex justify-center'>
