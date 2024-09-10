@@ -25,7 +25,11 @@ const PrimaryCard = ({ title, dataArray }) => {
             </div>
             <div className=" mx-auto text-center flex justify-center">
                 <Swiper
+
+                    slidesPerView={dataArray.length === 1 ? 1 : dataArray.length === 2 ? 2 : 3}
+                    centeredSlides={dataArray.length === 1}
                     freeMode={true}
+                    watchOverflow={true}
                     modules={[FreeMode, Pagination, Navigation]}
                     breakpoints={{
                         375: {
@@ -41,7 +45,7 @@ const PrimaryCard = ({ title, dataArray }) => {
                             spaceBetween: 40,
                         }
                     }}
-                    className="mySwiper mx-auto flex justify-center text-center px-5"
+                    className="mySwiper px-5 w-full"
                 >
                     {
                         dataArray.map((data, i) =>

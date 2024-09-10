@@ -72,13 +72,12 @@ const AddProducts = () => {
                             {...register('description', { required: 'description is required', })}
                             className="w-full p-2 bg-white border border-gray-300 rounded shadow-sm focus:outline-none border-none"
                         />
-                        {errors.size && <p className="text-red-600">{errors.size.message}</p>}
+                        {errors.description && <p className="text-red-600">{errors.description.message}</p>}
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700">Size</label>
                         <input
-                            type="number"
-                            step="0.1"
+                            type="text"
                             {...register('size', { required: 'Size is required', })}
                             className="w-full p-2 bg-white border border-gray-300 rounded shadow-sm focus:outline-none border-none"
                         />

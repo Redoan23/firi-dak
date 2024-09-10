@@ -6,11 +6,17 @@ import useUserData from '../../Hooks/useUserData/useUserData';
 const AdminRoutes = ({ children }) => {
 
     const { user, loading } = useAuth()
-    const [userData] = useUserData()
+    const [userData, isLoading] = useUserData()
     const userRole = userData?.role
 
 
     if (loading) {
+        return <div className=" w-full min-h-screen flex justify-center items-center flex-col bg-gray-100">
+            <span className="loading loading-ring w-[4rem]"></span>
+        </div>
+    }
+
+    if (isLoading) {
         return <div className=" w-full min-h-screen flex justify-center items-center flex-col bg-gray-100">
             <span className="loading loading-ring w-[4rem]"></span>
         </div>
